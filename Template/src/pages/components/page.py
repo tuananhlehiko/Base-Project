@@ -37,8 +37,15 @@ class BasePage(object):
         except Exception as e:
             print('Error: ', e)
 
+    def get_url(self):
+        try:
+            return self.driver.current_url
+        except Exception as e:
+            print('Error: ', e)
+
 
 class HomePage(BasePage):
-    def fill_text(self, textfield, text_content):
-        box = self.driver.find_element(*textfield)
-        box.send_keys(text_content)
+    pass
+
+class GameLobbyPage(BasePage):
+    pass

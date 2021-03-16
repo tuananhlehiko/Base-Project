@@ -3,19 +3,19 @@ import HtmlTestRunner
 import unittest
 import os
 
-from pages.components.main import Homepage_Test
+from pages.components.main import GameLobby
 
 # Get directory to export report file
 dir = os.getcwd()
 
-# Get all test case from class Homepage_Test
-main = unittest.TestLoader().loadTestsFromTestCase(Homepage_Test)
+# Get all test case from class GameLobby
+main = unittest.TestLoader().loadTestsFromTestCase(GameLobby)
 
 
 # Create test_suite
 test_suite = unittest.TestSuite([main])
 
-folder = 'Homepage_Test'
+folder = 'GameLobby'
 
 # Open report file
 output_file = open(dir + "\Homepage Test.html", "w")
