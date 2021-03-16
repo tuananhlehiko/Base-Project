@@ -3,7 +3,7 @@ import os
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from src.pages.Browser import Browser
+from pages.Browser import Browser
 
 
 class UiObject:

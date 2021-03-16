@@ -3,7 +3,7 @@ import HtmlTestRunner
 import unittest
 import os
 
-from src.pages.components.main import Homepage_Test
+from pages.components.main import Homepage_Test
 
 # Get directory to export report file
 dir = os.getcwd()

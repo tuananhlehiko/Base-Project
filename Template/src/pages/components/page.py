@@ -1,5 +1,6 @@
-from element import BasePageElement
-from locators import HomePageLocators
+# from pages.components.element import BasePageElement
+from pages.components.locators import HomePageLocators
+from pages.components.locators import ge
 import os
 
 

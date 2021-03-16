@@ -18,28 +18,30 @@ class Homepage_Test(unittest.TestCase):
     def test_Login_with_valid_account(self):
         home = page.HomePage(self.driver)
         self.driver.implicitly_wait(30)
+        time.sleep(5)
+
         self.driver.maximize_window()
-        LOGIN = UiObject(HomePageLocators.btn_login)
-        REGISTER = UiObject(HomePageLocators.btn_register)
-        USERNAME = UiObject(HomePageLocators.txt_username)
-        PASSWORD = UiObject(HomePageLocators.txt_password)
-        LOGIN_FULL = UiObject(HomePageLocators.btn_login_full)
-        LOGOUT = UiObject(HomePageLocators.btn_logout)
+        LOGIN = UiObject(*HomePageLocators.btn_login)
+        REGISTER = UiObject(*HomePageLocators.btn_register)
+        USERNAME = UiObject(*HomePageLocators.txt_username)
+        PASSWORD = UiObject(*HomePageLocators.txt_password)
+        LOGIN_FULL = UiObject(*HomePageLocators.btn_login_full)
+        LOGOUT = UiObject(*HomePageLocators.btn_logout)
 
         if LOGIN.visible() and REGISTER.visible():
-            LOGIN.tap(HomePageLocators.btn_login)
+            LOGIN.click(*HomePageLocators.btn_login)
             time.sleep(5)
 
             USERNAME.set_text('jimbi011234')
             PASSWORD.set_text('123456')
-            LOGIN_FULL.click()            
+            LOGIN_FULL.click()
             time.sleep(5)
             assert LOGOUT.visible, 'Login is failed'
             home.screenshot_window('Test LOGIN - PASSED')
             print('SUCCESSFUL TO LOGIN TO WEB')
         else:
             print('Login or Register button is not appear')
-        self.driver.implicitly_wait(10)        
+        self.driver.implicitly_wait(10)
         time.sleep(5)
 
     # # TEST CASE 1
