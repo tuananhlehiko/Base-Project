@@ -1,11 +1,13 @@
-from pages.components.locators import CongGameLocators, MainMenuLocators
 import unittest
 from selenium import webdriver
 import time
+from datetime import datetime
+import xlsxwriter
 
 from pages.Browser import Browser
 import pages.components.page as page
 from pages.components.locators import *
+from pages.components.locators import CongGameLocators, MainMenuLocators
 from pages.UIObject import UiObject
 
 
@@ -74,12 +76,17 @@ class GameLobby(unittest.TestCase):
             MENU_CONG_GAME.click()
             self.driver.implicitly_wait(30)
             time.sleep(3)
-
+            no = 1
             df_link = 'http://dev-ta.mooo.com/cong-game?sx=nhieu-nguoi-choi'
             lobby_domain = 'http://dev-ta.mooo.com/cong-game?'
             c_url = lobby.get_url()
+            sts = 'PASSED'
+            if df_link != c_url:
+                lobby.screenshot_window('Default link - FAILED')
+                sts = 'FAILED'
             TEST_RESULT.append(
-                [1, 'default', 'default', 'default', df_link, c_url, ''])
+                [no, 'default', 'default', 'default', df_link, c_url, sts])
+            no += 1
             print('url', c_url)
             for S in List_Sort:
                 S[0].click()
@@ -91,14 +98,54 @@ class GameLobby(unittest.TestCase):
                     sts = 'FAILED'
                 TEST_RESULT.append(
                     [1, S[1], 'none', 'none', expect, actual, sts])
-            for T in TEST_RESULT:
-                print(T[4], '\t')
-                print(T[5], '\t')
-                print(T[6], '\n')
-                # text = ''
-                # for t in T:
-                #     text = str(t)+' '
-                # print(text)
+                no += 1
+            now = str(datetime.now()).split('.')[0].replace(':', '_', -1)
+            workbook = xlsxwriter.Workbook('Test link formats ['+now+'].xlsx')
+            worksheet = workbook.add_worksheet()
+            # Start from the first cell. Rows and columns are zero indexed.
+            row = 0
+            col = 0
+
+            cell_Header = workbook.add_format()
+            cell_Header.set_bold()
+            cell_Header.set_font_color('black')
+            cell_Header.set_bg_color('#46bdc6')
+
+            cell_failed = workbook.add_format()
+            cell_failed.set_bold()
+            cell_failed.set_font_color('white')
+            cell_failed.set_bg_color('red')
+
+            cell_passed = workbook.add_format()
+            cell_passed.set_bold()
+            cell_passed.set_font_color('white')
+            cell_passed.set_bg_color('green')
+            for i in TEST_RESULT:
+                if i[6] == 'PASSED':
+                    i.append(cell_passed)
+                elif i[6] == 'FAILED':
+                    i.append(cell_failed)
+                else:
+                    i.append(cell_Header)
+            for no, sl1, sl2, sl3, expect, actual, sts, f in (TEST_RESULT):
+                if row == 0:
+                    worksheet.write(row, col,     no, cell_Header)
+                    worksheet.write(row, col + 1, sl1, cell_Header)
+                    worksheet.write(row, col + 2, sl2, cell_Header)
+                    worksheet.write(row, col + 3, sl3, cell_Header)
+                    worksheet.write(row, col + 4, expect, cell_Header)
+                    worksheet.write(row, col + 5, actual, cell_Header)
+                    worksheet.write(row, col + 6, sts, f)
+                else:
+                    worksheet.write(row, col,     no)
+                    worksheet.write(row, col + 1, sl1)
+                    worksheet.write(row, col + 2, sl2)
+                    worksheet.write(row, col + 3, sl3)
+                    worksheet.write(row, col + 4, expect)
+                    worksheet.write(row, col + 5, actual)
+                    worksheet.write(row, col + 6, sts, f)
+                row += 1
+            workbook.close()
         else:
             lobby.screenshot_window('Test Checking url link: FAILED')
             print('Login or Register button is not appear')
