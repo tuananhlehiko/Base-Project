@@ -18,9 +18,13 @@ class Homepage_Test(unittest.TestCase):
     def test_Login_with_valid_account(self):
         home = page.HomePage(self.driver)
         self.driver.implicitly_wait(30)
-        time.sleep(5)
+        # time.sleep(5)
 
         self.driver.maximize_window()
+        size = home.get_size()
+        print('Full window size:',size,'\n')
+        home.set_size(1024, 768)
+
         LOGIN = UiObject(*HomePageLocators.btn_login)
         REGISTER = UiObject(*HomePageLocators.btn_register)
         USERNAME = UiObject(*HomePageLocators.txt_username)
@@ -29,7 +33,7 @@ class Homepage_Test(unittest.TestCase):
         LOGOUT = UiObject(*HomePageLocators.btn_logout)
 
         if LOGIN.visible() and REGISTER.visible():
-            LOGIN.click(*HomePageLocators.btn_login)
+            LOGIN.click()
             time.sleep(5)
 
             USERNAME.set_text('jimbi011234')

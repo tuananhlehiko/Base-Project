@@ -55,7 +55,7 @@ class UiObject:
         :return: STRING, By ID this object was initialize with aka By.XPATH or By.ID
         """
         return self.__by
-    def exists(self, wait=1):
+    def exists(self, wait=10):
         """
         :param wait: INT, seconds to wait before returning verdict
         :return: BOOLEAN, if object currently exists in the DOM

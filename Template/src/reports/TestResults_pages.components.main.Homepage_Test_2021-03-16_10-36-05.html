@@ -11,9 +11,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2 class="text-capitalize">Test report</h2>
-                <p class='attribute'><strong>Start Time: </strong>2021-03-15 17:09:18</p>
-                <p class='attribute'><strong>Duration: </strong>10.72 s</p>
-                <p class='attribute'><strong>Summary: </strong>Total: 1, Pass: 0, Fail: 1</p>
+                <p class='attribute'><strong>Start Time: </strong>2021-03-16 10:36:05</p>
+                <p class='attribute'><strong>Duration: </strong>33.93 s</p>
+                <p class='attribute'><strong>Summary: </strong>Total: 1, Pass: 1</p>
             </div>
         </div>
         <div class="row">
@@ -27,10 +27,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class='danger'>
+                        <tr class='success'>
                             <td class="col-xs-10">test_Login_with_valid_account</td>
                             <td class="col-xs-1">
-                                <span class="label label-danger" style="display:block;width:40px;">Fail</span>
+                                <span class="label label-success" style="display:block;width:40px;">Pass</span>
                             </td>
                             <td class="col-xs-1">
                                 <button class="btn btn-default btn-xs">View</button>
@@ -39,26 +39,13 @@
                         <tr style="display:none;">
                             <td class="col-xs-9" colspan="3"><p>
 
-</p><p style="color:maroon;">AssertionError: Locator did not appear: btn--home-login in btn--home-login seconds!</p><p style="color:maroon;">Traceback (most recent call last):
-  File "D:\Developer\Python Slenium\Hiko-Automation-Selenium\Template\src\pages\components\main.py", line 30, in test_Login_with_valid_account
-    LOGIN.click(*HomePageLocators.btn_login)
-  File "D:\Developer\Python Slenium\Hiko-Automation-Selenium\Template\src\pages\UIObject.py", line 165, in click
-    self.get_element(wait)).click().perform()
-  File "D:\Developer\Python Slenium\Hiko-Automation-Selenium\Template\src\pages\UIObject.py", line 33, in get_element
-    self.wait_to_appear(wait)
-  File "D:\Developer\Python Slenium\Hiko-Automation-Selenium\Template\src\pages\UIObject.py", line 98, in wait_to_appear
-    raise AssertionError("Locator did not appear: {} in {} seconds!"
-AssertionError: Locator did not appear: btn--home-login in btn--home-login seconds!
-[WDM] - ====== WebDriver manager ======
-[WDM] - Current google-chrome version is 89.0.4389
-[WDM] - Get LATEST driver version for 89.0.4389
-[WDM] - Driver [C:\Users\DELL\.wdm\drivers\chromedriver\win32\89.0.4389.23\chromedriver.exe] found in cache
+SUCCESSFUL TO LOGIN TO WEB
 </p>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3">
-                                Total: 1, Pass: 0, Fail: 1 -- Duration: 10.72 s
+                                Total: 1, Pass: 1 -- Duration: 33.93 s
                             </td>
                         </tr>
                     </tbody>

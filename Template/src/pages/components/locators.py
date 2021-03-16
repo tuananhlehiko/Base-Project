@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 
 class ge(object):
-    DOMAIN = 'http://v2.fabet.info/'
-    # DOMAIN = 'http://dev-ta.mooo.com/'
+    # DOMAIN = 'http://v2.fabet.info/'
+    DOMAIN = 'http://dev-ta.mooo.com/'
     
 
 class HomePageLocators(object):

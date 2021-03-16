@@ -25,6 +25,18 @@ class BasePage(object):
         except Exception as e:
             print('Error: ', e)
 
+    def get_size(self):
+        try:
+            return self.driver.get_window_size()
+        except Exception as e:
+            print('Error: ', e)
+
+    def set_size(self, width, height):
+        try:
+            return self.driver.set_window_size(width, height)
+        except Exception as e:
+            print('Error: ', e)
+
 
 class HomePage(BasePage):
     def fill_text(self, textfield, text_content):

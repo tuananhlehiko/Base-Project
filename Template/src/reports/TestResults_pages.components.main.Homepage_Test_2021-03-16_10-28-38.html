@@ -11,9 +11,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2 class="text-capitalize">Test report</h2>
-                <p class='attribute'><strong>Start Time: </strong>2021-03-15 17:05:47</p>
-                <p class='attribute'><strong>Duration: </strong>4.57 s</p>
-                <p class='attribute'><strong>Summary: </strong>Total: 1, Pass: 0, Error: 1</p>
+                <p class='attribute'><strong>Start Time: </strong>2021-03-16 10:28:38</p>
+                <p class='attribute'><strong>Duration: </strong>16.14 s</p>
+                <p class='attribute'><strong>Summary: </strong>Total: 1, Pass: 0, Fail: 1</p>
             </div>
         </div>
         <div class="row">
@@ -27,10 +27,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class='warning'>
+                        <tr class='danger'>
                             <td class="col-xs-10">test_Login_with_valid_account</td>
                             <td class="col-xs-1">
-                                <span class="label label-warning" style="display:block;width:40px;">Error</span>
+                                <span class="label label-danger" style="display:block;width:40px;">Fail</span>
                             </td>
                             <td class="col-xs-1">
                                 <button class="btn btn-default btn-xs">View</button>
@@ -39,10 +39,21 @@
                         <tr style="display:none;">
                             <td class="col-xs-9" colspan="3"><p>
 
-</p><p style="color:maroon;">TypeError: __init__() missing 1 required positional argument: 'locator'</p><p style="color:maroon;">Traceback (most recent call last):
-  File "D:\Developer\Python Slenium\Hiko-Automation-Selenium\Template\src\pages\components\main.py", line 22, in test_Login_with_valid_account
-    LOGIN = UiObject(HomePageLocators.btn_login)
-TypeError: __init__() missing 1 required positional argument: 'locator'
+Line 33: btn--home-login
+Line 33: class name
+Line 33: btn--home-login
+Line 63-wait:  btn--home-login
+Wait: btn--home-login
+</p><p style="color:maroon;">AssertionError: Locator did not appear: btn--home-login in btn--home-login seconds!</p><p style="color:maroon;">Traceback (most recent call last):
+  File "D:\Developer\Python Slenium\Hiko-Automation-Selenium\Template\src\pages\components\main.py", line 32, in test_Login_with_valid_account
+    LOGIN.click(*HomePageLocators.btn_login)
+  File "D:\Developer\Python Slenium\Hiko-Automation-Selenium\Template\src\pages\UIObject.py", line 170, in click
+    self.get_element(wait)).click().perform()
+  File "D:\Developer\Python Slenium\Hiko-Automation-Selenium\Template\src\pages\UIObject.py", line 36, in get_element
+    self.wait_to_appear(wait)
+  File "D:\Developer\Python Slenium\Hiko-Automation-Selenium\Template\src\pages\UIObject.py", line 103, in wait_to_appear
+    raise AssertionError("Locator did not appear: {} in {} seconds!"
+AssertionError: Locator did not appear: btn--home-login in btn--home-login seconds!
 [WDM] - ====== WebDriver manager ======
 [WDM] - Current google-chrome version is 89.0.4389
 [WDM] - Get LATEST driver version for 89.0.4389
@@ -52,7 +63,7 @@ TypeError: __init__() missing 1 required positional argument: 'locator'
                         </tr>
                         <tr>
                             <td colspan="3">
-                                Total: 1, Pass: 0, Error: 1 -- Duration: 4.57 s
+                                Total: 1, Pass: 0, Fail: 1 -- Duration: 16.14 s
                             </td>
                         </tr>
                     </tbody>
