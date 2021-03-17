@@ -23,9 +23,9 @@ class CongGameLocators(object):
     Type_Game_nhanh = (By.CLASS_NAME,'icon-game-nhanh1')
 
     NCC_selector = (By.CLASS_NAME,'btn-secondary')
-    NCC_btn_Techplay = (By.CLASS_NAME,'icon-techplay')
-    NCC_btn_PragmaticPlay = (By.CLASS_NAME,'icon-prag')
-    NCC_btn_CQ9 = (By.CLASS_NAME,'icon-cq9')
+    NCC_btn_Techplay = (By.XPATH,'//div[@id="__BVID__169"]/ul/li[1][@role="presentation"]')
+    NCC_btn_PragmaticPlay = (By.XPATH,'//div[@id="__BVID__169"]/ul/li[2][@role="presentation"]')
+    NCC_btn_CQ9 = (By.XPATH,'//div[@id="__BVID__169"]/ul/li[3][@role="presentation"]')
 
     Sort_Nhieu_nguoi_choi = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][1]')
     Sort_Dang_hot = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][2]')

@@ -1,0 +1,85 @@
+from datetime import datetime
+from re import T
+import xlsxwriter
+
+
+class Report:
+    def __init__(self, name, data, header):
+        self.header = header
+        self.name = name
+        self.data = data
+        now = str(datetime.now()).split('.')[0].replace(':', '_', -1)
+        self.workbook = xlsxwriter.Workbook(name+' ['+now+'].xlsx')
+        self.worksheet = self.workbook.add_worksheet()
+
+    # def name(self):
+    #     return self.__name
+
+    # def data(self):
+    #     return self.__data
+
+    # def workbook(self):
+    #     return self.__workbook
+
+    def add_new_format(self, font_color, bg_color, bold=True, ilatic=False, Heading=False, border_color='black'):
+        new_format = self.workbook.add_format()
+        new_format.set_font_name('Cambria')
+        new_format.set_font_color(font_color)
+        new_format.set_bg_color(bg_color)
+        new_format.set_border_color(border_color)
+        if bold == True:
+            new_format.set_bold()
+        if ilatic == True:
+            new_format.set_italic()
+        if Heading == True:
+            new_format.set_font_size(16)
+        else:
+            new_format.set_font_size(12)
+        return new_format
+
+    def close(self):
+        self.workbook.close()
+
+    def export(self, startrow=1):
+
+        header_format = self.add_new_format('black', '#46bdc6')
+        sub_header_format = self.add_new_format('black', '#78ecf5')
+        failed_format = self.add_new_format('white', 'red')
+        passed_format = self.add_new_format('white', 'green')
+        title_format = self.add_new_format('red', 'white', True, False, True)
+        self.worksheet.write(0, 0, 'Result of '+self.name, title_format)
+
+        for row_num in range(len(self.header)):
+            for col_num in range(len(self.header[row_num])):
+                cell_data = self.header[row_num][col_num]
+                if col_num == 0:
+                    self.worksheet.write(
+                        row_num+startrow, col_num, cell_data, header_format)
+                else:
+                    self.worksheet.write(row_num+startrow, col_num, cell_data)
+        startrow = startrow + len(self.header) + 1
+
+        f_row = False
+        for row_num in range(len(self.data)):
+            if 'PASSED' not in self.data[row_num] and 'FAILED' not in self.data[row_num]:
+                f_row = True
+            for col_num in range(len(self.data[row_num])):
+                cell_data = self.data[row_num][col_num]
+                if row_num == 0:
+                    self.worksheet.write(row_num+startrow, col_num,
+                                         cell_data, header_format)
+                elif f_row == True:
+                    self.worksheet.write(row_num+startrow, col_num,
+                                         cell_data, sub_header_format)
+                elif cell_data == 'PASSED':
+                    self.worksheet.write(row_num+startrow, col_num,
+                                         cell_data, passed_format)
+                elif cell_data == 'PASSED':
+                    self.worksheet.write(row_num+startrow, col_num,
+                                         cell_data, passed_format)
+                elif cell_data == 'FAILED':
+                    self.worksheet.write(row_num+startrow, col_num,
+                                         cell_data, failed_format)
+                else:
+                    self.worksheet.write(row_num+startrow, col_num, cell_data)
+            f_row = False

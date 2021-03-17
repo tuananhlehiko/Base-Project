@@ -1,3 +1,4 @@
+import re
 import unittest
 from selenium import webdriver
 import time
@@ -9,6 +10,7 @@ import pages.components.page as page
 from pages.components.locators import *
 from pages.components.locators import CongGameLocators, MainMenuLocators
 from pages.UIObject import UiObject
+from pages.components.utils import *
 
 
 class GameLobby(unittest.TestCase):
@@ -18,6 +20,11 @@ class GameLobby(unittest.TestCase):
 
     # TOP - Link url check
     def test_url_link(self):
+        TEST_RESULT = [['#', 'Slug 1', 'Slug 2', 'Slug 3',
+                        'Expected link', 'Actual link', 'Status']]
+        TEST_DATA_HEADER = []
+        start = datetime.now()
+        TEST_DATA_HEADER.append(['Start', str(start).split('.')[0]])
         lobby = page.GameLobbyPage(self.driver)  # Khai báo lobby page
         # Chờ để tất cả element ở trang load xong
         self.driver.implicitly_wait(30)
@@ -48,35 +55,37 @@ class GameLobby(unittest.TestCase):
         Sort_a_z = UiObject(*CongGameLocators.Sort_a_z)
 
         List_type = [
-            [type_all, 'Tất cả', 'all'],
-            [type_No_hu, 'Nổ hũ', 'no-hu'],
-            [type_Ban_ca, 'Bắn cá', 'ban-ca'],
-            [type_Lo_de, 'Lô đề', 'lo-de'],
-            [type_Ingame, 'Ingame', 'ingame'],
-            [type_Table_gane, 'Table game', 'table-games'],
-            [type_Game_nhanh, 'Game nhanh', 'quick-game']
+            [type_all, 'Tat ca', 'type=all'],
+            [type_No_hu, 'No hu', 'type=no-hu'],
+            [type_Ban_ca, 'Ban Ca', 'type=ban-ca'],
+            [type_Game_nhanh, 'Game nhanh', 'type=quick-game'],
+            [type_Ingame, 'Ingame', 'type=ingame'],
+            [type_Table_gane, 'Table game', 'type=table-games'],
+            [type_Lo_de, 'Lo de', 'type=lo-de']
         ]
 
         List_NCC = [
-            [NCC_Pragmatic, 'Pragmatic Play', 'pragmatic-play'],
-            [NCC_CQ9, 'CQ9', 'cq9'],
-            [NCC_Techplay, 'Techplay', 'techplay']
+            [NCC_Pragmatic, 'Pragmatic Play', 'ncc=pragmatic-play'],
+            [NCC_CQ9, 'CQ9', 'ncc=cq9'],
+            [NCC_Techplay, 'Techplay', 'ncc=techplay']
         ]
 
         List_Sort = [
-            [Sort_multi, 'Nhiều người chơi', 'nhieu-nguoi-choi'],
-            [Sort_hot, 'Đang hot', 'dang-hot'],
-            [Sort_Pho_bien, 'Phổ biến', 'pho-bien'],
-            [Sort_new, 'Mới nhất', 'moi-nhat'],
-            [Sort_a_z, 'A-Z', 'a-z']
+            [Sort_multi, 'Nhiều người chơi', 'sx=nhieu-nguoi-choi'],
+            [Sort_hot, 'Đang hot', 'sx=dang-hot'],
+            [Sort_Pho_bien, 'Phổ biến', 'sx=pho-bien'],
+            [Sort_new, 'Mới nhất', 'sx=moi-nhat'],
+            [Sort_a_z, 'A-Z', 'sx=a-z']
         ]
-        TEST_RESULT = [['#', 'Slug 1', 'Slug 2', 'Slug 3',
-                        'Expected link', 'Actual link', 'Status']]
+
         if MENU_CONG_GAME.visible():
+
             MENU_CONG_GAME.click()
             self.driver.implicitly_wait(30)
             time.sleep(3)
             no = 1
+
+            # CHECK DEFAULT
             df_link = 'http://dev-ta.mooo.com/cong-game?sx=nhieu-nguoi-choi'
             lobby_domain = 'http://dev-ta.mooo.com/cong-game?'
             c_url = lobby.get_url()
@@ -88,162 +97,116 @@ class GameLobby(unittest.TestCase):
                 [no, 'default', 'default', 'default', df_link, c_url, sts])
             no += 1
             print('url', c_url)
+
+            # CHECK CASE ONLY SORT
+            TEST_RESULT.append(
+                ['-', 'Sắp xếp theo', 'None', 'None', '-', '-', '-'])
             for S in List_Sort:
                 S[0].click()
-                expect = lobby_domain+'sx='+S[2]
+                expect = lobby_domain+S[2]
                 actual = lobby.get_url()
                 sts = 'PASSED'
                 if expect != actual:
-                    lobby.screenshot_window('Sort', S[1], ' - FAILED')
+                    lobby.screenshot_window('Sort_' + S[1], ' - FAILED')
                     sts = 'FAILED'
                 TEST_RESULT.append(
-                    [1, S[1], 'none', 'none', expect, actual, sts])
+                    [no, S[1], '-', '-', expect, actual, sts])
                 no += 1
-            now = str(datetime.now()).split('.')[0].replace(':', '_', -1)
-            workbook = xlsxwriter.Workbook('Test link formats ['+now+'].xlsx')
-            worksheet = workbook.add_worksheet()
-            # Start from the first cell. Rows and columns are zero indexed.
-            row = 0
-            col = 0
+                time.sleep(1)
 
-            cell_Header = workbook.add_format()
-            cell_Header.set_bold()
-            cell_Header.set_font_color('black')
-            cell_Header.set_bg_color('#46bdc6')
+            # CHECK ALL CASE
+            TEST_RESULT.append(
+                ['-', 'Sắp xếp theo', 'Thể loại', 'Nhà cung cấp', '-', '-', '-'])
+            DATA_LINK = [0, 0, 0]
 
-            cell_failed = workbook.add_format()
-            cell_failed.set_bold()
-            cell_failed.set_font_color('white')
-            cell_failed.set_bg_color('red')
-
-            cell_passed = workbook.add_format()
-            cell_passed.set_bold()
-            cell_passed.set_font_color('white')
-            cell_passed.set_bg_color('green')
-            for i in TEST_RESULT:
-                if i[6] == 'PASSED':
-                    i.append(cell_passed)
-                elif i[6] == 'FAILED':
-                    i.append(cell_failed)
+            def check_link(data):
+                data_return = [no]
+                if data[0] != 0:
+                    expected = lobby_domain+data[0][2]
+                    data_return.append(data[0][1])
                 else:
-                    i.append(cell_Header)
-            for no, sl1, sl2, sl3, expect, actual, sts, f in (TEST_RESULT):
-                if row == 0:
-                    worksheet.write(row, col,     no, cell_Header)
-                    worksheet.write(row, col + 1, sl1, cell_Header)
-                    worksheet.write(row, col + 2, sl2, cell_Header)
-                    worksheet.write(row, col + 3, sl3, cell_Header)
-                    worksheet.write(row, col + 4, expect, cell_Header)
-                    worksheet.write(row, col + 5, actual, cell_Header)
-                    worksheet.write(row, col + 6, sts, f)
+                    data_return.append('-')
+                if data[1] != 0:
+                    expected = expected + '&' + data[1][2]
+                    data_return.append(data[1][1])
                 else:
-                    worksheet.write(row, col,     no)
-                    worksheet.write(row, col + 1, sl1)
-                    worksheet.write(row, col + 2, sl2)
-                    worksheet.write(row, col + 3, sl3)
-                    worksheet.write(row, col + 4, expect)
-                    worksheet.write(row, col + 5, actual)
-                    worksheet.write(row, col + 6, sts, f)
-                row += 1
-            workbook.close()
+                    data_return.append('-')
+                if data[2] != 0:
+                    expected = expected + '&' + data[2][2]
+                    data_return.append(data[2][1])
+                else:
+                    data_return.append('-')
+                data_return.append(expected)
+                actual = lobby.get_url()
+                data_return.append(expected)
+                if actual != expected:
+                    data_return.append('FAILED')
+                else:
+                    data_return.append('PASSED')
+                return data_return
+
+            for S in List_Sort:
+                S[0].click()
+                time.sleep(1)
+                DATA_LINK[0] = S
+                check = check_link(DATA_LINK)
+                TEST_RESULT.append(check)
+                for T in List_type:
+                    print('------------------',str(T[1]))
+                    if T[1] == 'Game nhanh' or T[1] == 'Ingame' or T[1] == 'Table game' or T[1] == 'Lo de':
+                        if T[1] == 'Lo de':
+                            T[0].click()
+                            time.sleep(1)
+                            DATA_LINK[0] = T
+                            DATA_LINK[1] = 0
+                            DATA_LINK[2] = 0
+                            check = check_link(DATA_LINK)
+                            TEST_RESULT.append(check)
+                            DATA_LINK[0] = S
+                        else:
+                            T[0].click()
+                            time.sleep(1)
+                            DATA_LINK[1] = T                           
+                            check = check_link(DATA_LINK)
+                            TEST_RESULT.append(check)                            
+                    else:
+                        T[0].click()
+                        time.sleep(1)
+                        DATA_LINK[1] = T
+                        check = check_link(DATA_LINK)
+                        TEST_RESULT.append(check)
+                        for N in List_type:
+                            NCC_Selector.click()
+                            time.sleep(2)
+                            N[0].click(True)
+                            time.sleep(1)
+                            DATA_LINK[2] = N
+                            check = check_link(DATA_LINK)
+                            TEST_RESULT.append(check)
+                            # UNCHECK NHÀ CUNG CẤP
+                            NCC_Selector.click()
+                            time.sleep(2)
+                            N[0].click(True)
+                            time.sleep(1)
+                            DATA_LINK[2] = 0
+                            check = check_link(DATA_LINK)
+                            TEST_RESULT.append(check)
+
+            end = datetime.now()
+            TEST_DATA_HEADER.append(['End', str(end).split('.')[0]])
+            TEST_DATA_HEADER.append(
+                ['Time spend', str(end-start).split('.')[0]])
+            TEST_DATA_HEADER.append(['Size', str(size)])
+            # REPORT data
+            name = 'Test link formats'
+            report = Report(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
+            report.export()
+            report.close()
+
         else:
             lobby.screenshot_window('Test Checking url link: FAILED')
             print('Login or Register button is not appear')
         self.driver.implicitly_wait(30)
-
-    # TEST LOGIN VALID ACCOUNT - Fabet
-    # def test_Login_with_valid_account(self):
-    #     home = page.HomePage(self.driver)
-    #     self.driver.implicitly_wait(30)
-    #     # time.sleep(5)
-
-    #     self.driver.maximize_window()
-    #     size = home.get_size()
-    #     print('Full window size:',size,'\n')
-    #     home.set_size(1024, 768)
-
-    #     LOGIN = UiObject(*HomePageLocators.btn_login)
-    #     REGISTER = UiObject(*HomePageLocators.btn_register)
-    #     USERNAME = UiObject(*HomePageLocators.txt_username)
-    #     PASSWORD = UiObject(*HomePageLocators.txt_password)
-    #     LOGIN_FULL = UiObject(*HomePageLocators.btn_login_full)
-    #     LOGOUT = UiObject(*HomePageLocators.btn_logout)
-
-    #     if LOGIN.visible() and REGISTER.visible():
-    #         LOGIN.click()
-    #         time.sleep(5)
-
-    #         USERNAME.set_text('jimbi011234')
-    #         PASSWORD.set_text('123456')
-    #         LOGIN_FULL.click()
-    #         time.sleep(5)
-    #         assert LOGOUT.visible, 'Login is failed'
-    #         home.screenshot_window('Test LOGIN - PASSED')
-    #         print('SUCCESSFUL TO LOGIN TO WEB')
-    #     else:
-    #         print('Login or Register button is not appear')
-    #     self.driver.implicitly_wait(10)
-    #     time.sleep(5)
-
-    # # TEST CASE 1
-    # def test_Protected_is_activated(self):
-    #     home = page.homePage(self.driver)
-    #     assert home.is_title_match(), "About us title does't match."
-    #     assert home.is_passster_form_appear(
-    #     ), 'Passter-form is not appear, Page is not protected'
-    #     self.driver.implicitly_wait(10)
-    #     assert not home.is_main_content_appear()
-    #     time.sleep(5)
-
-    # # TEST CASE 2
-    # def test_Valid_Password(self):
-    #     home = page.homePage(self.driver)
-    #     assert home.is_title_match(), "About us title does't match."
-    #     assert home.is_passster_form_appear(
-    #     ), 'Passter-form is not appear, Page is not protected'
-    #     home.fill_password('YmeseTest')
-    #     self.driver.implicitly_wait(10)
-    #     assert not home.is_main_content_appear()
-    #     time.sleep(5*60)
-    #     assert not home.is_main_content_appear()
-    #     # time.sleep(15*60)
-    #     # assert not home.is_main_content_appear()
-    #     # time.sleep(30*60)
-    #     # assert not home.is_main_content_appear()
-    #     # time.sleep(60*60)
-    #     # assert not home.is_main_content_appear()
-    #     self.driver.refresh()
-    #     assert home.is_title_match()
-    #     self.driver.implicitly_wait(10)
-    #     assert not home.is_main_content_appear()
-    #     home.submit_password('YmeseTest')
-    #     self.driver.implicitly_wait(10)
-    #     assert home.is_main_content_appear()
-    #     time.sleep(5)
-
-    # # TEST CASE 3
-    # def test_Invalid_Password(self):
-    #     home = page.homePage(self.driver)
-    #     assert home.is_title_match(), "About us title does't match."
-    #     assert home.is_passster_form_appear(
-    #     ), 'Passter-form is not appear, Page is not protected'
-    #     home.submit_password('YmeseTest_wrong')
-    #     self.driver.implicitly_wait(10)
-    #     assert home.is_alert_appear()
-    #     assert not home.is_main_content_appear()
-    #     time.sleep(5*60)
-    #     assert not home.is_main_content_appear()
-    #     # time.sleep(15*60)
-    #     # assert not home.is_main_content_appear()
-    #     # time.sleep(30*60)
-    #     # assert not home.is_main_content_appear()
-    #     # time.sleep(60*60)
-    #     # assert not home.is_main_content_appear()
-    #     self.driver.refresh()
-    #     assert home.is_title_match()
-    #     self.driver.implicitly_wait(10)
-    #     assert not home.is_main_content_appear()
-    #     time.sleep(5)
 
     def tearDown(self):
         self.driver.close()
