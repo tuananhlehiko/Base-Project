@@ -30,9 +30,6 @@ class GameLobby(unittest.TestCase):
         self.driver.implicitly_wait(30)
         self.driver.maximize_window()  # Mở full màn hình đang test
         size = lobby.get_size()
-        print('Full window size:', size, '\n')
-        # lobby.set_size(1024, 768)
-
         # Variable Define
         MENU_CONG_GAME = UiObject(*MainMenuLocators.MENU_CONG_GAME)
         type_all = UiObject(*CongGameLocators.Type_All)
@@ -55,13 +52,13 @@ class GameLobby(unittest.TestCase):
         Sort_a_z = UiObject(*CongGameLocators.Sort_a_z)
 
         List_type = [
-            [type_all, 'Tat ca', 'type=all'],
-            [type_No_hu, 'No hu', 'type=no-hu'],
-            [type_Ban_ca, 'Ban Ca', 'type=ban-ca'],
+            [type_all, 'Tất cả', 'type=all'],
+            [type_No_hu, 'Nổ hũ', 'type=no-hu'],
+            [type_Ban_ca, 'Bắn Cá', 'type=ban-ca'],
             [type_Game_nhanh, 'Game nhanh', 'type=quick-game'],
             [type_Ingame, 'Ingame', 'type=ingame'],
             [type_Table_gane, 'Table game', 'type=table-games'],
-            [type_Lo_de, 'Lo de', 'type=lo-de']
+            [type_Lo_de, 'Lô đề', 'type=lo-de']
         ]
 
         List_NCC = [
@@ -78,18 +75,46 @@ class GameLobby(unittest.TestCase):
             [Sort_a_z, 'A-Z', 'sx=a-z']
         ]
 
+        # COMPARE LINK AND RETURN DATA LIST
+        def check_link(data, number):
+            data_return = [number]
+            if data[0] != 0:
+                expected = lobby_domain+data[0][2]
+                data_return.append(data[0][1])
+            else:
+                data_return.append('-')
+            if data[1] != 0:
+                expected = expected + '&' + data[1][2]
+                data_return.append(data[1][1])
+            else:
+                data_return.append('-')
+            if data[2] != 0:
+                expected = expected + '&' + data[2][2]
+                data_return.append(data[2][1])
+            else:
+                data_return.append('-')
+            data_return.append(expected)
+            actual = lobby.get_url()
+            data_return.append(actual)
+            if actual != expected:
+                data_return.append('FAILED')
+                lobby.screenshot_window(
+                    str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3])
+            else:
+                data_return.append('PASSED')
+            return data_return
+
         if MENU_CONG_GAME.visible():
 
             MENU_CONG_GAME.click()
             self.driver.implicitly_wait(30)
             time.sleep(3)
-            no = 1
-
-            # CHECK DEFAULT
+            # CHECK DEFAULT CASE
             df_link = 'http://dev-ta.mooo.com/cong-game?sx=nhieu-nguoi-choi'
             lobby_domain = 'http://dev-ta.mooo.com/cong-game?'
             c_url = lobby.get_url()
             sts = 'PASSED'
+            no = 1
             if df_link != c_url:
                 lobby.screenshot_window('Default link - FAILED')
                 sts = 'FAILED'
@@ -98,9 +123,9 @@ class GameLobby(unittest.TestCase):
             no += 1
             print('url', c_url)
 
-            # CHECK CASE ONLY SORT
+            # CHECK ONLY SORT CASE
             TEST_RESULT.append(
-                ['-', 'Sắp xếp theo', 'None', 'None', '-', '-', '-'])
+                ['-', 'Sắp xếp theo', 'None', 'None', '', '', ''])
             for S in List_Sort:
                 S[0].click()
                 expect = lobby_domain+S[2]
@@ -112,85 +137,121 @@ class GameLobby(unittest.TestCase):
                 TEST_RESULT.append(
                     [no, S[1], '-', '-', expect, actual, sts])
                 no += 1
-                time.sleep(1)
+                time.sleep(0.5)
 
-            # CHECK ALL CASE
+            # CHECK ALL CASE FOLLOWING: SORT >> TYPE >> SUPPLIER
             TEST_RESULT.append(
-                ['-', 'Sắp xếp theo', 'Thể loại', 'Nhà cung cấp', '-', '-', '-'])
+                ['', 'Sắp xếp theo', 'Thể loại', 'Nhà cung cấp', '', '', ''])
             DATA_LINK = [0, 0, 0]
-
-            def check_link(data):
-                data_return = [no]
-                if data[0] != 0:
-                    expected = lobby_domain+data[0][2]
-                    data_return.append(data[0][1])
-                else:
-                    data_return.append('-')
-                if data[1] != 0:
-                    expected = expected + '&' + data[1][2]
-                    data_return.append(data[1][1])
-                else:
-                    data_return.append('-')
-                if data[2] != 0:
-                    expected = expected + '&' + data[2][2]
-                    data_return.append(data[2][1])
-                else:
-                    data_return.append('-')
-                data_return.append(expected)
-                actual = lobby.get_url()
-                data_return.append(expected)
-                if actual != expected:
-                    data_return.append('FAILED')
-                else:
-                    data_return.append('PASSED')
-                return data_return
-
             for S in List_Sort:
+                print(S[1])
                 S[0].click()
-                time.sleep(1)
+                time.sleep(0.5)
                 DATA_LINK[0] = S
-                check = check_link(DATA_LINK)
+                check = check_link(DATA_LINK, no)
+                no += 1
                 TEST_RESULT.append(check)
                 for T in List_type:
-                    print('------------------',str(T[1]))
-                    if T[1] == 'Game nhanh' or T[1] == 'Ingame' or T[1] == 'Table game' or T[1] == 'Lo de':
-                        if T[1] == 'Lo de':
+                    print(T[1])
+                    print(DATA_LINK)
+                    if T[1] == 'Game nhanh' or T[1] == 'Ingame' or T[1] == 'Table game' or T[1] == 'Lô đề':
+                        if T[1] == 'Lô đề':
                             T[0].click()
-                            time.sleep(1)
+                            time.sleep(0.5)
                             DATA_LINK[0] = T
                             DATA_LINK[1] = 0
                             DATA_LINK[2] = 0
-                            check = check_link(DATA_LINK)
+                            check = check_link(DATA_LINK, no)
+                            no += 1
                             TEST_RESULT.append(check)
                             DATA_LINK[0] = S
+                            type_all.click()
                         else:
                             T[0].click()
-                            time.sleep(1)
-                            DATA_LINK[1] = T                           
-                            check = check_link(DATA_LINK)
-                            TEST_RESULT.append(check)                            
+                            time.sleep(0.5)
+                            DATA_LINK[1] = T
+                            check = check_link(DATA_LINK, no)
+                            no += 1
+                            TEST_RESULT.append(check)
                     else:
                         T[0].click()
-                        time.sleep(1)
+                        time.sleep(0.5)
                         DATA_LINK[1] = T
-                        check = check_link(DATA_LINK)
+                        check = check_link(DATA_LINK, no)
+                        no += 1
                         TEST_RESULT.append(check)
-                        for N in List_type:
+                        for N in List_NCC:
                             NCC_Selector.click()
                             time.sleep(2)
                             N[0].click(True)
-                            time.sleep(1)
+                            time.sleep(0.5)
                             DATA_LINK[2] = N
-                            check = check_link(DATA_LINK)
+                            check = check_link(DATA_LINK, no)
+                            no += 1
                             TEST_RESULT.append(check)
                             # UNCHECK NHÀ CUNG CẤP
                             NCC_Selector.click()
                             time.sleep(2)
                             N[0].click(True)
-                            time.sleep(1)
+                            time.sleep(0.5)
                             DATA_LINK[2] = 0
-                            check = check_link(DATA_LINK)
+                            check = check_link(DATA_LINK, no)
+                            no += 1
                             TEST_RESULT.append(check)
+
+            # CHECK ALL CASE FOLLOWING: SORT >> SUPPLIER >> TYPE
+            TEST_RESULT.append(
+                ['', 'Sắp xếp theo', 'Nhà cung cấp', 'Thể loại', '', '', ''])
+            DATA_LINK = [0, 0, 0]
+            for S in List_Sort:
+                print(S[1])
+                S[0].click()
+                time.sleep(0.5)
+                DATA_LINK[0] = S
+                check = check_link(DATA_LINK, no)
+                no += 1
+                TEST_RESULT.append(check)
+                for N in List_NCC:
+                    print(N[1])
+                    NCC_Selector.click()
+                    time.sleep(2)
+                    N[0].click(True)
+                    time.sleep(0.5)
+                    DATA_LINK[1] = N
+                    check = check_link(DATA_LINK, no)
+                    no += 1
+                    TEST_RESULT.append(check)
+                    for T in List_type:
+                        if T[1] == 'Game nhanh' or T[1] == 'Ingame' or T[1] == 'Table game' or T[1] == 'Lô đề':
+                            if T[1] == 'Lô đề':
+                                T[0].click()
+                                time.sleep(0.5)
+                                DATA_LINK[0] = T
+                                DATA_LINK[1] = 0
+                                DATA_LINK[2] = 0
+                                check = check_link(DATA_LINK, no)
+                                no += 1
+                                TEST_RESULT.append(check)
+                                DATA_LINK[0] = S
+                                DATA_LINK[1] = N
+                                type_all.click()
+                            else:
+                                T[0].click()
+                                time.sleep(0.5)
+                                DATA_LINK[1] = T
+                                check = check_link(DATA_LINK, no)
+                                no += 1
+                                TEST_RESULT.append(check)
+                        else:
+                            T[0].click()
+                            time.sleep(0.5)
+                            DATA_LINK[2] = T
+                            check = check_link(DATA_LINK, no)
+                            no += 1
+                            TEST_RESULT.append(check)
+                    # UNCHECK NHÀ CUNG CẤP
+                    lobby.set_url(df_link)
+                    S[0].click()
 
             end = datetime.now()
             TEST_DATA_HEADER.append(['End', str(end).split('.')[0]])
@@ -205,7 +266,7 @@ class GameLobby(unittest.TestCase):
 
         else:
             lobby.screenshot_window('Test Checking url link: FAILED')
-            print('Login or Register button is not appear')
+            # print('Login or Register button is not appear')
         self.driver.implicitly_wait(30)
 
     def tearDown(self):

@@ -43,9 +43,16 @@ class BasePage(object):
         except Exception as e:
             print('Error: ', e)
 
+    def set_url(self, link):
+        try:
+            return self.driver.get(link)
+        except Exception as e:
+            print('Error: ', e)
+
 
 class HomePage(BasePage):
     pass
+
 
 class GameLobbyPage(BasePage):
     pass
