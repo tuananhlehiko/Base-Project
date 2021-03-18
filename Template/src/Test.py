@@ -1,5 +1,6 @@
 import threading
 import time
+import os
 from datetime import datetime
 from random import randint
 # from pages.Browser import Browser
@@ -21,9 +22,12 @@ from random import randint
 # for thread in threads:
 #     thread.join()
 
-start = datetime.now()
-time.sleep(15)
-end = datetime.now()
+# start = datetime.now()
+# time.sleep(15)
+# end = datetime.now()
 
-a = end-start
-print(a)
+# a = end-start
+# print(a)
+
+dir_folder = os.getcwd() + '\\reports'
+print(dir_folder)

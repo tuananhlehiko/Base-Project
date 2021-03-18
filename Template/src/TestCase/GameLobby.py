@@ -1,3 +1,4 @@
+# from Template.src.pages.utils import Report_temp
 import unittest
 from selenium import webdriver
 import time
@@ -21,6 +22,7 @@ class GameLobby(unittest.TestCase):
         TEST_RESULT = [['#', 'Slug 1', 'Slug 2', 'Slug 3',
                         'Expected link', 'Actual link', 'Status']]
         TEST_DATA_HEADER = []
+        name = 'Test link formats'
         start = datetime.now()
         TEST_DATA_HEADER.append(['Start', str(start).split('.')[0]])
         lobby = page.GameLobbyPage(self.driver)  # Khai báo lobby page
@@ -112,6 +114,7 @@ class GameLobby(unittest.TestCase):
             MENU_CONG_GAME.click()
             self.driver.implicitly_wait(30)
             time.sleep(3)
+            temp_rp = Report_temp(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
             # CHECK DEFAULT CASE
             df_link = 'http://dev-ta.mooo.com/cong-game?sx=nhieu-nguoi-choi'
             lobby_domain = 'http://dev-ta.mooo.com/cong-game?'
@@ -140,6 +143,8 @@ class GameLobby(unittest.TestCase):
                 TEST_RESULT.append([no, S[1], '-', '-', expect, actual, sts])
                 no += 1
                 time.sleep(0.5)
+                temp_rp.export()
+                temp_rp.close()
 
             # CHECK ALL CASE FOLLOWING: SORT >> TYPE >> SUPPLIER
             TEST_RESULT.append(
@@ -152,7 +157,7 @@ class GameLobby(unittest.TestCase):
                 DATA_LINK[0] = S
                 check = check_link(DATA_LINK, no)
                 no += 1
-                TEST_RESULT.append(check)
+                TEST_RESULT.append(check)                
                 for T in List_type:
                     if T[1] == 'Game nhanh' or T[1] == 'Ingame' or T[1] == 'Table game' or T[1] == 'Lô đề':
                         if T[1] == 'Lô đề':
@@ -163,7 +168,7 @@ class GameLobby(unittest.TestCase):
                             DATA_LINK[2] = 0
                             check = check_link(DATA_LINK, no)
                             no += 1
-                            TEST_RESULT.append(check)
+                            TEST_RESULT.append(check)                            
                             DATA_LINK[0] = S
                             type_all.click()
                         else:
@@ -172,14 +177,14 @@ class GameLobby(unittest.TestCase):
                             DATA_LINK[1] = T
                             check = check_link(DATA_LINK, no)
                             no += 1
-                            TEST_RESULT.append(check)
+                            TEST_RESULT.append(check)                            
                     else:
                         T[0].click()
                         time.sleep(0.5)
                         DATA_LINK[1] = T
                         check = check_link(DATA_LINK, no)
                         no += 1
-                        TEST_RESULT.append(check)
+                        TEST_RESULT.append(check)                        
                         for N in List_NCC:
                             NCC_Selector.click()
                             time.sleep(2)
@@ -188,7 +193,7 @@ class GameLobby(unittest.TestCase):
                             DATA_LINK[2] = N
                             check = check_link(DATA_LINK, no)
                             no += 1
-                            TEST_RESULT.append(check)
+                            TEST_RESULT.append(check)                            
                             # UNCHECK NHÀ CUNG CẤP
                             NCC_Selector.click()
                             time.sleep(2)
@@ -197,8 +202,10 @@ class GameLobby(unittest.TestCase):
                             DATA_LINK[2] = 0
                             check = check_link(DATA_LINK, no)
                             no += 1
-                            TEST_RESULT.append(check)
-
+                            TEST_RESULT.append(check)                            
+                    temp_rp = Report_temp(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
+                    temp_rp.export()
+                    temp_rp.close()
             # CHECK ALL CASE FOLLOWING: SORT >> SUPPLIER >> TYPE
             TEST_RESULT.append(
                 ['', 'Sắp xếp theo', 'Nhà cung cấp', 'Thể loại', '', '', ''])
@@ -247,6 +254,9 @@ class GameLobby(unittest.TestCase):
                             check = check_link(DATA_LINK, no)
                             no += 1
                             TEST_RESULT.append(check)
+                    temp_rp = Report_temp(name.upper(), TEST_RESULT, TEST_DATA_HEADER)                    
+                    temp_rp.export()
+                    temp_rp.close()
                     # UNCHECK NHÀ CUNG CẤP
                     lobby.set_url(df_link)
                     S[0].click()
@@ -257,7 +267,7 @@ class GameLobby(unittest.TestCase):
                 ['Time spend', str(end-start).split('.')[0]])
             TEST_DATA_HEADER.append(['Size', str(SIZE)])
             # REPORT data
-            name = 'Test link formats'
+            
             report = Report(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
             report.export()
             report.close()

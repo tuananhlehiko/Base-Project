@@ -1,6 +1,6 @@
 from datetime import datetime
-from re import T
 import xlsxwriter
+import os
 
 
 class Report:
@@ -9,17 +9,10 @@ class Report:
         self.name = name
         self.data = data
         now = str(datetime.now()).split('.')[0].replace(':', '_', -1)
-        self.workbook = xlsxwriter.Workbook(name+' ['+now+'].xlsx')
+        dir_folder = os.getcwd() + '\\reports' + '\\' + name        
+        Create_dir(dir_folder)
+        self.workbook = xlsxwriter.Workbook(dir_folder+'\\'+name+' ['+now+'].xlsx')
         self.worksheet = self.workbook.add_worksheet()
-
-    # def name(self):
-    #     return self.__name
-
-    # def data(self):
-    #     return self.__data
-
-    # def workbook(self):
-    #     return self.__workbook
 
     def add_new_format(self, font_color, bg_color, bold=True, ilatic=False, Heading=False, border_color='black'):
         new_format = self.workbook.add_format()
@@ -90,7 +83,24 @@ class Report_temp(Report):
         self.header = header
         self.name = name
         self.data = data
-        now = str(datetime.now()).split('.')[0].split(' ')[0]
-        self.workbook = xlsxwriter.Workbook(
-            'reports/'+name+'/'+name+' [TEMP '+now+'].xlsx')
+        # now = str(datetime.now()).split('.')[0].split(' ')[0]        
+        dir_folder = os.getcwd() + '\\reports' + '\\' + name        
+        Create_dir(dir_folder)
+        self.workbook = xlsxwriter.Workbook(dir_folder+'\\'+name+' [TEMP].xlsx')
         self.worksheet = self.workbook.add_worksheet()
+
+
+class Create_dir:
+    def __init__(self, fpath):
+        self.fpath = fpath
+        list_Folder = fpath.split('\\')
+        Folder = ''
+        for i in range(len(list_Folder)):
+            if i == 0:
+                Folder = list_Folder[i]
+            else:
+                Folder = Folder + '\\'+list_Folder[i]
+            try:
+                os.stat(Folder)
+            except Exception as e:
+                os.mkdir(Folder)
