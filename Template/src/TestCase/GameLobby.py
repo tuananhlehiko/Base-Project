@@ -99,8 +99,7 @@ class GameLobby(unittest.TestCase):
             data_return.append(actual)
             if actual != expected:
                 data_return.append('FAILED')
-                lobby.screenshot_window(
-                    str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3])
+                # lobby.screenshot_window(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3])
             else:
                 data_return.append('PASSED')
             print('\n', '-'*15, ' Case: ', number, ': ',data_return[6],' ', 15*'-')

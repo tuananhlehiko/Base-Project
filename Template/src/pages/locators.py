@@ -33,6 +33,25 @@ class CongGameLocators(object):
     Sort_Moi_nhat = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][4]')
     Sort_a_z = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][5]')
 
+class CasinoLocators(object):
+    NCC_All = (By.CLASS_NAME,'game-menu-item-icon__tab')
+    NCC_Evolution = (By.XPATH,'//div[contains(@class,"game-menu-item")][2]')
+    NCC_Ebet = (By.XPATH,'//div[contains(@class,"game-menu-item")][3]')
+    NCC_Vivo = (By.XPATH,'//div[contains(@class,"game-menu-item")][4]')
+    NCC_Allbet = (By.XPATH,'//div[contains(@class,"game-menu-item")][5]')
+    NCC_HGaming = (By.XPATH,'//div[contains(@class,"game-menu-item")][6]')    
+
+    Game_selector = (By.CLASS_NAME,'btn-secondary')
+    Game_Baccarat = (By.XPATH,'//div/ul/li[1][@role="presentation"]')
+    Game_Sicbo = (By.XPATH,'//div/ul/li[2][@role="presentation"]')
+    Game_Roulette = (By.XPATH,'//div/ul/li[3][@role="presentation"]')
+
+    Sort_Nhieu_nguoi_choi = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][1]')
+    Sort_Dang_hot = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][2]')
+    Sort_Pho_bien = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][3]')
+    Sort_Moi_nhat = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][4]')
+    Sort_a_z = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][5]')
+
 class HomePageLocators(object):
     btn_register = (By.CLASS_NAME,'btn--home-register')
 
