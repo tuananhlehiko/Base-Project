@@ -3,7 +3,7 @@ import HtmlTestRunner
 import unittest
 import os
 
-from pages.components.main import GameLobby
+from TestCase.GameLobby import GameLobby
 
 # # Get directory to export report file
 # dir = os.getcwd()

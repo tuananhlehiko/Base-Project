@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from src.pages.UiObject import UiObject
+from src.pages.UIObject import UiObject
 class PageHeader:
     HOME_LINK = UiObject(By.XPATH, "//ul[2]/li/a[text() = 'HOME']")
     GET_STARTED_LINK = UiObject(By.XPATH, "//ul[2]/li/a[text() = 'GET STARTED']")

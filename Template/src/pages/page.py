@@ -1,8 +1,6 @@
-# from pages.components.element import BasePageElement
-from pages.components.locators import HomePageLocators
-from pages.components.locators import ge
+from pages.locators import HomePageLocators
+from pages.locators import ge
 import os
-
 
 class BasePage(object):
     def __init__(self, driver):

@@ -83,3 +83,14 @@ class Report:
                 else:
                     self.worksheet.write(row_num+startrow, col_num, cell_data)
             f_row = False
+
+
+class Report_temp(Report):
+    def __init__(self, name, data, header):
+        self.header = header
+        self.name = name
+        self.data = data
+        now = str(datetime.now()).split('.')[0].split(' ')[0]
+        self.workbook = xlsxwriter.Workbook(
+            'reports/'+name+'/'+name+' [TEMP '+now+'].xlsx')
+        self.worksheet = self.workbook.add_worksheet()
