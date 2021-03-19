@@ -31,3 +31,79 @@ from random import randint
 
 dir_folder = os.getcwd() + '\\reports'
 print(dir_folder)
+
+List_Game = [
+            [object, 'Baccarat', 'type=baccarat'],
+            [object, 'Sicbo', 'type=sicbo'],
+            [object, 'Roulette', 'type=roulette']
+]
+
+List_NCC = [
+    [object, 'All', 'ncc=all'],
+    [object, 'Evolution', 'ncc=evolution'],
+    [object, 'Ebet', 'ncc=ebet'],
+    [object, 'VivoGaming', 'ncc=vvgaming'],
+    [object, 'Allbet', 'ncc=allbet'],
+    [object, 'HGaming', 'ncc=hgaming']
+]
+
+List_Sort = [
+    [object, 'Nhiều người chơi', 'sx=nhieu-nguoi-choi'],
+    [object, 'Đang hot', 'sx=dang-hot'],
+    [object, 'Phổ biến', 'sx=pho-bien'],
+    [object, 'Mới nhất', 'sx=moi-nhat'],
+    [object, 'A-Z', 'sx=a-z']
+]
+
+DATA = [
+    # [object, 'HGaming', 'ncc=hgaming'],
+    # [object, 'Baccarat', 'type=baccarat'],
+    # [object, 'Sicbo', 'type=sicbo'],
+    # [object, 'Roulette', 'type=roulette'],
+    [object, 'Phổ biến', 'sx=pho-bien']
+]
+expected = 'http://dev-ta.mooo.com/casino?'
+actual = 'http://dev-ta.mooo.com/casino?sx=pho-bien&game=roulette&game=sicbo&game=baccarat&type=hgaming'
+TYPE = []
+NCC = []
+SORT = []
+data_return = [1]
+for i in DATA:
+    if 'type' in i[2]:
+        TYPE.append(i)
+    if 'ncc' in i[2]:
+        NCC.append(i)
+    if 'sx' in i[2]:
+        SORT.append(i)
+if len(TYPE) > 1:
+    for t in range(len(TYPE)):
+        if t == 0:
+            expected = expected + TYPE[t][2]
+        else:
+            expected = expected + ','+TYPE[t][2].split('=')[1]
+elif len(TYPE) == 1:
+    expected = expected + TYPE[0][2]
+for t in TYPE:
+    data_return.append(t[1])
+if len(TYPE) > 0:
+    if len(NCC) != 0:
+        expected = expected + '&' + NCC[0][2]
+        data_return.append(NCC[0][1])
+    if len(SORT) != 0:
+        expected = expected + '&' + SORT[0][2]
+        data_return.append(SORT[0][1])
+else:
+    if len(NCC) != 0:
+        expected = expected + NCC[0][2]
+        data_return.append(NCC[0][1])
+        if len(SORT) != 0:
+            expected = expected + '&' + SORT[0][2]
+            data_return.append(SORT[0][1])
+    else:
+        expected = expected + SORT[0][2]
+        data_return.append(SORT[0][1])
+
+while len(data_return) < 6:
+    data_return.append('-')
+print(expected)
+print(data_return)

@@ -54,3 +54,6 @@ class HomePage(BasePage):
 
 class GameLobbyPage(BasePage):
     pass
+
+class GameCasinoPage(BasePage):
+    pass
