@@ -12,6 +12,9 @@ class MainMenuLocators(object):
     MENU_QUICK_GAME = (By.CLASS_NAME,'menu-quickGames')
     MENU_TABLE_GAME = (By.CLASS_NAME,'menu-tablegame')
     MENU_CONG_GAME = (By.CLASS_NAME,'menu-lobby')
+    
+    MENU_DANG_NHAP = (By.CLASS_NAME,'not-login-user-login')
+    MENU_DANG_KY = (By.CLASS_NAME,'not-login-user-register')
 
 class CongGameLocators(object):
     Type_All = (By.CLASS_NAME,'icon-all')
@@ -58,13 +61,18 @@ class CasinoLocators(object):
     List_Game = (By.XPATH,'//div[contains(@class,"lobby-casino-list")]/div')
     List_Game_Heading = (By.CLASS_NAME, 'lobby-casino-section__title')
 
-class HomePageLocators(object):
-    btn_register = (By.CLASS_NAME,'btn--home-register')
+class LoginLocators(object):
+    input_username = (By.XPATH,'//form/div[1]/div')
+    input_password = (By.XPATH,'//form/div[2]/div')
 
-    txt_username = (By.XPATH,"//div[@id='signInFull']/div/form/div/div/input[@type='text']")
-    txt_password = (By.XPATH,"//div[@id='signInFull']/div/form/div/div/input[@type='password']")
+    text_error_username = (By.XPATH,'//form/div[1]/p[@class="error"]')
+    text_error_password = (By.XPATH,'//form/div[2]/p[@class="error"]')
 
-    btn_login_full = (By.XPATH,"//div[contains(@class, 'login-form__submit')]/button")
-    btn_logout = (By.XPATH,"//div[contains(@class,'user-login-block')]/a[contains(@class, 'logout')]/i")
+    btn_show_password = (By.CLASS_NAME,'icon-eye-show')
+    btn_hide_password = (By.CLASS_NAME,'icon-eye-hide')
+    btn_login = (By.CLASS_NAME,'login-form__submit')
+
+
+
 
 

@@ -1,0 +1,307 @@
+import unittest
+from selenium import webdriver
+import time
+from datetime import datetime
+import xlsxwriter
+
+from pages.Browser import Browser
+import pages.page as page
+from pages.locators import *
+from pages.UIObject import UiObject
+from pages.utils import *
+
+
+class CasinoLobby(unittest.TestCase):
+    def setUp(self):
+        self.driver = Browser.get_driver()
+        self.driver.get(ge.DOMAIN)
+
+    # TOP - Link url check
+    def test_Login(self):
+        TEST_DATA = [
+            [1,'Data valiadation','Không nhập tên đăng nhập','-','Vui lòng nhập tên đăng nhập',]
+            [2,'Data valiadation','Tên đăng nhập ít hơn 6 ký tự','abcde','Tên đăng nhập tối thiểu 6 ký tự',]
+            [3,'Data valiadation','Tên đăng nhập = 6 ký tự','abcdef','-',],
+            [4,'Data valiadation','Tên đăng nhập nhiều hơn 30 ký tự ','abcde fghij klnmo pqrst uvwxy z','Tên đăng nhập tối đa 30 ký tự',]
+            [5,'Data valiadation','Tên đăng nhập = 30 ký tự','abcde fghij klnmo pqrst uvwxyz','-',],
+            [6,'Data valiadation','Tên đăng nhập với ký tự đặc biệt','!@#$%^&*() -','!@#$%^&*() ',]
+            [7,'Data valiadation','Không nhập mật khẩu','-','Vui lòng nhập mật khẩu',]
+            [8,'Data valiadation','Mật khẩu ít hơn 6 ký tự','mnbvc','Mật khẩu tối thiểu 6 ký tự',]
+            [9,'Data valiadation','Mật khẩu = 6 ký tự','mnbvcx','-',],
+            [10,'Data valiadation','Mật khẩu nhiều hơn 12 ký tự ','sadfghjklqwer','Mật khẩu tối đa 12 ký tự',]
+            [11,'Data valiadation','Mật khẩu = 12 ký tự','sadfghjklqwe','-',],
+            [12,'Data valiadation','Nhập sai tên đăng nhập','-','Sai tên đăng nhập hoặc mật khẩu',]
+            [13,'Data valiadation','Nhập sai mật khẩu','-','Sai tên đăng nhập hoặc mật khẩu',]
+            [14,'Navigation','Nếu ví chính = 0, chuyển đến trang nạp tiền','-','-',],
+            [15,'Navigation','Nếu ví chính > 0, trở lại trang trước khi đăng nhập','-','-',],
+            [16,'Session','Đăng nhập ở 1 trình duyệt khác sẽ log out ở trình duyệt cũ','-','-',],
+            [17,'Show/Hide pw','Click show/hide password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi','-','-',]
+        ]
+
+        self.no = 1        
+        TEST_RESULT = [['#', 'Case', '', 'Slug 3', 'Slug 4',
+                        'Slug 5', 'Expected link', 'Actual link', 'Status']]
+        TEST_DATA_HEADER = []
+        name = 'Test link formats - CASINO LOBBY'
+        start = datetime.now()
+        TEST_DATA_HEADER.append(['Start', str(start).split('.')[0]])
+        lobby = page.GameCasinoPage(self.driver)  # Khai báo lobby page
+        # Chờ để tất cả element ở trang load xong
+        self.driver.implicitly_wait(30)
+        self.driver.maximize_window()  # Mở full màn hình đang test
+        SIZE = lobby.get_size()
+
+        # Variable Define
+        
+
+        # COMPARE LINK AND RETURN DATA LIST
+        def check_link(data, number):
+            expected = self.lobby_domain
+            TYPE = []
+            NCC = []
+            SORT = []
+            data_return = [self.no]
+            self.no += 1
+            for i in data:
+                if i != 0:
+                    if 'type' in i[2]:
+                        TYPE.append(i)
+                    if 'ncc' in i[2]:
+                        NCC.append(i)
+                    if 'sx' in i[2]:
+                        SORT.append(i)
+            if len(TYPE) > 1:
+                for t in range(len(TYPE)):
+                    if t == 0:
+                        expected = expected + TYPE[t][2]
+                    else:
+                        expected = expected + ','+TYPE[t][2].split('=')[1]
+            elif len(TYPE) == 1:
+                expected = expected + TYPE[0][2]
+            for t in TYPE:
+                data_return.append(t[1])
+            if len(TYPE) > 0:
+                if len(NCC) != 0:
+                    expected = expected + '&' + NCC[0][2]
+                    data_return.append(NCC[0][1])
+                if len(SORT) != 0:
+                    expected = expected + '&' + SORT[0][2]
+                    data_return.append(SORT[0][1])
+            else:
+                if len(NCC) != 0:
+                    expected = expected + NCC[0][2]
+                    data_return.append(NCC[0][1])
+                    if len(SORT) != 0:
+                        expected = expected + '&' + SORT[0][2]
+                        data_return.append(SORT[0][1])
+                else:
+                    if len(SORT) != 0:
+                        expected = expected + '&' + SORT[0][2]
+                        data_return.append(SORT[0][1])
+
+            while len(data_return) < 6:
+                data_return.append('-')
+            data_return.append(expected)
+            actual = lobby.get_url()
+            data_return.append(actual)
+            if actual != expected:
+                data_return.append('FAILED')
+                # lobby.screenshot_window(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3]+ '_' + data_return[4]+ '_' + data_return[5])
+            else:
+                data_return.append('PASSED')
+            print('\n', '-'*15, ' Case: ', number,
+                  ': ', data_return[8], ' ', 15*'-')
+            print(data_return[1], ' - ', data_return[2], ' - ',
+                  data_return[3], ' - ', data_return[4], ' - ', data_return[5])
+            print('Expected link: \t', data_return[6])
+            print('Actual link: \t', data_return[7])
+            return data_return
+
+        # num : vị trí ở DATALINK, value:
+        def click_and_check(obj, num, value=0):
+            obj[0].click()
+            time.sleep(0.5)
+            if value == 0:
+                DATA_LINK[num] = 0
+            else:
+                DATA_LINK[num] = obj
+            check = check_link(DATA_LINK, self.no)
+            TEST_RESULT.append(check)
+
+        if MENU_CASINO.visible():
+            MENU_CASINO.click()
+            self.driver.implicitly_wait(30)
+            time.sleep(3)
+            temp_rp = Report_temp(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
+            # CHECK DEFAULT CASE
+            df_link = 'http://dev-ta.mooo.com/live-casino'
+            
+            c_url = lobby.get_url()
+            sts = 'PASSED'
+            # self.no = 1
+            if df_link != c_url:
+                # lobby.screenshot_window('Default link - FAILED')
+                sts = 'FAILED'
+            TEST_RESULT.append([self.no, '-', '-', '-', '-', '-', df_link, c_url, sts])
+            self.no += 1
+
+            # CHECK ONLY SORT CASE
+            TEST_RESULT.append(
+                ['-', 'Sắp xếp theo', 'None', 'None', 'None', 'None', '', '', ''])
+            DATA_LINK = [0, 0, 0, 0, 0]
+            for S in List_Sort:
+                click_and_check(S, 0, 1)
+                time.sleep(0.5)
+            temp_rp.export()
+            temp_rp.close()
+
+            # CHECK ALL CASE FOLLOWING: SORT >> SUPPLIER >> GAME TYPE
+            # TEST_RESULT.append(['', 'Sắp xếp theo', 'Nhà cung cấp', 'Game 1', 'Game 2', 'Game 3', '', '', ''])
+            DATA_LINK = [0, 0, 0, 0, 0]
+            for S in List_Sort:
+                DATA_LINK[1] = List_NCC[0]
+                click_and_check(S, 0, 1)
+                for N in List_NCC:
+                    click_and_check(N, 1, 1)
+                    for G in range(len(List_Game)):
+                        if G == 0:
+                            G1 = List_Game[G]
+                            G2 = List_Game[1]
+                            G3 = List_Game[2]
+                        elif G == 1:
+                            G1 = List_Game[G]
+                            G2 = List_Game[0]
+                            G3 = List_Game[2]
+                        else:
+                            G1 = List_Game[G]
+                            G2 = List_Game[0]
+                            G3 = List_Game[1]
+                        # 1 GAME SELECTED
+                        Game_Selector.click()
+                        time.sleep(2)
+                        click_and_check(G1, 2, 1)
+                        # 2 GAME SELECTED
+                        # Game_Selector.click()
+                        click_and_check(G2, 3, 1)
+                        # 3 GAME SELECTED
+                        # Game_Selector.click()
+                        click_and_check(G3, 4, 1)
+
+                        # ---------------------------------------------------------
+                        # UNCHECK GAME 3
+                        # Game_Selector.click()
+                        click_and_check(G3, 4, 0)
+                        # UNCHECK GAME 2
+                        # Game_Selector.click()
+                        click_and_check(G2, 3, 0)
+                        # UNCHECK GAME 1
+                        # Game_Selector.click()
+                        click_and_check(G1, 2, 0)
+                        Game_Selector.click()
+                        List_NCC[0][0].click()
+
+                        temp_rp = Report_temp(
+                            name.upper(), TEST_RESULT, TEST_DATA_HEADER)
+                        temp_rp.export()
+                        temp_rp.close()
+            # CASE KHÔNG CẦN THIẾT, NHƯNG GIỮ LẠI ĐỂ BACKUP
+            # CHECK ALL CASE FOLLOWING: SORT >> GAMETYPE >> SUPPLIER
+            # TEST_RESULT.append(
+            #     ['', 'Sắp xếp theo', 'Game 1', 'Thể loại', '', '', '', '', ''])
+            # DATA_LINK = [0, 0, 0, 0, 0]
+            # for S in List_Sort:
+            #     click_and_check(S, 0, 1)
+            #     for G in range(len(List_Game)):
+            #         if G == 0:
+            #             G1 = List_Game[G]
+            #             G2 = List_Game[1]
+            #             G3 = List_Game[2]
+            #         elif G == 1:
+            #             G1 = List_Game[G]
+            #             G2 = List_Game[0]
+            #             G3 = List_Game[2]
+            #         else:
+            #             G1 = List_Game[G]
+            #             G2 = List_Game[0]
+            #             G3 = List_Game[1]
+
+            #         # 1 GAME SELECTED
+            #         Game_Selector.click()
+            #         time.sleep(2)
+            #         click_and_check(G1, 1, 1)
+            #         for N in List_NCC:
+            #             click_and_check(N, 2, 1)
+            #         DATA_LINK[2] = 0
+
+            #         # 2 GAME SELECTED
+            #         Game_Selector.click()
+            #         time.sleep(2)
+            #         G1[0].click()
+            #         time.sleep(0.5)
+            #         click_and_check(G2, 2, 1)
+            #         for N in List_NCC:
+            #             click_and_check(N, 3, 1)
+            #         DATA_LINK[3] = 0
+            #         # 3 GAME SELECTED
+            #         # Game_Selector.click()
+            #         Game_Selector.click()
+            #         time.sleep(2)
+            #         G1[0].click()
+            #         time.sleep(0.5)
+            #         G2[0].click()
+            #         time.sleep(0.5)
+            #         click_and_check(G3, 3, 1)
+            #         for N in List_NCC:
+            #             click_and_check(N, 4, 1)
+            #         DATA_LINK[4] = 0
+            #         # ---------------------------------------------------------
+            #         # UNCHECK GAME 3
+            #         Game_Selector.click()
+            #         time.sleep(2)
+            #         click_and_check(G3, 3, 0)
+            #         for N in List_NCC:
+            #             click_and_check(N, 3, 1)
+            #         DATA_LINK[3] = 0
+            #         # UNCHECK GAME 2
+            #         Game_Selector.click()
+            #         time.sleep(2)
+            #         click_and_check(G2, 2, 0)
+            #         for N in List_NCC:
+            #             click_and_check(N, 2, 1)
+            #         DATA_LINK[2] = 0
+            #         # UNCHECK GAME 1
+            #         Game_Selector.click()
+            #         time.sleep(2)
+            #         click_and_check(G1, 1, 0)
+            #         for N in List_NCC:
+            #             click_and_check(N, 1, 1)
+
+            #         temp_rp = Report_temp(
+            #             name.upper(), TEST_RESULT, TEST_DATA_HEADER)
+            #         temp_rp.export()
+            #         temp_rp.close()
+            #         for N in List_NCC:
+            #             click_and_check(N, 1, 1)
+
+            end = datetime.now()
+            TEST_DATA_HEADER.append(['End', str(end).split('.')[0]])
+            TEST_DATA_HEADER.append(
+                ['Time spend', str(end-start).split('.')[0]])
+            TEST_DATA_HEADER.append(['Size', str(SIZE)])
+            # REPORT data
+
+            report = Report(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
+            report.export()
+            report.close()
+
+        else:
+            lobby.screenshot_window('Test Checking url link: FAILED')
+            # print('Login or Register button is not appear')
+        self.driver.implicitly_wait(30)
+
+    def tearDown(self):
+        self.driver.close()
+
+
+if __name__ == "__main__":
+    unittest.main()
