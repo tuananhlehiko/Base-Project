@@ -55,6 +55,9 @@ class CasinoLocators(object):
     Sort_Moi_nhat = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][4]')
     Sort_a_z = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][5]')
 
+    List_Game = (By.XPATH,'//div[contains(@class,"lobby-casino-list")]/div')
+    List_Game_Heading = (By.CLASS_NAME, 'lobby-casino-section__title')
+
 class HomePageLocators(object):
     btn_register = (By.CLASS_NAME,'btn--home-register')
 

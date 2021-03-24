@@ -3,15 +3,22 @@ import HtmlTestRunner
 import unittest
 import os
 
-from TestCase.GameLobby_url_format import *
-from TestCase.CasinoLobby_url_format import *
-from TestCase.GameLobby_heading_title import *
+# HEADING TITLE CONTENT Testcase
+from TestCase.Heading_Title_Content.GameLobby import *
+from TestCase.Heading_Title_Content.CasinoLobby import *
+# URL FORMAT Testcase
+from TestCase.Url_Format.GameLobby import *
+from TestCase.Url_Format.CasinoLobby import *
+
 
 game_url_test = unittest.TestLoader().loadTestsFromTestCase(GameLobby)
-casino = unittest.TestLoader().loadTestsFromTestCase(CasinoLobby)
+casino_url_test = unittest.TestLoader().loadTestsFromTestCase(CasinoLobby)
 game_heading_test = unittest.TestLoader().loadTestsFromTestCase(GameLobbyHeadingTitle)
+casino_heading_test = unittest.TestLoader().loadTestsFromTestCase(CasinoLobbyHeadingTitle)
 # unittest.TextTestRunner().run(main)
 
 # # Create test_suite
-test_suite = unittest.TestSuite([game_heading_test])
+# test_suite = unittest.TestSuite([casino_heading_test, game_heading_test, casino_url_test, game_url_test])
+test_suite = unittest.TestSuite([casino_heading_test, game_heading_test])
+test_suite = unittest.TestSuite([ game_heading_test])
 unittest.TextTestRunner().run(test_suite)

@@ -7,8 +7,8 @@ import os
 from pages.locators import *
 from pages.UIObject import UiObject
 
-from TestCase.GameLobby_url_format import *
-from TestCase.CasinoLobby_url_format import *
+# from TestCase.GameLobby_url_format import *
+# from TestCase.CasinoLobby_url_format import *
 
 
 DATA = [
@@ -17,11 +17,11 @@ DATA = [
     # [object, 'Bắn Cá', 'type=ban-ca'],
     # [object, 'Game nhanh', 'type=quick-game'],
     # [object, 'Ingame', 'type=ingame'],
-    [object, 'Table game', 'type=table-games'],
+    # [object, 'Table game', 'type=table-games'],
     # [object, 'Lô đề', 'type=lo-de'],
 
     # [object, 'Pragmatic Play', 'ncc=pragmatic-play'],
-    [object, 'Đang hot', 'sx=dang-hot']
+    # [object, 'Đang hot', 'sx=dang-hot']
 ]
 
 
@@ -76,7 +76,7 @@ def check_link(data, number):
                 expected = expected + ' Của ' + NCC[0][1]
     else:
         if len(NCC) == 0 and len(SORT) == 0:
-            expected = expected + ' Online'
+            expected = expected + 'Cổng Game Online'
         # RULE 5
         if len(SORT) > 0:
             expected = expected + ' ' + SORT[0][1]
@@ -97,7 +97,8 @@ def check_link(data, number):
             if len(SORT) != 0:
                 data_return.append(SORT[0][1])
         else:
-            data_return.append(SORT[0][1])
+            if len(SORT) != 0:
+                data_return.append(SORT[0][1])
 
     while len(data_return) < 4:
         data_return.append('-')

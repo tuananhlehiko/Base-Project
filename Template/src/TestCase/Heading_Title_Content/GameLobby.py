@@ -12,19 +12,18 @@ from pages.UIObject import UiObject
 from pages.utils import *
 
 
-class GameLobby(unittest.TestCase):
+class GameLobbyHeadingTitle(unittest.TestCase):
     def setUp(self):
         self.driver = Browser.get_driver()
         self.driver.get(ge.DOMAIN)
 
     # TOP - Link url check
-    def test_url_link(self):
+    def test_Heading_Title_Content(self):
         self.no = 1
-        self.lobby_domain = 'http://dev-ta.mooo.com/cong-game?'
         DATA_LINK = [0, 0, 0]
 
         TEST_DATA_HEADER = []
-        name = 'Test link formats - GAME LOBBY'
+        name = 'HEADING TITLE CONTENT - GAME LOBBY'
         TEST_RESULT = [['#', 'Slug 1', 'Slug 2', 'Slug 3',
                         'Expected link', 'Actual link', 'Status']]
         TEST_DATA_HEADER = []
@@ -58,13 +57,13 @@ class GameLobby(unittest.TestCase):
         Sort_a_z = UiObject(*CongGameLocators.Sort_a_z)
 
         List_type = [
-            [type_all, 'Tất cả', 'type=all'],
-            [type_No_hu, 'Nổ hũ', 'type=no-hu'],
+            [type_all, 'Tất Cả', 'type=all'],
+            [type_No_hu, 'Nổ Hũ', 'type=no-hu'],
             [type_Ban_ca, 'Bắn Cá', 'type=ban-ca'],
-            [type_Game_nhanh, 'Game nhanh', 'type=quick-game'],
+            [type_Game_nhanh, 'Game Nhanh', 'type=quick-game'],
             [type_Ingame, 'Ingame', 'type=ingame'],
-            [type_Table_gane, 'Table game', 'type=table-games'],
-            [type_Lo_de, 'Lô đề', 'type=lo-de']
+            [type_Table_gane, 'Table Games', 'type=table-games'],
+            [type_Lo_de, 'Lô Đề', 'type=lo-de']
         ]
 
         List_NCC = [
@@ -74,16 +73,16 @@ class GameLobby(unittest.TestCase):
         ]
 
         List_Sort = [
-            [Sort_multi, 'Nhiều người chơi', 'sx=nhieu-nguoi-choi'],
-            [Sort_hot, 'Đang hot', 'sx=dang-hot'],
-            [Sort_Pho_bien, 'Phổ biến', 'sx=pho-bien'],
-            [Sort_new, 'Mới nhất', 'sx=moi-nhat'],
+            [Sort_multi, 'Nhiều Người Chơi', 'sx=nhieu-nguoi-choi'],
+            [Sort_hot, 'Đang Hot', 'sx=dang-hot'],
+            [Sort_Pho_bien, 'Phổ Biến', 'sx=pho-bien'],
+            [Sort_new, 'Mới Nhất', 'sx=moi-nhat'],
             [Sort_a_z, 'A-Z', 'sx=a-z']
         ]
 
         # COMPARE LINK AND RETURN DATA LIST
         def check_link(data, number):
-            expected = self.lobby_domain
+            expected = ''
             TYPE = []
             NCC = []
             SORT = []
@@ -97,47 +96,81 @@ class GameLobby(unittest.TestCase):
                         NCC.append(i)
                     if 'sx' in i[2]:
                         SORT.append(i)
-            if len(TYPE) > 1:
-                for t in range(len(TYPE)):
-                    if t == 0:
-                        expected = expected + TYPE[t][2]
+
+            # RULE 1
+            if len(NCC) > 0 or len(SORT) > 0:
+                expected = expected + 'Top'
+
+            # RULE 2, 3
+            if len(NCC) > 0 or len(SORT) > 0:
+                listgame = UiObject(*CongGameLocators.List_Game)
+                number_of_game = len(listgame.get_elements())
+                # number_of_game = 79
+
+                if number_of_game > 1:
+                    expected = expected + ' ' + \
+                        str(number_of_game) + ' Trò Chơi'
+            # RULE 4
+            if len(TYPE) > 0:
+                if TYPE[0][1] == 'Lô Đề':
+                    expected = 'Lô Đề Truyền Thống Siêu Tốc'
+                else:
+                    if len(TYPE) > 1:
+                        for t in TYPE:
+                            expected = expected + ' ' + t[1]
                     else:
-                        expected = expected + ','+TYPE[t][2].split('=')[1]
-            elif len(TYPE) == 1:
-                expected = expected + TYPE[0][2]
+                        if TYPE[0][2] == 'type=all':
+                            expected = expected + ' Cổng Game'
+                        else:
+                            expected = expected + ' ' + TYPE[0][1]
+                    if len(NCC) == 0 and len(SORT) == 0:
+                        expected = expected + ' Online'
+                    # RULE 5
+                    if len(SORT) > 0:
+                        expected = expected + ' ' + SORT[0][1]
+                    # RULE 6 & 7
+                    if len(NCC) > 0:
+                        expected = expected + ' Của ' + NCC[0][1]
+            else:
+                if len(NCC) == 0 and len(SORT) == 0:
+                    expected = expected + 'Cổng Game Online'
+                # RULE 5
+                if len(SORT) > 0:
+                    expected = expected + ' ' + SORT[0][1]
+                # RULE 6 & 7
+                if len(NCC) > 0:
+                    expected = expected + ' Của ' + NCC[0][1]
+
             for t in TYPE:
                 data_return.append(t[1])
             if len(TYPE) > 0:
                 if len(NCC) != 0:
-                    expected = expected + '&' + NCC[0][2]
                     data_return.append(NCC[0][1])
                 if len(SORT) != 0:
-                    expected = expected + '&' + SORT[0][2]
                     data_return.append(SORT[0][1])
             else:
                 if len(NCC) != 0:
-                    expected = expected + NCC[0][2]
                     data_return.append(NCC[0][1])
                     if len(SORT) != 0:
-                        expected = expected + '&' + SORT[0][2]
                         data_return.append(SORT[0][1])
                 else:
-                    expected = expected + SORT[0][2]
-                    data_return.append(SORT[0][1])
+                    if len(SORT) != 0:
+                        data_return.append(SORT[0][1])
 
             while len(data_return) < 4:
                 data_return.append('-')
             data_return.append(expected)
-            actual = lobby.get_url()
+            actual = UiObject(*CongGameLocators.List_Game_Heading).get_text()
             data_return.append(actual)
             if actual != expected:
                 data_return.append('FAILED')
-                # lobby.screenshot_window(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3])
+                # lobby.screenshot_window(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3]+ '_' + data_return[4]+ '_' + data_return[5])
             else:
                 data_return.append('PASSED')
             print('\n', '-'*15, ' Case: ', number,
                   ': ', data_return[6], ' ', 15*'-')
-            print(data_return[1], ' - ', data_return[2], ' - ', data_return[3])
+            print(data_return[1], ' - ', data_return[2],
+                  ' - ', data_return[3], ' - ')
             print('Expected link: \t', data_return[4])
             print('Actual link: \t', data_return[5])
             return data_return
@@ -158,18 +191,10 @@ class GameLobby(unittest.TestCase):
             self.driver.implicitly_wait(30)
             time.sleep(3)
             temp_rp = Report_temp(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
+
             # CHECK DEFAULT CASE
-            df_link = 'http://dev-ta.mooo.com/cong-game?type=all&sx=nhieu-nguoi-choi'
-            lobby_domain = 'http://dev-ta.mooo.com/cong-game?'
-            c_url = lobby.get_url()
-            sts = 'PASSED'
-            no = 1
-            if df_link != c_url:
-                lobby.screenshot_window('Default link - FAILED')
-                sts = 'FAILED'
-            TEST_RESULT.append(
-                [no, 'default', 'default', 'default', df_link, c_url, sts])
-            no += 1
+            check = check_link(DATA_LINK, self.no)
+            TEST_RESULT.append(check)
 
             # CHECK ALL CASE FOLLOWING: SORT >> TYPE >> SUPPLIER
             # TEST_RESULT.append(['', 'Sắp xếp theo', 'Thể loại', 'Nhà cung cấp', '', '', ''])
@@ -178,15 +203,14 @@ class GameLobby(unittest.TestCase):
                 DATA_LINK[1] = List_type[0]
                 click_and_check(S, 0, 1)
                 for T in List_type:
-                    if T[1] == 'Game nhanh' or T[1] == 'Ingame' or T[1] == 'Table game' or T[1] == 'Lô đề':
-                        if T[1] == 'Lô đề':
+                    if T[1] == 'Game Nhanh' or T[1] == 'Ingame' or T[1] == 'Table Games' or T[1] == 'Lô Đề':
+                        if T[1] == 'Lô Đề':
                             T[0].click()
                             time.sleep(0.5)
                             DATA_LINK[0] = T
                             DATA_LINK[1] = 0
                             DATA_LINK[2] = 0
-                            check = check_link(DATA_LINK, no)
-                            no += 1
+                            check = check_link(DATA_LINK, self.no)
                             TEST_RESULT.append(check)
                             DATA_LINK[0] = S
                             type_all.click()
@@ -207,62 +231,6 @@ class GameLobby(unittest.TestCase):
                         name.upper(), TEST_RESULT, TEST_DATA_HEADER)
                     temp_rp.export()
                     temp_rp.close()
-
-            # CHECK ALL CASE FOLLOWING: SORT >> SUPPLIER >> TYPE
-            # TEST_RESULT.append(
-            #     ['', 'Sắp xếp theo', 'Nhà cung cấp', 'Thể loại', '', '', ''])
-            # DATA_LINK = [0, 0, 0]
-            # for S in List_Sort:
-            #     S[0].click()
-            #     time.sleep(0.5)
-            #     DATA_LINK[0] = S
-            #     check = check_link(DATA_LINK, no)
-            #     no += 1
-            #     TEST_RESULT.append(check)
-            #     for N in List_NCC:
-            #         NCC_Selector.click()
-            #         time.sleep(2)
-            #         N[0].click(True)
-            #         time.sleep(0.5)
-            #         DATA_LINK[1] = N
-            #         check = check_link(DATA_LINK, no)
-            #         no += 1
-            #         TEST_RESULT.append(check)
-            #         for T in List_type:
-            #             if T[1] == 'Game nhanh' or T[1] == 'Ingame' or T[1] == 'Table game' or T[1] == 'Lô đề':
-            #                 if T[1] == 'Lô đề':
-            #                     T[0].click()
-            #                     time.sleep(0.5)
-            #                     DATA_LINK[0] = T
-            #                     DATA_LINK[1] = 0
-            #                     DATA_LINK[2] = 0
-            #                     check = check_link(DATA_LINK, no)
-            #                     no += 1
-            #                     TEST_RESULT.append(check)
-            #                     DATA_LINK[0] = S
-            #                     DATA_LINK[1] = N
-            #                     type_all.click()
-            #                 else:
-            #                     T[0].click()
-            #                     time.sleep(0.5)
-            #                     DATA_LINK[1] = T
-            #                     check = check_link(DATA_LINK, no)
-            #                     no += 1
-            #                     TEST_RESULT.append(check)
-            #             else:
-            #                 T[0].click()
-            #                 time.sleep(0.5)
-            #                 DATA_LINK[2] = T
-            #                 check = check_link(DATA_LINK, no)
-            #                 no += 1
-            #                 TEST_RESULT.append(check)
-            #         temp_rp = Report_temp(
-            #             name.upper(), TEST_RESULT, TEST_DATA_HEADER)
-            #         temp_rp.export()
-            #         temp_rp.close()
-            #         # UNCHECK NHÀ CUNG CẤP
-            #         lobby.set_url(df_link)
-            #         S[0].click()
 
             end = datetime.now()
             TEST_DATA_HEADER.append(['End', str(end).split('.')[0]])
