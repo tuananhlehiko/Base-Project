@@ -34,6 +34,7 @@ class CongGameLocators(object):
     Sort_a_z = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][5]')
 
     List_Game = (By.XPATH,'//div[contains(@class,"game-list")]/div')
+    List_Game_Heading = (By.XPATH, '//h1[contains(@class,"game-section__title")]')
 
 class CasinoLocators(object):
     NCC_All = (By.CLASS_NAME,'game-menu-item-icon__tab')
