@@ -1,6 +1,7 @@
-from pages.locators import HomePageLocators
 from pages.locators import ge
+from pages.utils import Create_dir
 import os
+
 
 class BasePage(object):
     def __init__(self, driver):
@@ -16,9 +17,12 @@ class BasePage(object):
         try:
             dir_img = os.getcwd()
             if location == '':
-                file = dir_img + '\\reports\\' + filename + '.png'
+                path = dir_img + '\\reports'
             else:
-                file = dir_img + '\\' + location + '\\reports\\' + filename + '.png'
+                path = dir_img + '\\reports\\' + location
+                
+            Create_dir(path)
+            file = path + '\\' + filename + '.png'
             self.driver.get_screenshot_as_file(file)
         except Exception as e:
             print('Error: ', e)
@@ -54,6 +58,7 @@ class HomePage(BasePage):
 
 class GameLobbyPage(BasePage):
     pass
+
 
 class GameCasinoPage(BasePage):
     pass

@@ -62,8 +62,8 @@ class CasinoLocators(object):
     List_Game_Heading = (By.CLASS_NAME, 'lobby-casino-section__title')
 
 class LoginLocators(object):
-    input_username = (By.XPATH,'//form/div[1]/div')
-    input_password = (By.XPATH,'//form/div[2]/div')
+    input_username = (By.XPATH,'//form/div[1]/div/input')
+    input_password = (By.XPATH,'//form/div[2]/div/input')
 
     text_error_username = (By.XPATH,'//form/div[1]/p[@class="error"]')
     text_error_password = (By.XPATH,'//form/div[2]/p[@class="error"]')
@@ -72,7 +72,8 @@ class LoginLocators(object):
     btn_hide_password = (By.CLASS_NAME,'icon-eye-hide')
     btn_login = (By.CLASS_NAME,'login-form__submit')
 
-
-
-
+    popup_error = (By.XPATH, '//div[@class="swal-modal"]')
+    popup_error_title = (By.XPATH, '//div[@class="swal-title"]')
+    popup_error_content = (By.XPATH, '//div[@class="swal-text"]')
+    popup_error_btn_confirm = (By.CLASS_NAME, 'swal-button--confirm')
 
