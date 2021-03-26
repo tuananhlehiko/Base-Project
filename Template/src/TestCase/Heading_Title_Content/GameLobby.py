@@ -58,12 +58,12 @@ class GameLobbyHeadingTitle(unittest.TestCase):
 
         List_type = [
             [type_all, 'Tất Cả', 'type=all'],
-            [type_No_hu, 'Nổ Hũ', 'type=no-hu'],
-            [type_Ban_ca, 'Bắn Cá', 'type=ban-ca'],
-            [type_Game_nhanh, 'Game Nhanh', 'type=quick-game'],
+            [type_No_hu, 'Nổ Hũ', 'type=slots'],
+            [type_Ban_ca, 'Bắn Cá', 'type=fishing'],
+            [type_Game_nhanh, 'Game Nhanh', 'type=instant'],
             [type_Ingame, 'Ingame', 'type=ingame'],
-            [type_Table_gane, 'Table Games', 'type=table-games'],
-            [type_Lo_de, 'Lô Đề', 'type=lo-de']
+            [type_Table_gane, 'Table Games', 'type=tables'],
+            [type_Lo_de, 'Lô Đề', 'type=lode']
         ]
 
         List_NCC = [
@@ -73,11 +73,11 @@ class GameLobbyHeadingTitle(unittest.TestCase):
         ]
 
         List_Sort = [
-            [Sort_multi, 'Nhiều Người Chơi', 'sx=nhieu-nguoi-choi'],
-            [Sort_hot, 'Đang Hot', 'sx=dang-hot'],
-            [Sort_Pho_bien, 'Phổ Biến', 'sx=pho-bien'],
-            [Sort_new, 'Mới Nhất', 'sx=moi-nhat'],
-            [Sort_a_z, 'A-Z', 'sx=a-z']
+            [Sort_multi, 'Nhiều Người Chơi', 'sx=most-played'],
+            [Sort_hot, 'Đang Hot', 'sx=hot'],
+            [Sort_Pho_bien, 'Phổ Biến', 'sx=popular'],
+            [Sort_new, 'Mới Nhất', 'sx=new'],
+            [Sort_a_z, 'A-Z', 'sx=name']
         ]
 
         # COMPARE LINK AND RETURN DATA LIST

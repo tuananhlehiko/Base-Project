@@ -33,7 +33,9 @@ class LoginFlow(unittest.TestCase):
         SIZE = base.get_size()
 
         # Variable Define
+        MENU_CONG_GAME = UiObject(*MainMenuLocators.MENU_CONG_GAME)
         MENU_DANG_NHAP = UiObject(*MainMenuLocators.MENU_DANG_NHAP)
+        MENU_USER_INFO_DROP = UiObject(*MainMenuLocators.MENU_USER_INFO_DROP)
 
         input_username = UiObject(*LoginLocators.input_username)
         input_password = UiObject(*LoginLocators.input_password)
@@ -42,6 +44,7 @@ class LoginFlow(unittest.TestCase):
         btn_show_password = UiObject(*LoginLocators.btn_show_password)
         btn_hide_password = UiObject(*LoginLocators.btn_hide_password)
         btn_login = UiObject(*LoginLocators.btn_login)
+        btn_close = UiObject(*LoginLocators.btn_close)
 
         popup_error = UiObject(*LoginLocators.popup_error)
         popup_error_title = UiObject(*LoginLocators.popup_error_title)
@@ -49,37 +52,42 @@ class LoginFlow(unittest.TestCase):
         popup_error_btn_confirm = UiObject(
             *LoginLocators.popup_error_btn_confirm)
 
+        dang_xuat = UiObject(*UserInfoLocator.dang_xuat)
+
         TEST_DATA = [
-            [1, 'Data validation', 'INVALID-C', input_username, text_error_username,
-                'Không nhập tên đăng nhập', '', 'Vui lòng nhập tên đăng nhập'],
-            [2, 'Data validation', 'INVALID', input_username, text_error_username,
-                'Tên đăng nhập ít hơn 6 ký tự', 'abcde', 'Tên đăng nhập tối thiểu 6 ký tự'],
-            [3, 'Data validation', 'VALID', input_username,
-                text_error_username, 'Tên đăng nhập = 6 ký tự', 'abcdef', ''],
-            [4, 'Data validation', 'INVALID', input_username, text_error_username,
-                'Tên đăng nhập nhiều hơn 30 ký tự ', 'abcde fghij klnmo pqrst uvwxy z', 'Tên đăng nhập tối đa 30 ký tự'],
-            [5, 'Data validation', 'VALID', input_username, text_error_username,
-                'Tên đăng nhập = 30 ký tự', 'abcde fghij klnmo pqrst uvwxyz', ''],
-            [6, 'Data validation', 'INVALID-MULTI', input_username, text_error_username, 'Tên đăng nhập với ký tự đặc biệt',
-                ['!','@','#','$','%','^','&','*','(',')',' ',';',':',"'",'"','`','~','>','.','<','{','}','[',']','\\',',','/','-','=','+'], 'Vui lòng nhập tên đăng nhập không chứa ký tự đặc biệt'],
-            [7, 'Data validation', 'INVALID-C', input_password, text_error_password,
-                'Không nhập mật khẩu', '', 'Vui lòng nhập mật khẩu'],
-            [8, 'Data validation', 'INVALID', input_password, text_error_password,
-                'Mật khẩu ít hơn 6 ký tự', 'mnbvc', 'Mật khẩu tối thiểu 6 ký tự'],
-            [9, 'Data validation', 'VALID', input_password,
-                text_error_password, 'Mật khẩu = 6 ký tự', 'mnbvcx', ''],
-            [10, 'Data validation', 'INVALID', input_password, text_error_password,
-                'Mật khẩu nhiều hơn 12 ký tự ', 'sadfghjklqwer', 'Mật khẩu tối đa 12 ký tự'],
-            [11, 'Data validation', 'VALID', input_password,
-                text_error_password, 'Mật khẩu = 12 ký tự', 'sadfghjklqwe', ''],
-            [12, 'Data validation', 'INVALID-P', input_username, input_password,
-                'Nhập sai tên đăng nhập', '', 'Sai tên đăng nhập hoặc mật khẩu'],
-            [13, 'Data validation', 'INVALID-P', btn_login, input_username,
-                input_password, 'Nhập sai mật khẩu', '', 'Sai tên đăng nhập hoặc mật khẩu'],
-            # [14,'Hide pw','CLICK',btn_show_password, input_password,'Click show/hide password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi','',''],
-            # [15,'Show pw','CLICK',btn_hide_password, input_password,'Click show/hide password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi','',''],
-            # [15,'Navigation','NAVIGATE-0', btn_login,'-','Nếu ví chính = 0, chuyển đến trang nạp tiền','',''],
-            # [16,'Navigation','NAVIGATE-1', btn_login,'-','Nếu ví chính > 0, trở lại trang trước khi đăng nhập','',''],
+            # [1, 'Data validation', 'INVALID-C', input_username, text_error_username,
+            #     'Không nhập tên đăng nhập', '', 'Vui lòng nhập tên đăng nhập'],
+            # [2, 'Data validation', 'INVALID', input_username, text_error_username,
+            #     'Tên đăng nhập ít hơn 6 ký tự', 'abcde', 'Tên đăng nhập tối thiểu 6 ký tự'],
+            # [3, 'Data validation', 'VALID', input_username,
+            #     text_error_username, 'Tên đăng nhập = 6 ký tự', 'abcdef', ''],
+            # [4, 'Data validation', 'INVALID', input_username, text_error_username,
+            #     'Tên đăng nhập nhiều hơn 30 ký tự ', 'abcdefghijklnmopqrstuvwxyz', 'Tên đăng nhập tối đa 30 ký tự'],
+            # [5, 'Data validation', 'VALID', input_username, text_error_username,
+            #     'Tên đăng nhập = 30 ký tự', 'abcdefghijklnmopqrstuvwxyz1234', ''],
+            # [6, 'Data validation', 'INVALID-MULTI', input_username, text_error_username, 'Tên đăng nhập với ký tự đặc biệt',
+            #     '!@#$%^&*() ;:\'"`~>.<,{}[]\/-=+', 'Vui lòng nhập tên đăng nhập không chứa ký tự đặc biệt'],
+            # [7, 'Data validation', 'INVALID-C', input_password, text_error_password,
+            #     'Không nhập mật khẩu', '', 'Vui lòng nhập mật khẩu'],
+            # [8, 'Data validation', 'INVALID', input_password, text_error_password,
+            #     'Mật khẩu ít hơn 6 ký tự', 'mnbvc', 'Mật khẩu tối thiểu 6 ký tự'],
+            # [9, 'Data validation', 'VALID', input_password,
+            #     text_error_password, 'Mật khẩu = 6 ký tự', 'mnbvcx', ''],
+            # [10, 'Data validation', 'INVALID', input_password, text_error_password,
+            #     'Mật khẩu nhiều hơn 12 ký tự ', 'sadfghjklqwer', 'Mật khẩu tối đa 12 ký tự'],
+            # [11, 'Data validation', 'VALID', input_password,
+            #     text_error_password, 'Mật khẩu = 12 ký tự', 'sadfghjklqwe', ''],
+            # [12, 'Data validation', 'INVALID-P', input_username, input_password,
+            #     'Nhập sai tên đăng nhập', '', 'Sai tên đăng nhập hoặc mật khẩu'],
+            # [13, 'Data validation', 'INVALID-P', input_username, input_password,'Nhập sai mật khẩu', '', 'Sai tên đăng nhập hoặc mật khẩu'],
+            # [14, 'Show/Hide pw', 'SHOW', input_password, btn_show_password,
+            #     'Click show/hide password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi', '', ''],
+            # [15, 'Show/Hide pw', 'HIDE', input_password, btn_hide_password,
+            #     'Click show/hide password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi', '', ''],
+            [15, 'Navigation', '0', input_username, input_password, 'Nếu ví chính = 0, chuyển đến trang nạp tiền', [
+                'tuananhle2603', '123456'], 'http://dev-ta.mooo.com/account/deposit'],
+            [16, 'Navigation', '1', input_username, input_password, 'Nếu ví chính > 0, trở lại trang trước khi đăng nhập', [
+                'tuananhle2603', '123456'], 'http://dev-ta.mooo.com/cong-game'],
             # [17,'Session','SESSION','Đăng nhập ở 1 trình duyệt khác sẽ log out ở trình duyệt cũ','','',]
         ]
 
@@ -95,23 +103,22 @@ class LoginFlow(unittest.TestCase):
                 self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
             # CHECK DEFAULT CASE
             for i in TEST_DATA:
-
                 actual = ''
                 sts = ''
                 notes = ''
                 if i[1] == 'Data validation':
-                    print(i[0])
-                    print(i[1])
-                    print(i[2])
-                    print(i[3])
-                    print(i[4])
-                    print(i[5])
-                    print(i[6])
+                    # print(i[0])
+                    # print(i[1])
+                    # print(i[2])
+                    # print(i[3])
+                    # print(i[4])
+                    # print(i[5])
+                    # print(i[6])
                     if 'INVALID' in i[2]:
                         if i[2] == 'INVALID-MULTI':
                             self.TEST_RESULT.append(
                                 [i[0], i[5], i[6], '-', '-', '-', '-'])
-                            for c in len(i[6]):
+                            for c in range(len(i[6])):
                                 data_input = 'validdata'+i[6][c]
                                 i[3].set_text(data_input)
                                 time.sleep(1)
@@ -165,9 +172,6 @@ class LoginFlow(unittest.TestCase):
                                     str(i[0])+'_Error popup not display', self.name)
                             self.TEST_RESULT.append(
                                 [i[0], i[5], data_input, i[7], actual, sts, notes])
-                            base.set_url(*ge.DOMAIN)
-                            self.driver.implicitly_wait(30)
-                            MENU_DANG_NHAP.click()
                         else:
                             i[3].set_text(i[6])
                             time.sleep(1)
@@ -196,26 +200,120 @@ class LoginFlow(unittest.TestCase):
                             notes = 'Hiển thị lỗi khi nhập đúng'
                             base.screenshot_window(
                                 str(i[0])+'_Error text is display', self.name)
-                        else:                            
-                            sts = 'PASSED'                            
-                            notes = 'Hiển thị lỗi không chính xác'                            
+                        else:
+                            sts = 'PASSED'
                         self.TEST_RESULT.append(
                             [i[0], i[5], i[6], i[7], actual, sts, notes])
+
+                elif i[1] == 'Show/Hide pw':
+                    text_input = 'SHOW PASS'
+                    type_hidden = 'password'
+                    type_shown = 'text'
+                    if i[2] == 'SHOW':
+                        i[3].set_text(text_input)
+                        if btn_show_password.visible():
+                            btn_show_password.click()
+                            actual = input_password.get_attribute('type')
+                            if actual == type_shown:
+                                sts = 'PASSED'
+                            else:
+                                base.screenshot_window(
+                                    str(i[0])+'_ The show password display wrong', self.name)
+                                sts = 'FAILED'
+                            notes = 'INPUT: ' + text_input + '\nType: ' + actual
+                        else:
+                            btn_hide_password.click()
+                            btn_show_password.click()
+                            actual = input_password.get_attribute('type')
+                            if actual == type_shown:
+                                sts = 'PASSED'
+                            else:
+                                base.screenshot_window(
+                                    str(i[0])+'_ The show password display wrong', self.name)
+                                sts = 'FAILED'
+                            notes = 'INPUT: ' + text_input + '\nType: ' + actual
+                        self.TEST_RESULT.append(
+                            [i[0], i[5], text_input, type_shown, actual, sts, notes])
+                    else:
+                        i[3].set_text(text_input)
+                        if btn_hide_password.visible():
+                            btn_hide_password.click()
+                            actual = input_password.get_attribute('type')
+                            if actual == type_hidden:
+                                sts = 'PASSED'
+                            else:
+                                base.screenshot_window(
+                                    str(i[0])+'_ The show password display wrong', self.name)
+                                sts = 'FAILED'
+                            notes = 'INPUT: ' + text_input + '\nType: ' + actual
+                        else:
+                            btn_show_password.click()
+                            btn_hide_password.click()
+                            actual = input_password.get_attribute('type')
+                            if actual == type_hidden:
+                                sts = 'PASSED'
+                            else:
+                                base.screenshot_window(
+                                    str(i[0])+'_ The show password display wrong', self.name)
+                                sts = 'FAILED'
+                            notes = 'INPUT: ' + text_input + '\nType: ' + actual
+                        self.TEST_RESULT.append(
+                            [i[0], i[5], text_input, type_hidden, actual, sts, notes])
+
+                elif i[1] == 'Navigation':
+                    if i[2] == '0':
+                        if input_username.visible() == False:                            
+                            MENU_DANG_NHAP.click()
+                            time.sleep(3)                       
+
+                    if i[2] == "1":
+                        if input_username.visible() == False:
+                            MENU_CONG_GAME.click()
+                            time.sleep(3)
+                            MENU_DANG_NHAP.click()
+                            time.sleep(3)
+                        else:
+                            btn_close.click()
+                            MENU_CONG_GAME.click()
+                            time.sleep(3)
+                            MENU_DANG_NHAP.click()
+                            time.sleep(3)
+                    i[3].set_text(i[6][0])
+                    i[4].set_text(i[6][1])
+                    time.sleep(3)
+                    btn_login.click()
+                    if MENU_USER_INFO_DROP.visible():
+                        actual = base.get_url()
+                        if actual == i[7]:
+                            sts = 'PASSED'
+                        else:
+                            sts = 'FAILED'
+                            notes = 'Login successful but link wrong'
+                            base.screenshot_window(
+                                str(i[0])+'_Login successful but link wrong', self.name)
+                        MENU_USER_INFO_DROP.click()
+                        dang_xuat.click()
+                    else:
+                        sts = 'FAILED'
+                        notes = 'Login un-successful'
+                        base.screenshot_window(
+                            str(i[0])+'_Login un-successful', self.name)
+                    self.TEST_RESULT.append(
+                        [i[0], i[5], i[6][0]+', '+i[6][1], i[7], actual, sts, notes])
+
                 print('\n', '-'*15, ' Case: ',
                       str(i[0]), ': ', i[5], ' ', 15*'-')
                 print('Status: \t', sts)
-                print('Expected link: \t', i[7])
-                print('Actual link: \t', actual, '\n')
+                print('Expected: \t', i[7])
+                print('Actual: \t', actual, '\n')
                 temp_rp = Report_temp(
                     self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
                 temp_rp.export()
                 temp_rp.close()
-                print('input_username.visible(): ',input_username.visible())
-                print('input_password.visible(): ',input_password.visible())
-                if input_username.visible():
-                    input_username.set_text('')
-                if input_password.visible():
-                    input_password.set_text('')
+                time.sleep(2)
+                print('input_username.visible(): ', input_username.visible())
+                print('input_password.visible(): ', input_password.visible())
+                print('btn_login.visible(): ', btn_login.visible())
 
             end = datetime.now()
             self.TEST_DATA_HEADER.append(['End', str(end).split('.')[0]])
@@ -230,7 +328,7 @@ class LoginFlow(unittest.TestCase):
             report.close()
 
         else:
-            lobby.screenshot_window('Test Checking url link: FAILED')
+            base.screenshot_window('Test Checking url link: FAILED')
             # print('Login or Register button is not appear')
         self.driver.implicitly_wait(30)
 

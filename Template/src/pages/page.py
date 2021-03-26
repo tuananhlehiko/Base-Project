@@ -17,9 +17,9 @@ class BasePage(object):
         try:
             dir_img = os.getcwd()
             if location == '':
-                path = dir_img + '\\reports'
+                path = dir_img + '\\reports\\img'
             else:
-                path = dir_img + '\\reports\\' + location
+                path = dir_img + '\\reports\\' + location +'\\img'
                 
             Create_dir(path)
             file = path + '\\' + filename + '.png'

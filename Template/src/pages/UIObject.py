@@ -3,6 +3,7 @@ import os
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.keys import Keys
 from pages.Browser import Browser
 
 
@@ -11,6 +12,7 @@ class UiObject:
         self.__by = by
         self.__locator = locator
         self.__web_element = kwargs.get("web_element", None)
+
     @staticmethod
     def from_web_element(web_element):
         """
@@ -21,6 +23,7 @@ class UiObject:
         :return: UiObject object instance
         """
         return UiObject(by=None, locator=None, web_element=web_element)
+
     def get_element(self, wait=10):
         """
         Will use WebDriver to locate element in the DOM
@@ -32,6 +35,7 @@ class UiObject:
             return self.__web_element
         self.wait_to_appear(wait)
         return Browser.get_driver().find_element(self.by, self.locator)
+
     def get_elements(self, wait=10):
         """
         Will use WebDriver to locate elements in the DOM
@@ -43,18 +47,21 @@ class UiObject:
             return [self.__web_element]
         self.wait_to_appear(wait)
         return Browser.get_driver().find_elements(self.by, self.locator)
+
     @property
     def locator(self):
         """
         :return: STRING, locator this object was initialize with
         """
         return self.__locator
+
     @property
     def by(self):
         """
         :return: STRING, By ID this object was initialize with aka By.XPATH or By.ID
         """
         return self.__by
+
     def exists(self, wait=10):
         """
         :param wait: INT, seconds to wait before returning verdict
@@ -66,6 +73,7 @@ class UiObject:
             return True
         except:
             return False
+
     def visible(self, wait=1):
         """
         :param wait: INT, seconds to wait before returning verdict
@@ -77,6 +85,7 @@ class UiObject:
             return False
         except:
             return True
+
     def clickable(self, wait=1):
         """
         :param wait: INT, seconds to wait before returning verdict
@@ -88,6 +97,7 @@ class UiObject:
             return True
         except:
             return False
+
     def wait_to_appear(self, wait=10):
         """
         :param wait: INT, how long you want to wait for the element to appear
@@ -97,6 +107,7 @@ class UiObject:
             return self
         raise AssertionError("Locator did not appear: {} in {} seconds!"
                              .format(self.locator, wait))
+
     def wait_to_disappear(self, wait=10):
         """
         :param wait: INT, how long you want to wait for the element to disappear
@@ -106,6 +117,7 @@ class UiObject:
             return self
         raise AssertionError("Locator did not disappear: {} in {} seconds!"
                              .format(self.locator, wait))
+
     def wait_to_be_clickable(self, wait=10):
         """
         :param wait: INT, how long you want to wait for the element to be click-able
@@ -117,6 +129,7 @@ class UiObject:
             raise AssertionError("Locator did not become click-able: {} in {} seconds"
                                  .format(self.locator, wait))
         raise AssertionError("Locator does not exist: {}".format(self.locator))
+
     def get_text(self, encoding=None, wait=10):
         """
         :param encoding: STRING, aka "utf-8", if encoding is provided, the text will be
@@ -126,15 +139,27 @@ class UiObject:
         """
         text = self.get_element(wait).text
         return text.encode(encoding) if encoding else text
+
     def set_text(self, value, wait=10):
         """
         :param value: STRING, text value to type on the element
         :param wait: INT, how long you want to wait for the element to appear
         :return: STRING, text value
         """
-        self.get_element(wait).clear()
+        self.get_element(wait).send_keys(Keys.CONTROL + "a")
+        self.get_element(wait).send_keys(Keys.DELETE)
         self.get_element(wait).send_keys(value)
         return self
+
+    def clear_text(self, wait=10):
+        """
+        :param value: STRING, text value to type on the element
+        :param wait: INT, how long you want to wait for the element to appear
+        """
+        self.get_element(wait).send_keys(Keys.CONTROL + "a")
+        self.get_element(wait).send_keys(Keys.DELETE)
+        return self
+
     def press_key(self, key, use_ac=False, wait=10):
         """
         :param key: STRING, special key code aka Keys.ENTER
@@ -147,6 +172,15 @@ class UiObject:
         else:
             self.get_element(wait).send_keys(key)
         return self
+
+    def get_property(self, value, wait=10):
+        """
+        :param value: STRING, aka "class" or "name" etc
+        :param wait: INT, how long you want to wait for the element to appear
+        :return: STRING, attribute value as text
+        """
+        return self.get_element(wait).get_property(value)
+
     def get_attribute(self, value, wait=10):
         """
         :param value: STRING, aka "class" or "name" etc
@@ -154,6 +188,7 @@ class UiObject:
         :return: STRING, attribute value as text
         """
         return self.get_element(wait).get_attribute(value)
+
     def click(self, use_ac=False, wait=10):
         """
         :param use_ac: BOOLEAN, if you want to use ActionChains for this operation

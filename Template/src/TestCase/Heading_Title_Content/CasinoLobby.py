@@ -61,19 +61,19 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
 
         List_NCC = [
             [NCC_All, 'All', 'ncc=all'],
-            [NCC_Evolution, 'Evolution', 'ncc=evolution'],
+            [NCC_Evolution, 'Evolution', 'ncc=evo'],
             [NCC_Ebet, 'Ebet', 'ncc=ebet'],
-            [NCC_VivoGaming, 'VivoGaming', 'ncc=vvgaming'],
+            [NCC_VivoGaming, 'VivoGaming', 'ncc=vivo'],
             [NCC_Allbet, 'Allbet', 'ncc=allbet'],
-            [NCC_HGaming, 'HGaming', 'ncc=hgaming']
+            [NCC_HGaming, 'HGaming', 'ncc=hogaming']
         ]
 
         List_Sort = [
-            [Sort_multi, 'Nhiều Người Chơi', 'sx=nhieu-nguoi-choi'],
-            [Sort_hot, 'Đang Hot', 'sx=dang-hot'],
-            [Sort_Pho_bien, 'Phổ Biến', 'sx=pho-bien'],
-            [Sort_new, 'Mới Nhất', 'sx=moi-nhat'],
-            [Sort_a_z, 'A-Z', 'sx=a-z']
+            [Sort_multi, 'Nhiều Người Chơi', 'sx=most-played'],
+            [Sort_hot, 'Đang Hot', 'sx=hot'],
+            [Sort_Pho_bien, 'Phổ Biến', 'sx=popular'],
+            [Sort_new, 'Mới Nhất', 'sx=new'],
+            [Sort_a_z, 'A-Z', 'sx=name']
         ]
 
         # COMPARE LINK AND RETURN DATA LIST

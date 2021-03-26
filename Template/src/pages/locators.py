@@ -16,6 +16,9 @@ class MainMenuLocators(object):
     MENU_DANG_NHAP = (By.CLASS_NAME,'not-login-user-login')
     MENU_DANG_KY = (By.CLASS_NAME,'not-login-user-register')
 
+    MENU_USER_INFO_DROP = (By.XPATH,'//div[@class="info-user"]')
+
+
 class CongGameLocators(object):
     Type_All = (By.CLASS_NAME,'icon-all')
     Type_No_hu = (By.CLASS_NAME,'icon-nohu1')
@@ -68,12 +71,25 @@ class LoginLocators(object):
     text_error_username = (By.XPATH,'//form/div[1]/p[@class="error"]')
     text_error_password = (By.XPATH,'//form/div[2]/p[@class="error"]')
 
-    btn_show_password = (By.CLASS_NAME,'icon-eye-show')
-    btn_hide_password = (By.CLASS_NAME,'icon-eye-hide')
+    btn_show_password = (By.CLASS_NAME,'icon-eye-hide')
+    btn_hide_password = (By.CLASS_NAME,'icon-eye-show')
     btn_login = (By.CLASS_NAME,'login-form__submit')
+    btn_close = (By.CLASS_NAME,'close-user-modal')
 
     popup_error = (By.XPATH, '//div[@class="swal-modal"]')
     popup_error_title = (By.XPATH, '//div[@class="swal-title"]')
     popup_error_content = (By.XPATH, '//div[@class="swal-text"]')
     popup_error_btn_confirm = (By.CLASS_NAME, 'swal-button--confirm')
+
+
+class UserInfoLocator(object):
+    info = (By.XPATH,'//ul/div/li[@role="presentation"][1]')
+    nap_tien = (By.XPATH,'//ul/div/li[@role="presentation"][2]')
+    rut_tien = (By.XPATH,'//ul/div/li[@role="presentation"][3]')
+    lich_su = (By.XPATH,'//ul/div/li[@role="presentation"][4]')
+    khuyen_mai = (By.XPATH,'//ul/div/li[@role="presentation"][5]')
+    tin_tuc = (By.XPATH,'//ul/div/li[@role="presentation"][6]')
+    dang_xuat = (By.XPATH,'//ul/div[@class="logout"]')
+
+
 
