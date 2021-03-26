@@ -120,7 +120,8 @@ class GameLobbyHeadingTitle(unittest.TestCase):
                             expected = expected + ' ' + t[1]
                     else:
                         if TYPE[0][2] == 'type=all':
-                            expected = expected + ' Cổng Game'
+                            if len(NCC)>0:
+                                expected = expected + ' Cổng Game'
                         else:
                             expected = expected + ' ' + TYPE[0][1]
                     if len(NCC) == 0 and len(SORT) == 0:

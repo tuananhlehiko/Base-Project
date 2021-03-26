@@ -55,7 +55,7 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
 
         List_Game = [
             [Game_Baccarat, 'Baccarat', 'type=baccarat'],
-            [Game_Sicbo, 'Sicbo', 'type=sicbo'],
+            # [Game_Sicbo, 'Sicbo', 'type=sicbo'],
             [Game_Roulette, 'Roulette', 'type=roulette']
         ]
 
@@ -73,7 +73,7 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
             [Sort_hot, 'Đang Hot', 'sx=hot'],
             [Sort_Pho_bien, 'Phổ Biến', 'sx=popular'],
             [Sort_new, 'Mới Nhất', 'sx=new'],
-            [Sort_a_z, 'A-Z', 'sx=name']
+            # [Sort_a_z, 'A-Z', 'sx=name']
         ]
 
         # COMPARE LINK AND RETURN DATA LIST
@@ -103,7 +103,10 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
             # RULE 2, 3
             if len(NCC) > 0 or len(SORT) > 0:
                 listgame = UiObject(*CasinoLocators.List_Game)
-                number_of_game = len(listgame.get_elements())
+                if listgame.visible():
+                    number_of_game = len(listgame.get_elements())
+                else:
+                    number_of_game = 0
                 # number_of_game = 79
 
                 if number_of_game > 1:
@@ -223,15 +226,15 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                         if G == 0:
                             G1 = List_Game[G]
                             G2 = List_Game[1]
-                            G3 = List_Game[2]
+                            # G3 = List_Game[2]
                         elif G == 1:
                             G1 = List_Game[G]
                             G2 = List_Game[0]
-                            G3 = List_Game[2]
-                        else:
-                            G1 = List_Game[G]
-                            G2 = List_Game[0]
-                            G3 = List_Game[1]
+                            # G3 = List_Game[2]
+                        # else:
+                        #     G1 = List_Game[G]
+                        #     G2 = List_Game[0]
+                        #     G3 = List_Game[1]
                         # 1 GAME SELECTED
                         Game_Selector.click()
                         time.sleep(2)
@@ -241,12 +244,12 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                         click_and_check(G2, 3, 1)
                         # 3 GAME SELECTED
                         # Game_Selector.click()
-                        click_and_check(G3, 4, 1)
+                        # click_and_check(G3, 4, 1)
 
                         # ---------------------------------------------------------
                         # UNCHECK GAME 3
                         # Game_Selector.click()
-                        click_and_check(G3, 4, 0)
+                        # click_and_check(G3, 4, 0)
                         # UNCHECK GAME 2
                         # Game_Selector.click()
                         click_and_check(G2, 3, 0)

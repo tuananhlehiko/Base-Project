@@ -51,9 +51,9 @@ class CasinoLocators(object):
     NCC_HGaming = (By.XPATH,'//div[contains(@class,"game-menu-item")][6]')    
 
     Game_selector = (By.CLASS_NAME,'btn-secondary')
-    Game_Baccarat = (By.XPATH,'//div/ul/li[1][@role="presentation"]')
+    Game_Baccarat = (By.XPATH,'//input[@value="baccarat"]/parent::div/parent::label/parent::a/parent::li')
     Game_Sicbo = (By.XPATH,'//div/ul/li[2][@role="presentation"]')
-    Game_Roulette = (By.XPATH,'//div/ul/li[3][@role="presentation"]')
+    Game_Roulette = (By.XPATH,'//input[@value="roulette"]/parent::div/parent::label/parent::a/parent::li')
 
     Sort_Nhieu_nguoi_choi = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][1]')
     Sort_Dang_hot = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][2]')
