@@ -199,6 +199,14 @@ from pages.UIObject import UiObject
 
 
 a = ['!','@','#','$','%','^','&','*','(',')',' ',';',':',"'",'"','`','~','>','.','<','{','}','[',']','\\',',','/','-','=','+']
-print(len(a))
-for i in a:
-    print(i)
+
+c = 2
+for i in range(len(a)):
+    b = [x for x in a]
+    b.pop(i)
+    print('-'*15,'\n',b)
+    
+    
+# print(len(a))
+# for i in a:
+#     print(i)
