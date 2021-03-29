@@ -11,7 +11,7 @@ class MainMenuLocators(object):
     MENU_LIVE_CASINO = (By.CLASS_NAME,'menu-casino')
     MENU_QUICK_GAME = (By.CLASS_NAME,'menu-quickGames')
     MENU_TABLE_GAME = (By.CLASS_NAME,'menu-tablegame')
-    MENU_CONG_GAME = (By.CLASS_NAME,'menu-lobby')
+    MENU_CONG_GAME = (By.CLASS_NAME,'menu-cong-game')
     
     MENU_DANG_NHAP = (By.CLASS_NAME,'not-login-user-login')
     MENU_DANG_KY = (By.CLASS_NAME,'not-login-user-register')
@@ -29,9 +29,10 @@ class CongGameLocators(object):
     Type_Game_nhanh = (By.CLASS_NAME,'icon-game-nhanh1')
 
     NCC_selector = (By.CLASS_NAME,'btn-secondary')
-    NCC_btn_Techplay = (By.XPATH,'//div/ul/li[1][@role="presentation"]')
-    NCC_btn_PragmaticPlay = (By.XPATH,'//div/ul/li[2][@role="presentation"]')
-    NCC_btn_CQ9 = (By.XPATH,'//div/ul/li[3][@role="presentation"]')
+    NCC_btn_All = (By.XPATH,'//div/ul/li[1][@role="presentation"]')
+    NCC_btn_Techplay = (By.XPATH,'//div/ul/li[2][@role="presentation"]')
+    NCC_btn_PragmaticPlay = (By.XPATH,'//div/ul/li[3][@role="presentation"]')
+    NCC_btn_CQ9 = (By.XPATH,'//div/ul/li[4][@role="presentation"]')
 
     Sort_Nhieu_nguoi_choi = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][1]')
     Sort_Dang_hot = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][2]')

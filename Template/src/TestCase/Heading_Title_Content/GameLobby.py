@@ -20,6 +20,7 @@ class GameLobbyHeadingTitle(unittest.TestCase):
     # TOP - Link url check
     def test_Heading_Title_Content(self):
         self.no = 1
+        self.cur_position = 0
         DATA_LINK = [0, 0, 0]
 
         TEST_DATA_HEADER = []
@@ -46,6 +47,7 @@ class GameLobbyHeadingTitle(unittest.TestCase):
         type_Game_nhanh = UiObject(*CongGameLocators.Type_Game_nhanh)
 
         NCC_Selector = UiObject(*CongGameLocators.NCC_selector)
+        NCC_btn_All = UiObject(*CongGameLocators.NCC_btn_All)
         NCC_Techplay = UiObject(*CongGameLocators.NCC_btn_Techplay)
         NCC_Pragmatic = UiObject(*CongGameLocators.NCC_btn_PragmaticPlay)
         NCC_CQ9 = UiObject(*CongGameLocators.NCC_btn_CQ9)
@@ -61,12 +63,13 @@ class GameLobbyHeadingTitle(unittest.TestCase):
             [type_No_hu, 'Nổ Hũ', 'type=slots'],
             [type_Ban_ca, 'Bắn Cá', 'type=fishing'],
             [type_Game_nhanh, 'Game Nhanh', 'type=instant'],
-            [type_Ingame, 'Ingame', 'type=ingame'],
+            [type_Ingame, 'InGame', 'type=ingame'],
             [type_Table_gane, 'Table Games', 'type=tables'],
             [type_Lo_de, 'Lô Đề', 'type=lode']
         ]
 
         List_NCC = [
+            [NCC_btn_All, 'Tất Cả', 'ncc=all'],
             [NCC_Pragmatic, 'Pragmatic Play', 'ncc=pragmatic-play'],
             [NCC_CQ9, 'CQ9', 'ncc=cq9'],
             [NCC_Techplay, 'Techplay', 'ncc=techplay']
@@ -104,12 +107,15 @@ class GameLobbyHeadingTitle(unittest.TestCase):
             # RULE 2, 3
             if len(NCC) > 0 or len(SORT) > 0:
                 listgame = UiObject(*CongGameLocators.List_Game)
-                number_of_game = len(listgame.get_elements())
-                # number_of_game = 79
-
+                if listgame.visible():
+                    number_of_game = len(listgame.get_elements())
+                else:
+                    number_of_game = 0
                 if number_of_game > 1:
                     expected = expected + ' ' + \
                         str(number_of_game) + ' Trò Chơi'
+                else:
+                    expected = expected + ' Trò Chơi'
             # RULE 4
             if len(TYPE) > 0:
                 if TYPE[0][1] == 'Lô Đề':
@@ -118,20 +124,31 @@ class GameLobbyHeadingTitle(unittest.TestCase):
                     if len(TYPE) > 1:
                         for t in TYPE:
                             expected = expected + ' ' + t[1]
-                    else:
+                    else:                        
                         if TYPE[0][2] == 'type=all':
-                            if len(NCC)>0:
-                                expected = expected + ' Cổng Game'
+                            if len(NCC) == 0:
+                                if len(SORT) == 0:
+                                    expected = 'Cổng Game Online'
+                                else:
+                                    expected = expected + ' Cổng game' 
+                            else:
+                                pass
                         else:
-                            expected = expected + ' ' + TYPE[0][1]
-                    if len(NCC) == 0 and len(SORT) == 0:
-                        expected = expected + ' Online'
+                            if len(NCC) == 0:
+                                if len(SORT) == 0:
+                                    expected = TYPE[0][1] + ' Online'
+                                else:
+                                    expected = expected + ' ' + TYPE[0][1]
+                            else:
+                                expected = expected + ' ' + TYPE[0][1]
+
                     # RULE 5
                     if len(SORT) > 0:
                         expected = expected + ' ' + SORT[0][1]
                     # RULE 6 & 7
                     if len(NCC) > 0:
-                        expected = expected + ' Của ' + NCC[0][1]
+                        if NCC[0][2] != 'ncc=all':
+                            expected = expected + ' Của ' + NCC[0][1]
             else:
                 if len(NCC) == 0 and len(SORT) == 0:
                     expected = expected + 'Cổng Game Online'
@@ -177,14 +194,20 @@ class GameLobbyHeadingTitle(unittest.TestCase):
             return data_return
 
         # num : vị trí ở DATALINK, value:
-        def click_and_check(obj, num, value=0):
+        def click_and_check(obj, value=True, isAdded=True):
             obj[0].click()
             time.sleep(0.5)
-            if value == 0:
-                DATA_LINK[num] = 0
+            if value == False:
+                DATA_LINK[self.cur_position-1] = 0
             else:
-                DATA_LINK[num] = obj
+                DATA_LINK[self.cur_position] = obj
             check = check_link(DATA_LINK, self.no)
+            if isAdded == True:
+                self.cur_position += 1
+            else:
+                self.cur_position -= 1
+                if self.cur_position < 0:
+                    self.cur_position = 0
             TEST_RESULT.append(check)
 
         if MENU_CONG_GAME.visible():
@@ -197,41 +220,50 @@ class GameLobbyHeadingTitle(unittest.TestCase):
             check = check_link(DATA_LINK, self.no)
             TEST_RESULT.append(check)
 
+            TEST_RESULT.append(
+                ['-', 'Case chỉ có Thể loại', '', '', '', '', '', '', ''])
+            DATA_LINK = [0, 0, 0]
+            for T in List_type:
+                click_and_check(T)
+                self.cur_position -= 1
+                time.sleep(0.5)
+            temp_rp.export()
+            temp_rp.close()
+
             # CHECK ALL CASE FOLLOWING: SORT >> TYPE >> SUPPLIER
             # TEST_RESULT.append(['', 'Sắp xếp theo', 'Thể loại', 'Nhà cung cấp', '', '', ''])
             DATA_LINK = [0, 0, 0]
-            for S in List_Sort:
-                DATA_LINK[1] = List_type[0]
-                click_and_check(S, 0, 1)
-                for T in List_type:
-                    if T[1] == 'Game Nhanh' or T[1] == 'Ingame' or T[1] == 'Table Games' or T[1] == 'Lô Đề':
-                        if T[1] == 'Lô Đề':
-                            T[0].click()
-                            time.sleep(0.5)
-                            DATA_LINK[0] = T
-                            DATA_LINK[1] = 0
-                            DATA_LINK[2] = 0
-                            check = check_link(DATA_LINK, self.no)
-                            TEST_RESULT.append(check)
-                            DATA_LINK[0] = S
-                            type_all.click()
-                        else:
-                            click_and_check(T, 1, 1)
+            print(self.cur_position)
+            for T in List_type:
+                DATA_LINK = [0, 0, 0]                
+                print('0',self.cur_position)
+                click_and_check(T)
+                if T[1] == 'Game Nhanh' or T[1] == 'InGame' or T[1] == 'Table Games' or T[1] == 'Lô Đề':
+                    if T[1] == 'Lô Đề':
+                        pass
                     else:
-                        click_and_check(T, 1, 1)
+                        print('abcdesadasd',self.cur_position)
+                        for S in List_Sort:
+                            print('1',self.cur_position)
+                            click_and_check(S)
+                            self.cur_position -= 1
+                else:
+                    for S in List_Sort:
+                        print('1',self.cur_position)
+                        click_and_check(S)
                         for N in List_NCC:
                             NCC_Selector.click()
-                            time.sleep(2)
-                            click_and_check(N, 2, 1)
-                            # UNCHECK NHÀ CUNG CẤP
-                            NCC_Selector.click()
-                            time.sleep(2)
-                            click_and_check(N, 2, 0)
-                    List_type[0][0].click()
-                    temp_rp = Report_temp(
-                        name.upper(), TEST_RESULT, TEST_DATA_HEADER)
-                    temp_rp.export()
-                    temp_rp.close()
+                            time.sleep(1)
+                            print('2',self.cur_position)
+                            click_and_check(N)                           
+                            self.cur_position -= 1
+                        self.cur_position -= 1
+                self.cur_position -= 1
+
+                temp_rp = Report_temp(
+                    name.upper(), TEST_RESULT, TEST_DATA_HEADER)
+                temp_rp.export()
+                temp_rp.close()
 
             end = datetime.now()
             TEST_DATA_HEADER.append(['End', str(end).split('.')[0]])

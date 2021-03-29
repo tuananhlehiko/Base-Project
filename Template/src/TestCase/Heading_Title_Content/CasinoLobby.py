@@ -106,6 +106,8 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                 if number_of_game > 1:
                     expected = expected + ' ' + \
                         str(number_of_game) + ' Trò Chơi'
+                else:
+                    expected = expected + ' Trò Chơi'
             # RULE 4
             if len(TYPE) > 0:
                 if len(TYPE) > 1:
@@ -127,9 +129,11 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                 # RULE 6 & 7
                 if len(NCC) > 0:
                     if NCC[0][2] == 'ncc=all':
-                        expected = expected + ' Live Casino'
+                        expected = expected + ' Của Live Casino'
                     else:
                         expected = expected + ' Của ' + NCC[0][1]
+                
+
             else:
                 if len(NCC) == 0 and len(SORT) == 0:
                     expected = 'Live Casino Online'
@@ -139,9 +143,13 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                 # RULE 6 & 7
                 if len(NCC) > 0:
                     if NCC[0][2] == 'ncc=all':
-                        expected = expected + ' Của Live Casino'
+                        if len(SORT) >0:
+                            expected = expected + ' Của Live Casino'
+                        else:
+                            expected = 'Live Casino Online'
                     else:
                         expected = expected + ' Của ' + NCC[0][1]
+
             for t in TYPE:
                 data_return.append(t[1])
             if len(TYPE) > 0:
@@ -181,7 +189,7 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
             obj[0].click()
             time.sleep(0.5)
             if value == False:
-                DATA_LINK[self.cur_position] = 0
+                DATA_LINK[self.cur_position-1] = 0
             else:
                 DATA_LINK[self.cur_position] = obj
             check = check_link(DATA_LINK, self.no)
@@ -218,12 +226,13 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
             # TEST_RESULT.append(['', 'Nhà cung cấp', 'Sắp xếp theo', 'Game 1', 'Game 2', 'Game 3', '', '', ''])
             DATA_LINK = [0, 0, 0, 0, 0]
             for N in List_NCC:
+                DATA_LINK = [0, 0, 0, 0, 0]
                 click_and_check(N)
                 for S in List_Sort:
                     click_and_check(S)
                     for G in range(len(List_Game)):
                         List_Game_B = [x for x in List_Game]
-                        List_Game_B.pop(G)                        
+                        List_Game_B.pop(G)
                         Game_Selector.click()
                         click_and_check(List_Game[G])
                         for SG in List_Game_B:
@@ -233,11 +242,11 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                         # UNCHECK GAME 3
                         # Game_Selector.click()
                         for SG in List_Game_B:
-                            click_and_check(SG,False,False)
+                            click_and_check(SG, False, False)
                             time.sleep(1)
-                        click_and_check(List_Game[G],False,False)
+                        click_and_check(List_Game[G], False, False)
                         Game_Selector.click()
-                        self.cur_position -= 1
+                        # self.cur_position -= 1
                         temp_rp = Report_temp(
                             name.upper(), TEST_RESULT, TEST_DATA_HEADER)
                         temp_rp.export()
