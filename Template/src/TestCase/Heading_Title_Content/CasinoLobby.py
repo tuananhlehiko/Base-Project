@@ -99,10 +99,12 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
             # RULE 2, 3
             if len(NCC) > 0 or len(SORT) > 0:
                 listgame = UiObject(*CasinoLocators.List_Game)
+                # print('Start', datetime.utcnow())
                 if listgame.visible():
                     number_of_game = len(listgame.get_elements())
                 else:
                     number_of_game = 0
+                # print('End',datetime.utcnow())
                 if number_of_game > 1:
                     expected = expected + ' ' + \
                         str(number_of_game) + ' Trò Chơi'
