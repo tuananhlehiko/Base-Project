@@ -69,7 +69,7 @@ class GameLobbyHeadingTitle(unittest.TestCase):
         ]
 
         List_NCC = [
-            [NCC_btn_All, 'Tất Cả', 'ncc=all'],
+            # [NCC_btn_All, 'Tất Cả', 'ncc=all'],
             [NCC_Pragmatic, 'Pragmatic Play', 'ncc=pragmatic-play'],
             [NCC_CQ9, 'CQ9', 'ncc=cq9'],
             [NCC_Techplay, 'Techplay', 'ncc=techplay']

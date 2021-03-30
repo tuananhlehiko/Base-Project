@@ -150,7 +150,10 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                         else:
                             expected = 'Live Casino Online'
                     else:
-                        expected = expected + ' Của ' + NCC[0][1]
+                        if len(SORT) >0:
+                            expected = expected + ' Của ' + NCC[0][1]
+                        else:
+                            expected = expected + ' Của ' + NCC[0][1] + ' Online'
 
             for t in TYPE:
                 data_return.append(t[1])

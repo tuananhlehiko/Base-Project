@@ -30,9 +30,9 @@ class CongGameLocators(object):
 
     NCC_selector = (By.CLASS_NAME,'btn-secondary')
     NCC_btn_All = (By.XPATH,'//div/ul/li[1][@role="presentation"]')
-    NCC_btn_Techplay = (By.XPATH,'//div/ul/li[2][@role="presentation"]')
-    NCC_btn_PragmaticPlay = (By.XPATH,'//div/ul/li[3][@role="presentation"]')
-    NCC_btn_CQ9 = (By.XPATH,'//div/ul/li[4][@role="presentation"]')
+    NCC_btn_Techplay = (By.XPATH,'//div/ul/li[1][@role="presentation"]')
+    NCC_btn_PragmaticPlay = (By.XPATH,'//div/ul/li[2][@role="presentation"]')
+    NCC_btn_CQ9 = (By.XPATH,'//div/ul/li[3][@role="presentation"]')
 
     Sort_Nhieu_nguoi_choi = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][1]')
     Sort_Dang_hot = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][2]')
