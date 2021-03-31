@@ -53,6 +53,7 @@ class SignupFlow(unittest.TestCase):
         btn_register = UiObject(*SignupLocators.btn_register)
         btn_close = UiObject(*SignupLocators.btn_close)
         btn_agree = UiObject(*SignupLocators.btn_agree)
+        invite_code = UiObject(*SignupLocators.invite_code)
 
         popup_error = UiObject(*SignupLocators.popup_error)
         popup_error_title = UiObject(*SignupLocators.popup_error_title)
@@ -107,7 +108,7 @@ class SignupFlow(unittest.TestCase):
                 'Nhập chữ ở trường số điện thoại', '0935770998haha', ''],
             [22, 'Navigation', '0', username, password,
                 'Đăng ký khi uncheck Tôi đồng ý...', [
-                'tuananhle_', '123456'], 'http://dev-ta.mooo.com'],
+                    'tuananhle_', '123456'], 'http://dev-ta.mooo.com'],
             [23, 'Navigation', '1', username, password, 'Đăng ký khi check Tôi đồng ý... Chuyển đến trang nạp tiền nếu đăng nhập thành công', [
                 'tuananhle_', '123456'], 'http://dev-ta.mooo.com/account/deposit'],
             [24, 'Show/Hide pw', 'SHOW', password, show_pass,
@@ -117,7 +118,16 @@ class SignupFlow(unittest.TestCase):
             [26, 'Show/Hide pw', 'SHOW', password, show_repass,
                 'Click show/hide nhập lại password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi', '-', '-'],
             [27, 'Show/Hide pw', 'HIDE', password, hide_repass,
-                'Click show/hide nhập lại password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi', '-', '-']
+                'Click show/hide nhập lại password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi', '-', '-'],
+            [28, 'Helptext', 'TEXT', username, None,
+                'Tên đăng nhập', '', 'Tên đăng nhập'],
+            [29, 'Helptext', 'TEXT', password, None, 'Mật khẩu', '', 'Mật khẩu'],
+            [30, 'Helptext', 'TEXT', re_password, None,
+                'Nhập lại mật khẩu', '', 'Nhập lại mật khẩu'],
+            [31, 'Helptext', 'TEXT', phoneno, None,
+                'Số điện thoại', '', 'Số điện thoại'],
+            [32, 'Helptext', 'TEXT', invite_code, None,
+                'Mã giới thiệu (Nếu có)', '', 'Mã giới thiệu (Nếu có)'],
         ]
 
         # COMPARE LINK AND RETURN DATA LIST
@@ -132,7 +142,8 @@ class SignupFlow(unittest.TestCase):
                 self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
             # CHECK DEFAULT CASE
             for i in TEST_DATA:
-                print('\n', '-'*15, ' Case: ', str(i[0]), ': ', i[5], ' ', 15*'-')
+                print('\n', '-'*15, ' Case: ',
+                      str(i[0]), ': ', i[5], ' ', 15*'-')
                 actual = ''
                 sts = ''
                 notes = ''
@@ -297,13 +308,14 @@ class SignupFlow(unittest.TestCase):
                         btn_close.click()
                         MENU_DANG_KY.click()
                         time.sleep(3)
-                    now = re.sub('[ :-]','',str(datetime.now()).split('.')[0])
+                    now = re.sub(
+                        '[ :-]', '', str(datetime.now()).split('.')[0])
                     username.set_text(i[6][0] + now)
                     password.set_text(i[6][0])
                     re_password.set_text(i[6][0])
                     phoneno.set_text('0935770998')
                     # time.sleep(2)
-                    if i[2] =='0':
+                    if i[2] == '0':
                         btn_register.click()
                         if btn_register.visible():
                             actual = base.get_url()
@@ -341,7 +353,21 @@ class SignupFlow(unittest.TestCase):
                     self.TEST_RESULT.append(
                         [i[0], i[5], i[6][0]+now+', '+i[6][1], i[7], actual, sts, notes])
 
-                
+                elif i[1] == 'Helptext':
+                    if username.visible() == False:
+                        MENU_DANG_KY.click()
+                        time.sleep(3)
+                    actual = i[3].get_attribute('placeholder')
+                    if actual == i[7]:
+                        sts = 'PASSED'
+                    else:
+                        sts = 'FAILED'
+                        base.screenshot_window(
+                                    str(i[0])+'_ The show password display wrong', self.name)
+                    self.TEST_RESULT.append(
+                            [i[0], i[5], '-', i[7], actual, sts, notes])
+
+                    pass
                 print('Status: \t', sts)
                 print('Expected: \t', i[7])
                 print('Actual: \t', actual, '\n')
@@ -357,7 +383,8 @@ class SignupFlow(unittest.TestCase):
                 ['Time spend', str(end-start).split('.')[0]])
             self.TEST_DATA_HEADER.append(['Size', str(SIZE)])
             # REPORT data
-            report = Report(self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
+            report = Report(self.name.upper(), self.TEST_RESULT,
+                            self.TEST_DATA_HEADER)
             report.export()
             report.close()
 
