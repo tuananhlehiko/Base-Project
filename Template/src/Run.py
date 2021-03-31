@@ -11,6 +11,7 @@ from TestCase.Url_Format.GameLobby import *
 from TestCase.Url_Format.CasinoLobby import *
 # URL FORMAT Testcase
 from TestCase.Login.Login import *
+from TestCase.Login.Signup import *
 
 
 
@@ -19,10 +20,11 @@ casino_url_test = unittest.TestLoader().loadTestsFromTestCase(CasinoLobby)
 game_heading_test = unittest.TestLoader().loadTestsFromTestCase(GameLobbyHeadingTitle)
 casino_heading_test = unittest.TestLoader().loadTestsFromTestCase(CasinoLobbyHeadingTitle)
 loginflow = unittest.TestLoader().loadTestsFromTestCase(LoginFlow)
+signupflow = unittest.TestLoader().loadTestsFromTestCase(SignupFlow)
 # unittest.TextTestRunner().run(main)
 
 # # Create test_suite
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test, casino_url_test, game_url_test])
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test])
-test_suite = unittest.TestSuite([loginflow])
+test_suite = unittest.TestSuite([signupflow])
 unittest.TextTestRunner().run(test_suite)

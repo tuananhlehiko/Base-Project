@@ -82,6 +82,32 @@ class LoginLocators(object):
     popup_error_content = (By.XPATH, '//div[@class="swal-text"]')
     popup_error_btn_confirm = (By.CLASS_NAME, 'swal-button--confirm')
 
+class SignupLocators(object):
+    username = (By.XPATH,'//form/div[1]/div/input')
+    password = (By.XPATH,'//form/div[2]/div/input')
+    re_password = (By.NAME,'confirmPassword')
+    phoneno = (By.NAME,'phoneNumber')
+    invite_code = (By.XPATH,'//form/div[5]/div/input')
+
+    username_error = (By.XPATH,'//form/div[1]/p[@class="error"]')
+    password_error = (By.XPATH,'//form/div[2]/p[@class="error"]')
+    re_password_error = (By.XPATH,'//form/div[3]/p[@class="error"]')
+    phoneno_error = (By.XPATH,'//form/div[4]/p[@class="error"]')
+
+    show_pass = (By.XPATH,'//form/div[2]/div/span')
+    hide_pass = (By.XPATH,'//form/div[2]/div/span')
+    show_repass = (By.XPATH,'//form/div[3]/div/span')
+    hide_repass = (By.XPATH,'//form/div[3]/div/span')
+
+    btn_register = (By.CLASS_NAME,'register-form__submit')
+    btn_close = (By.CLASS_NAME,'close-user-modal')
+    btn_agree = (By.CLASS_NAME,'checkmark')
+
+    popup_error = (By.XPATH, '//div[@class="swal-modal"]')
+    popup_error_title = (By.XPATH, '//div[@class="swal-title"]')
+    popup_error_content = (By.XPATH, '//div[@class="swal-text"]')
+    popup_error_btn_confirm = (By.CLASS_NAME, 'swal-button--confirm')
+
 
 class UserInfoLocator(object):
     info = (By.XPATH,'//ul/div/li[@role="presentation"][1]')
