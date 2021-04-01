@@ -110,13 +110,35 @@ class SignupLocators(object):
 
 
 class UserInfoLocator(object):
-    info = (By.XPATH,'//ul/div/li[@role="presentation"][1]')
-    nap_tien = (By.XPATH,'//ul/div/li[@role="presentation"][2]')
-    rut_tien = (By.XPATH,'//ul/div/li[@role="presentation"][3]')
-    lich_su = (By.XPATH,'//ul/div/li[@role="presentation"][4]')
-    khuyen_mai = (By.XPATH,'//ul/div/li[@role="presentation"][5]')
-    tin_tuc = (By.XPATH,'//ul/div/li[@role="presentation"][6]')
-    dang_xuat = (By.XPATH,'//ul/div[@class="logout"]')
+    drop_info = (By.XPATH,'//ul/div/li[@role="presentation"][1]')
+    drop_nap_tien = (By.XPATH,'//ul/div/li[@role="presentation"][2]')
+    drop_rut_tien = (By.XPATH,'//ul/div/li[@role="presentation"][3]')
+    drop_lich_su = (By.XPATH,'//ul/div/li[@role="presentation"][4]')
+    drop_khuyen_mai = (By.XPATH,'//ul/div/li[@role="presentation"][5]')
+    drop_tin_tuc = (By.XPATH,'//ul/div/li[@role="presentation"][6]')
+    drop_logout = (By.XPATH,'//ul/div[@class="logout"]')
+    drop_username = (By.XPATH,'//div[@class="user-name"]/span')
 
+    btn_userinfo = (By.XPATH,'//span[@class="icon-information"]/parent::a/parent::li')
+    btn_nap = (By.XPATH,'//span[@class="icon-deposit"]/parent::a/parent::li')
+    btn_rut = (By.XPATH,'//span[@class="icon-withdraw"]/parent::a/parent::li')
+    btn_history = (By.XPATH,'//span[@class="icon-history"]/parent::a/parent::li')
+    btn_promotion = (By.XPATH,'//span[@class="icon-promotion"]/parent::a/parent::li')
+    btn_logout = (By.CLASS_NAME,'menu-info__logout')
 
+    # CẬP NHẬT THÔNG TIN CÁ NHÂN
+    info_name = (By.XPATH,'//div/div[1]/div/input')
+    info_name_error = (By.XPATH,'//div/div[1]/p[@class="error"]')
+    info_email = (By.XPATH,'//div/div[2]/div/input')
+    info_email_error = (By.XPATH,'//div/div[2]/p[@class="error"]')
+    info_email_authen = (By.XPATH,'//div/div[2]/div/p[@class="info-personal__authen"')
+    info_phone = (By.XPATH,'//div/div[3]/div/input')
+    info_phone_authen = (By.XPATH,'//div/div[3]/div/p[@class="info-personal__authen"')
+    info_confirm = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div/button')
 
+    popup_cf = (By.ID, 'authen-email___BV_modal_content_')
+    popup_cf_title = (By.CLASS_NAME, 'modal__content__title')
+    popup_cf_content = (By.CLASS_NAME, 'content-form__desc')
+    popup_cf_btn_confirm = (By.XPATH, '//div[@class="modal__content__inner"]/div/div/button')
+    popup_cf_close = (By.CLASS_NAME,'icon-close')
+    popup_cf_resend = (By.XPATH,'//p[@class="content-form__note"]/span')

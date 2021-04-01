@@ -52,7 +52,7 @@ class LoginFlow(unittest.TestCase):
         popup_error_btn_confirm = UiObject(
             *LoginLocators.popup_error_btn_confirm)
 
-        dang_xuat = UiObject(*UserInfoLocator.dang_xuat)
+        drop_logout = UiObject(*UserInfoLocator.drop_logout)
 
         TEST_DATA = [
             [1, 'Data validation', 'INVALID-C', input_username, text_error_username,
@@ -286,7 +286,7 @@ class LoginFlow(unittest.TestCase):
                             base.screenshot_window(
                                 str(i[0])+'_Login successful but link wrong', self.name)
                         MENU_USER_INFO_DROP.click()
-                        dang_xuat.click()
+                        drop_logout.click()
                     else:
                         sts = 'FAILED'
                         notes = 'Login un-successful'
