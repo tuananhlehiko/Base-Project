@@ -1,16 +1,16 @@
 # from Template.src.pages.locators import SignupLocators, MainMenuLocators
-import unittest
-from selenium import webdriver
-import time
-from datetime import datetime
-import xlsxwriter
 import re
+import time
+import unittest
+from datetime import datetime
 
-from pages.Browser import Browser
 import pages.page as page
+import xlsxwriter
+from pages.Browser import Browser
 from pages.locators import *
 from pages.UIObject import UiObject
 from pages.utils import *
+from selenium import webdriver
 
 
 class SignupFlow(unittest.TestCase):
@@ -64,26 +64,16 @@ class SignupFlow(unittest.TestCase):
         drop_logout = UiObject(*UserInfoLocator.drop_logout)
 
         TEST_DATA = [
-            [1, 'Data validation', 'INVALID', username, username_error,
-                'Không nhập tên đăng nhập', '', 'Vui lòng nhập tên đăng nhập'],
-            [2, 'Data validation', 'INVALID', username, username_error,
-                'Tên đăng nhập ít hơn 6 ký tự', 'abcde', 'Tên đăng nhập tối thiểu 6 ký tự'],
-            [3, 'Data validation', 'VALID', username, username_error,
-                'Tên đăng nhập = 6 ký tự', 'abcdef', ''],
-            [4, 'Data validation', 'INVALID', username, username_error, 'Tên đăng nhập nhiều hơn 29 ký tự ',
-                'abcdefghijklnmopqrstuvwxyz1234', 'Tên đăng nhập tối đa 29 ký tự'],
-            [5, 'Data validation', 'VALID', username, username_error,
-                'Tên đăng nhập = 29 ký tự', 'abcdefghijklnmopqrstuvwxyz123', ''],
-            [6, 'Data validation', 'INVALID-MULTI', username, username_error,
-                'Tên đăng nhập với ký tự đặc biệt', '!@#$%^&*() ;:\'"`~>.<,{}[]\/-=+', 'Tên đăng nhập không chứa các ký tự đặc biệt'],
-            [7, 'Data validation', 'INVALID', password, password_error,
-                'Không nhập mật khẩu', '', 'Vui lòng nhập mật khẩu'],
-            [8, 'Data validation', 'INVALID', password, password_error,
-                'Mật khẩu ít hơn 6 ký tự', 'mnbvc', 'Mật khẩu tối thiểu 6 ký tự'],
-            [9, 'Data validation', 'VALID', password,
-                password_error, 'Mật khẩu = 6 ký tự', 'mnbvcx', ''],
-            [10, 'Data validation', 'INVALID', password, password_error,
-                'Mật khẩu nhiều hơn 12 ký tự ', 'sadfghjklqwer', 'Mật khẩu tối đa 12 ký tự'],
+            [1, 'Data validation', 'INVALID', username, username_error, 'Không nhập tên đăng nhập', '', 'Vui lòng nhập tên đăng nhập'],
+            [2, 'Data validation', 'INVALID', username, username_error, 'Tên đăng nhập ít hơn 6 ký tự', 'abcde', 'Tên đăng nhập tối thiểu 6 ký tự'],
+            [3, 'Data validation', 'VALID', username, username_error,'Tên đăng nhập = 6 ký tự', 'abcdef', ''],
+            [4, 'Data validation', 'INVALID', username, username_error, 'Tên đăng nhập nhiều hơn 29 ký tự ','abcdefghijklnmopqrstuvwxyz1234', 'Tên đăng nhập tối đa 29 ký tự'],
+            [5, 'Data validation', 'VALID', username, username_error,'Tên đăng nhập = 29 ký tự', 'abcdefghijklnmopqrstuvwxyz123', ''],
+            [6, 'Data validation', 'INVALID-MULTI', username, username_error,'Tên đăng nhập với ký tự đặc biệt', '!@#$%^&*() ;:\'"`~>.<,{}[]\/-=+', 'Tên đăng nhập không chứa các ký tự đặc biệt'],
+            [7, 'Data validation', 'INVALID', password, password_error,'Không nhập mật khẩu', '', 'Vui lòng nhập mật khẩu'],
+            [8, 'Data validation', 'INVALID', password, password_error,'Mật khẩu ít hơn 6 ký tự', 'mnbvc', 'Mật khẩu tối thiểu 6 ký tự'],
+            [9, 'Data validation', 'VALID', password,password_error, 'Mật khẩu = 6 ký tự', 'mnbvcx', ''],
+            [10, 'Data validation', 'INVALID', password, password_error,'Mật khẩu nhiều hơn 12 ký tự ', 'sadfghjklqwer', 'Mật khẩu tối đa 12 ký tự'],
             [11, 'Data validation', 'VALID', password, password_error,
                 'Mật khẩu = 12 ký tự', 'sadfghjklqwe', ''],
             [12, 'Data validation', 'INVALID-P', password, password_error,
@@ -363,9 +353,9 @@ class SignupFlow(unittest.TestCase):
                     else:
                         sts = 'FAILED'
                         base.screenshot_window(
-                                    str(i[0])+'_ The show password display wrong', self.name)
+                            str(i[0])+'_ The show password display wrong', self.name)
                     self.TEST_RESULT.append(
-                            [i[0], i[5], '-', i[7], actual, sts, notes])
+                        [i[0], i[5], '-', i[7], actual, sts, notes])
 
                     pass
                 print('Status: \t', sts)

@@ -110,6 +110,7 @@ class SignupLocators(object):
 
 
 class UserInfoLocator(object):
+    # DROP DOWN MENU
     drop_info = (By.XPATH,'//ul/div/li[@role="presentation"][1]')
     drop_nap_tien = (By.XPATH,'//ul/div/li[@role="presentation"][2]')
     drop_rut_tien = (By.XPATH,'//ul/div/li[@role="presentation"][3]')
@@ -119,12 +120,19 @@ class UserInfoLocator(object):
     drop_logout = (By.XPATH,'//ul/div[@class="logout"]')
     drop_username = (By.XPATH,'//div[@class="user-name"]/span')
 
+    # LEFT MENU
     btn_userinfo = (By.XPATH,'//span[@class="icon-information"]/parent::a/parent::li')
     btn_nap = (By.XPATH,'//span[@class="icon-deposit"]/parent::a/parent::li')
     btn_rut = (By.XPATH,'//span[@class="icon-withdraw"]/parent::a/parent::li')
     btn_history = (By.XPATH,'//span[@class="icon-history"]/parent::a/parent::li')
     btn_promotion = (By.XPATH,'//span[@class="icon-promotion"]/parent::a/parent::li')
-    btn_logout = (By.CLASS_NAME,'menu-info__logout')
+    btn_logout = (By.CLASS_NAME,'menu-info__logout')    
+    txt_username = (By.CLASS_NAME,'menu-info__name')
+
+    # TAB
+    tab_info = (By.XPATH,'//ul/li[@class="nav-item"][1]')
+    tab_changepass = (By.XPATH,'//ul/li[@class="nav-item"][2]')
+    tab_bankaccount = (By.XPATH,'//ul/li[@class="nav-item"][3]')
 
     # CẬP NHẬT THÔNG TIN CÁ NHÂN
     info_name = (By.XPATH,'//div/div[1]/div/input')
@@ -136,9 +144,31 @@ class UserInfoLocator(object):
     info_phone_authen = (By.XPATH,'//div/div[3]/div/p[@class="info-personal__authen"')
     info_confirm = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div/button')
 
+    # CONFIRM POPUP
     popup_cf = (By.ID, 'authen-email___BV_modal_content_')
     popup_cf_title = (By.CLASS_NAME, 'modal__content__title')
     popup_cf_content = (By.CLASS_NAME, 'content-form__desc')
     popup_cf_btn_confirm = (By.XPATH, '//div[@class="modal__content__inner"]/div/div/button')
     popup_cf_close = (By.CLASS_NAME,'icon-close')
     popup_cf_resend = (By.XPATH,'//p[@class="content-form__note"]/span')
+
+    # ERROR POPUP
+    popup_error = (By.XPATH, '//div[@class="swal-modal"]')
+    popup_error_title = (By.XPATH, '//div[@class="swal-title"]')
+    popup_error_content = (By.XPATH, '//div[@class="swal-text"]')
+    popup_error_btn_confirm = (By.CLASS_NAME, 'swal-button--confirm')
+    
+    # THAY ĐỔI MẬT KHẨU
+    chg_cur_pass = (By.XPATH,'//div/div[1]/div/input')
+    chg_cur_pass_error = (By.XPATH,'//div/div[1]/p[@class="error"]')
+    chg_new_pass = (By.XPATH,'//div/div[2]/div/input')
+    chg_new_pass_error = (By.XPATH,'//div/div[2]/p[@class="error"]')
+    chg_re_new_pass = (By.XPATH,'//div/div[3]/div/input')
+    chg_re_new_pass_error = (By.XPATH,'//div/div[3]/p[@class="error"]')
+    chg_confirm = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div/button')
+    show_cur_pass = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div[1]/div/span')
+    hide_cur_pass = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div[1]/div/span')
+    show_new_pass = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div[2]/div/span')
+    hide_new_pass = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div[2]/div/span')
+    show_re_new_pass = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div[3]/div/span')
+    hide_re_new_pass = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div[3]/div/span')

@@ -14,6 +14,7 @@ from TestCase.Login.Login import *
 from TestCase.Login.Signup import *
 # UPDATE USER INFO Testcase
 from TestCase.UserInformation.UpdateInformation import *
+from TestCase.UserInformation.ChangePassword import *
 
 
 
@@ -24,10 +25,11 @@ casino_heading_test = unittest.TestLoader().loadTestsFromTestCase(CasinoLobbyHea
 loginflow = unittest.TestLoader().loadTestsFromTestCase(LoginFlow)
 signupflow = unittest.TestLoader().loadTestsFromTestCase(SignupFlow)
 updateinfo = unittest.TestLoader().loadTestsFromTestCase(UpdateUserInformation)
+changepass = unittest.TestLoader().loadTestsFromTestCase(ChangePasswordFlow)
 # unittest.TextTestRunner().run(main)
 
 # # Create test_suite
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test, casino_url_test, game_url_test])
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test])
-test_suite = unittest.TestSuite([updateinfo])
+test_suite = unittest.TestSuite([changepass])
 unittest.TextTestRunner().run(test_suite)
