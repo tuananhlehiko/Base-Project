@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from TopAsia.src.pages.Browser import Browser
+from TopAsia.src.pages.locators import ge
 
 
 class UiObject:
@@ -203,7 +204,7 @@ class UiObject:
             self.get_element(wait).click()
         return self
 
-    def screenshot_window(self, filename, location=''):
+    def ScrShot(self, filename, location=''):
         """
         :param filename: String, name of image that your want to take screen
         :param location: String, the Folder of image file that you want to locate after screen shot
@@ -212,9 +213,9 @@ class UiObject:
         try:
             dir_img = os.getcwd()
             if location == '':
-                path = dir_img + '\\Test Results\\img'
+                path = dir_img +'\\'+ ge.ProjectName +'\\Test Results\\img'
             else:
-                path = dir_img + '\\Test Results\\' + location +'\\img'                
+                path = dir_img +'\\'+ ge.ProjectName +'\\Test Results\\' + location +'\\img'                
             Create_dir(path)
             file = path + '\\' + filename + '.png'
             self.driver.get_screenshot_as_file(file)

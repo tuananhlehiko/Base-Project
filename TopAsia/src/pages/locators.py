@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 class ge(object):
     # DOMAIN = 'http://v2.fabet.info/'
     DOMAIN = 'http://dev-ta.mooo.com/'
+    ProjectName = 'TopAisa'
     
 
 class MainMenuLocators(object):

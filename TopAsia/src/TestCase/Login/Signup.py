@@ -153,13 +153,13 @@ class SignupFlow(unittest.TestCase):
                                     else:
                                         sts = 'FAILED'
                                         notes = 'Hiển thị lỗi không chính xác'
-                                        base.screenshot_window(
+                                        base.ScrShot(
                                             str(i[0])+'_'+str(c+1)+'_Error text is wrong', self.name)
                                 else:
                                     sts = 'FAILED'
                                     notes = 'Không hiển thị lỗi khi nhập ' + \
                                         i[6][c]
-                                    base.screenshot_window(
+                                    base.ScrShot(
                                         str(i[0])+'_'+str(c+1)+'_Error text is not display', self.name)
                                 self.TEST_RESULT.append(
                                     [str(i[0])+'-'+str(c+1), i[5], data_input, i[7], actual, sts, notes])
@@ -185,7 +185,7 @@ class SignupFlow(unittest.TestCase):
                                     else:
                                         sts = 'FAILED'
                                         notes = 'Hiển thị lỗi không chính xác'
-                                        base.screenshot_window(
+                                        base.ScrShot(
                                             str(i[0])+'_Error popup is wrong', self.name)
                                     notes = notes + '\nTITLE: '+popup_error_title.get_text()
                                     notes = notes + '\nCONTENT: '+popup_error_content.get_text()
@@ -195,7 +195,7 @@ class SignupFlow(unittest.TestCase):
                                     actual = '-'
                                     sts = 'FAILED'
                                     notes = 'Popup error không hiện'
-                                    base.screenshot_window(
+                                    base.ScrShot(
                                         str(i[0])+'_Error popup not display', self.name)
                                 self.TEST_RESULT.append(
                                     [i[0], i[5], data_input, i[7], actual, sts, notes])
@@ -209,12 +209,12 @@ class SignupFlow(unittest.TestCase):
                                 else:
                                     sts = 'FAILED'
                                     notes = 'Hiển thị lỗi không chính xác'
-                                    base.screenshot_window(
+                                    base.ScrShot(
                                         str(i[0])+'_Error text is wrong', self.name)
                             else:
                                 sts = 'FAILED'
                                 notes = 'Không hiển thị lỗi'
-                                base.screenshot_window(
+                                base.ScrShot(
                                     str(i[0])+'_Error text is not display', self.name)
                             self.TEST_RESULT.append(
                                 [i[0], i[5], i[6], i[7], actual, sts, notes])
@@ -225,7 +225,7 @@ class SignupFlow(unittest.TestCase):
                             actual = i[4].get_text()
                             sts = 'FAILED'
                             notes = 'Hiển thị lỗi khi nhập đúng'
-                            base.screenshot_window(
+                            base.ScrShot(
                                 str(i[0])+'_Error text is display', self.name)
                         else:
                             sts = 'PASSED'
@@ -247,7 +247,7 @@ class SignupFlow(unittest.TestCase):
                             if actual == type_shown:
                                 sts = 'PASSED'
                             else:
-                                base.screenshot_window(
+                                base.ScrShot(
                                     str(i[0])+'_ The show password display wrong', self.name)
                                 sts = 'FAILED'
                             notes = 'INPUT: ' + text_input + '\nType: ' + actual
@@ -258,7 +258,7 @@ class SignupFlow(unittest.TestCase):
                             if actual == type_shown:
                                 sts = 'PASSED'
                             else:
-                                base.screenshot_window(
+                                base.ScrShot(
                                     str(i[0])+'_ The show password display wrong', self.name)
                                 sts = 'FAILED'
                             notes = 'INPUT: ' + text_input + '\nType: ' + actual
@@ -272,7 +272,7 @@ class SignupFlow(unittest.TestCase):
                             if actual == type_hidden:
                                 sts = 'PASSED'
                             else:
-                                base.screenshot_window(
+                                base.ScrShot(
                                     str(i[0])+'_ The show password display wrong', self.name)
                                 sts = 'FAILED'
                             notes = 'INPUT: ' + text_input + '\nType: ' + actual
@@ -283,7 +283,7 @@ class SignupFlow(unittest.TestCase):
                             if actual == type_hidden:
                                 sts = 'PASSED'
                             else:
-                                base.screenshot_window(
+                                base.ScrShot(
                                     str(i[0])+'_ The show password display wrong', self.name)
                                 sts = 'FAILED'
                             notes = 'INPUT: ' + text_input + '\nType: ' + actual
@@ -314,12 +314,12 @@ class SignupFlow(unittest.TestCase):
                             else:
                                 sts = 'FAILED'
                                 notes = 'Link is wrong'
-                                base.screenshot_window(
+                                base.ScrShot(
                                     str(i[0])+'_Link is wrong', self.name)
                         else:
                             sts = 'FAILED'
                             notes = 'Do not stand on register when register without tick "Tôi đồng ý ..."'
-                            base.screenshot_window(
+                            base.ScrShot(
                                 str(i[0])+'_Do not stand on register', self.name)
                     else:
                         btn_agree.click()
@@ -331,14 +331,14 @@ class SignupFlow(unittest.TestCase):
                             else:
                                 sts = 'FAILED'
                                 notes = 'Login successful but link wrong'
-                                base.screenshot_window(
+                                base.ScrShot(
                                     str(i[0])+'_Login successful but link wrong', self.name)
                             MENU_USER_INFO_DROP.click()
                             drop_logout.click()
                         else:
                             sts = 'FAILED'
                             notes = 'Login un-successful'
-                            base.screenshot_window(
+                            base.ScrShot(
                                 str(i[0])+'_Login un-successful', self.name)
                     self.TEST_RESULT.append(
                         [i[0], i[5], i[6][0]+now+', '+i[6][1], i[7], actual, sts, notes])
@@ -352,7 +352,7 @@ class SignupFlow(unittest.TestCase):
                         sts = 'PASSED'
                     else:
                         sts = 'FAILED'
-                        base.screenshot_window(
+                        base.ScrShot(
                             str(i[0])+'_ The show password display wrong', self.name)
                     self.TEST_RESULT.append(
                         [i[0], i[5], '-', i[7], actual, sts, notes])
@@ -379,7 +379,7 @@ class SignupFlow(unittest.TestCase):
             report.close()
 
         else:
-            base.screenshot_window('Test Checking url link: FAILED')
+            base.ScrShot('Test Checking url link: FAILED')
             # print('Login or Register button is not appear')
         self.driver.implicitly_wait(30)
 

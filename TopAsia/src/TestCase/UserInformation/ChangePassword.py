@@ -146,12 +146,12 @@ class ChangePasswordFlow(unittest.TestCase):
                                     else:
                                         sts = 'FAILED'
                                         notes = 'Hiển thị lỗi không chính xác'
-                                        base.screenshot_window(str(i[0])+'_'+str(c+1)+'_Error text is wrong', self.name)
+                                        base.ScrShot(str(i[0])+'_'+str(c+1)+'_Error text is wrong', self.name)
                                 else:
                                     sts = 'FAILED'
                                     notes = 'Không hiển thị lỗi khi nhập ' + \
                                         i[6][c]
-                                    base.screenshot_window(str(i[0])+'_'+str(c+1)+'_Error text is not display', self.name)
+                                    base.ScrShot(str(i[0])+'_'+str(c+1)+'_Error text is not display', self.name)
                                 self.TEST_RESULT.append([str(i[0])+'-'+str(c+1), i[5], data_input, i[7], actual, sts, notes])
                         elif '-P' in i[2]:
                             if i[5] == 'Mật khẩu hiện tại không đúng':
@@ -175,7 +175,7 @@ class ChangePasswordFlow(unittest.TestCase):
                                     else:
                                         sts = 'FAILED'
                                         notes = 'Hiển thị lỗi không chính xác'
-                                        base.screenshot_window(str(i[0])+'_Error popup is wrong', self.name)
+                                        base.ScrShot(str(i[0])+'_Error popup is wrong', self.name)
                                     notes = notes + '\nTITLE: '+popup_error_title.get_text()
                                     notes = notes + '\nCONTENT: '+popup_error_content.get_text()
                                     popup_error_btn_confirm.click()
@@ -184,7 +184,7 @@ class ChangePasswordFlow(unittest.TestCase):
                                     actual = '-'
                                     sts = 'FAILED'
                                     notes = 'Popup error không hiện'
-                                    base.screenshot_window(str(i[0])+'_Error popup not display', self.name)
+                                    base.ScrShot(str(i[0])+'_Error popup not display', self.name)
                                 self.TEST_RESULT.append([i[0], i[5], data_input, i[7], actual, sts, notes])
                         else:
                             i[3].set_text(i[6])
@@ -196,11 +196,11 @@ class ChangePasswordFlow(unittest.TestCase):
                                 else:
                                     sts = 'FAILED'
                                     notes = 'Hiển thị lỗi không chính xác'
-                                    base.screenshot_window(str(i[0])+'_Error text is wrong', self.name)
+                                    base.ScrShot(str(i[0])+'_Error text is wrong', self.name)
                             else:
                                 sts = 'FAILED'
                                 notes = 'Không hiển thị lỗi'
-                                base.screenshot_window(str(i[0])+'_Error text is not display', self.name)
+                                base.ScrShot(str(i[0])+'_Error text is not display', self.name)
                             self.TEST_RESULT.append([i[0], i[5], i[6], i[7], actual, sts, notes])
                     elif i[2] == 'VALID':
                         if i[2] == 'VALID-MULTI':
@@ -216,7 +216,7 @@ class ChangePasswordFlow(unittest.TestCase):
                                     actual = i[4].get_text()
                                     sts = 'FAILED'
                                     notes = 'Hiển thị lỗi khi nhập tên'
-                                    base.screenshot_window(str(i[0])+'_'+str(c+1)+' Hiển thị lỗi khi nhập tên', self.name)
+                                    base.ScrShot(str(i[0])+'_'+str(c+1)+' Hiển thị lỗi khi nhập tên', self.name)
                                 else:
                                     sts = 'PASSED'
                                 self.TEST_RESULT.append([str(i[0])+'-'+str(c+1), i[5], data_input, str(i[6][c]), actual, sts, notes])
@@ -227,7 +227,7 @@ class ChangePasswordFlow(unittest.TestCase):
                                 actual = i[4].get_text()
                                 sts = 'FAILED'
                                 notes = 'Hiển thị lỗi khi nhập đúng'
-                                base.screenshot_window(str(i[0])+'_Error text is display', self.name)
+                                base.ScrShot(str(i[0])+'_Error text is display', self.name)
                             else:
                                 sts = 'PASSED'
                             self.TEST_RESULT.append([i[0], i[5], i[6], i[7], actual, sts, notes])
@@ -248,7 +248,7 @@ class ChangePasswordFlow(unittest.TestCase):
                             if actual == type_shown:
                                 sts = 'PASSED'
                             else:
-                                base.screenshot_window(str(i[0])+'_ The show password display wrong', self.name)
+                                base.ScrShot(str(i[0])+'_ The show password display wrong', self.name)
                                 sts = 'FAILED'
                             notes = 'INPUT: ' + text_input + '\nType: ' + actual
                         else:
@@ -258,7 +258,7 @@ class ChangePasswordFlow(unittest.TestCase):
                             if actual == type_shown:
                                 sts = 'PASSED'
                             else:
-                                base.screenshot_window(str(i[0])+'_ The show password display wrong', self.name)
+                                base.ScrShot(str(i[0])+'_ The show password display wrong', self.name)
                                 sts = 'FAILED'
                             notes = 'INPUT: ' + text_input + '\nType: ' + actual
                         self.TEST_RESULT.append([i[0], i[5], text_input, type_shown, actual, sts, notes])
@@ -270,7 +270,7 @@ class ChangePasswordFlow(unittest.TestCase):
                             if actual == type_hidden:
                                 sts = 'PASSED'
                             else:
-                                base.screenshot_window(str(i[0])+'_ The show password display wrong', self.name)
+                                base.ScrShot(str(i[0])+'_ The show password display wrong', self.name)
                                 sts = 'FAILED'
                             notes = 'INPUT: ' + text_input + '\nType: ' + actual
                         else:
@@ -280,7 +280,7 @@ class ChangePasswordFlow(unittest.TestCase):
                             if actual == type_hidden:
                                 sts = 'PASSED'
                             else:
-                                base.screenshot_window(str(i[0])+'_ The show password display wrong', self.name)
+                                base.ScrShot(str(i[0])+'_ The show password display wrong', self.name)
                                 sts = 'FAILED'
                             notes = 'INPUT: ' + text_input + '\nType: ' + actual
                         self.TEST_RESULT.append(
@@ -310,11 +310,11 @@ class ChangePasswordFlow(unittest.TestCase):
                             else:
                                 sts = 'FAILED'
                                 notes = 'Link is wrong'
-                                base.screenshot_window(str(i[0])+'_Link is wrong', self.name)
+                                base.ScrShot(str(i[0])+'_Link is wrong', self.name)
                         else:
                             sts = 'FAILED'
                             notes = 'Do not stand on register when register without tick "Tôi đồng ý ..."'
-                            base.screenshot_window(str(i[0])+'_Do not stand on register', self.name)
+                            base.ScrShot(str(i[0])+'_Do not stand on register', self.name)
                     else:
                         btn_agree.click()
                         btn_register.click()
@@ -325,13 +325,13 @@ class ChangePasswordFlow(unittest.TestCase):
                             else:
                                 sts = 'FAILED'
                                 notes = 'Login successful but link wrong'
-                                base.screenshot_window(str(i[0])+'_Login successful but link wrong', self.name)
+                                base.ScrShot(str(i[0])+'_Login successful but link wrong', self.name)
                             MENU_USER_INFO_DROP.click()
                             drop_logout.click()
                         else:
                             sts = 'FAILED'
                             notes = 'Login un-successful'
-                            base.screenshot_window(
+                            base.ScrShot(
                                 str(i[0])+'_Login un-successful', self.name)
                     self.TEST_RESULT.append([i[0], i[5], i[6][0]+now+', '+i[6][1], i[7], actual, sts, notes])
                 elif i[1] == 'Helptext':
@@ -343,7 +343,7 @@ class ChangePasswordFlow(unittest.TestCase):
                         sts = 'PASSED'
                     else:
                         sts = 'FAILED'
-                        base.screenshot_window(str(i[0])+'_ The show password display wrong', self.name)
+                        base.ScrShot(str(i[0])+'_ The show password display wrong', self.name)
                     self.TEST_RESULT.append([i[0], i[5], '-', i[7], actual, sts, notes])
 
                     pass
@@ -365,7 +365,7 @@ class ChangePasswordFlow(unittest.TestCase):
             report.close()
 
         else:
-            base.screenshot_window('Test Checking url link: FAILED')
+            base.ScrShot('Test Checking url link: FAILED')
             # print('Login or Register button is not appear')
         self.driver.implicitly_wait(30)
 

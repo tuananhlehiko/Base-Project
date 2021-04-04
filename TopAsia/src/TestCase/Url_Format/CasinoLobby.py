@@ -156,7 +156,7 @@ class CasinoLobby(unittest.TestCase):
             data_return.append(actual)
             if actual != expected:
                 data_return.append('FAILED')
-                # lobby.screenshot_window(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3]+ '_' + data_return[4]+ '_' + data_return[5])
+                # lobby.ScrShot(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3]+ '_' + data_return[4]+ '_' + data_return[5])
             else:
                 data_return.append('PASSED')
             print('\n', '-'*15, ' Case: ', number,
@@ -196,7 +196,7 @@ class CasinoLobby(unittest.TestCase):
             sts = 'PASSED'
             # self.no = 1
             if df_link != c_url:
-                # lobby.screenshot_window('Default link - FAILED')
+                # lobby.ScrShot('Default link - FAILED')
                 sts = 'FAILED'
             TEST_RESULT.append([self.no, '-', '-', '-', '-', '-', df_link, c_url, sts])
             self.no += 1
@@ -256,7 +256,7 @@ class CasinoLobby(unittest.TestCase):
             report.close()
 
         else:
-            lobby.screenshot_window('Test Checking url link: FAILED')
+            lobby.ScrShot('Test Checking url link: FAILED')
             # print('Login or Register button is not appear')
         self.driver.implicitly_wait(30)
 

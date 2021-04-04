@@ -151,13 +151,13 @@ class UpdateUserInformation(unittest.TestCase):
                                     else:
                                         sts = 'FAILED'
                                         notes = 'Hiển thị lỗi không chính xác'
-                                        base.screenshot_window(
+                                        base.ScrShot(
                                             str(i[0])+'_'+str(c+1)+'_Error text is wrong', self.name)
                                 else:
                                     sts = 'FAILED'
                                     notes = 'Không hiển thị lỗi khi nhập ' + \
                                         i[6][c]
-                                    base.screenshot_window(
+                                    base.ScrShot(
                                         str(i[0])+'_'+str(c+1)+'_Error text is not display', self.name)
                                 self.TEST_RESULT.append(
                                     [str(i[0])+'-'+str(c+1), i[5], data_input, i[7], actual, sts, notes])
@@ -180,12 +180,12 @@ class UpdateUserInformation(unittest.TestCase):
                                     else:
                                         sts = 'FAILED'
                                         notes = 'Hiển thị lỗi không chính xác'
-                                        base.screenshot_window(
+                                        base.ScrShot(
                                             str(i[0])+'_Error text is wrong', self.name)
                                 else:
                                     sts = 'FAILED'
                                     notes = 'Không hiển thị lỗi'
-                                    base.screenshot_window(
+                                    base.ScrShot(
                                         str(i[0])+'_Error text is not display', self.name)
                                 self.TEST_RESULT.append(
                                     [str(i[0])+'-'+str(st+1), 'Thiếu ' + i[6][st], data_input, i[7], actual, sts, notes])
@@ -199,12 +199,12 @@ class UpdateUserInformation(unittest.TestCase):
                                 else:
                                     sts = 'FAILED'
                                     notes = 'Hiển thị lỗi không chính xác'
-                                    base.screenshot_window(
+                                    base.ScrShot(
                                         str(i[0])+'_Error text is wrong', self.name)
                             else:
                                 sts = 'FAILED'
                                 notes = 'Không hiển thị lỗi'
-                                base.screenshot_window(
+                                base.ScrShot(
                                     str(i[0])+'_Error text is not display', self.name)
                             self.TEST_RESULT.append(
                                 [i[0], i[5], i[6], i[7], actual, sts, notes])
@@ -222,7 +222,7 @@ class UpdateUserInformation(unittest.TestCase):
                                     actual = i[4].get_text()
                                     sts = 'FAILED'
                                     notes = 'Hiển thị lỗi khi nhập tên'
-                                    base.screenshot_window(
+                                    base.ScrShot(
                                         str(i[0])+'_'+str(c+1)+' Hiển thị lỗi khi nhập tên', self.name)
                                 else:
                                     sts = 'PASSED'
@@ -236,7 +236,7 @@ class UpdateUserInformation(unittest.TestCase):
                                 actual = i[4].get_text()
                                 sts = 'FAILED'
                                 notes = 'Hiển thị lỗi khi nhập đúng'
-                                base.screenshot_window(
+                                base.ScrShot(
                                     str(i[0])+'_Error text is display', self.name)
                             else:
                                 sts = 'PASSED'
@@ -293,7 +293,7 @@ class UpdateUserInformation(unittest.TestCase):
                         sts = 'PASSED'
                     else:
                         sts = 'FAILED'
-                        base.screenshot_window(
+                        base.ScrShot(
                             str(i[0])+'_ The show info_email display wrong', self.name)
                     self.TEST_RESULT.append(
                         [i[0], i[5], '-', i[7], actual, sts, notes])
@@ -312,7 +312,7 @@ class UpdateUserInformation(unittest.TestCase):
                         else:
                             sts = 'FAILED'
                             notes = actual
-                            base.screenshot_window(
+                            base.ScrShot(
                             str(i[0])+'_ The name display is wrong', self.name)
                         self.TEST_RESULT.append(
                         [i[0], i[5], nametochange, '-', actual, sts, notes])
@@ -341,7 +341,7 @@ class UpdateUserInformation(unittest.TestCase):
             report.close()
 
         else:
-            base.screenshot_window('Test Checking url link: FAILED')
+            base.ScrShot('Test Checking url link: FAILED')
             # print('Login or Register button is not appear')
         self.driver.implicitly_wait(30)
 

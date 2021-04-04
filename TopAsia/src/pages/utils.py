@@ -1,7 +1,7 @@
 from datetime import datetime
 import xlsxwriter
-import os
-
+import os,re
+from TopAsia.src.pages.locators import ge
 
 class Report:
     def __init__(self, name, data, header):
@@ -9,7 +9,7 @@ class Report:
         self.name = name
         self.data = data
         now = str(datetime.now()).split('.')[0].replace(':', '_', -1)
-        dir_folder = os.getcwd() + '\\Test Results' + '\\' + name
+        dir_folder = os.getcwd() +'\\'+ ge.ProjectName +'\\Test Results' + '\\' + name
         Create_dir(dir_folder)
         self.workbook = xlsxwriter.Workbook(dir_folder+'\\'+name+' ['+now+'].xlsx')
         self.worksheet = self.workbook.add_worksheet()
@@ -58,8 +58,7 @@ class Report:
             for col_num in range(len(self.data[row_num])):
                 cell_data = self.data[row_num][col_num]
                 if row_num == 0:
-                    self.worksheet.write(row_num+startrow, col_num,
-                                         cell_data, header_format)
+                    self.worksheet.write(row_num+startrow, col_num,cell_data, header_format)
                 elif f_row == True:
                     self.worksheet.write(row_num+startrow, col_num,cell_data, sub_header_format)
                 elif cell_data == 'PASSED':
@@ -78,7 +77,7 @@ class Report_temp(Report):
         self.header = header
         self.name = name
         self.data = data
-        dir_folder = os.getcwd() + '\\Test Results' + '\\' + name
+        dir_folder = os.getcwd() +'\\'+ ge.ProjectName +'\\Test Results' + '\\' + name
         Create_dir(dir_folder)
         self.workbook = xlsxwriter.Workbook(dir_folder+'\\'+name+' [TEMP].xlsx')
         self.worksheet = self.workbook.add_worksheet()

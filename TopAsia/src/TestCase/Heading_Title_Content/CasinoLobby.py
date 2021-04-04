@@ -20,12 +20,10 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
     def test_Heading_Title_Content(self):
         self.no = 1
         self.cur_position = 0
-        self.lobby_domain = 'http://dev-ta.mooo.com/live-casino?'
         DATA_LINK = [0, 0, 0, 0, 0]
-        TEST_RESULT = [['#', 'Slug 1', 'Slug 2', 'Slug 3', 'Slug 4',
-                        'Slug 5', 'Expected link', 'Actual link', 'Status']]
+        TEST_RESULT = [['#', 'Slug 1', 'Slug 2', 'Slug 3', 'Slug 4', 'Slug 5', 'Expected link', 'Actual link', 'Status']]
         TEST_DATA_HEADER = []
-        name = 'HEADING TITLE CONTENT - CASINO LOBBY'
+        name = 'HEADING H1 CONTENT - CASINO LOBBY'
         start = datetime.now()
         TEST_DATA_HEADER.append(['Start', str(start).split('.')[0]])
         lobby = page.GameCasinoPage(self.driver)  # Khai báo lobby page
@@ -79,12 +77,12 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
 
         # COMPARE LINK AND RETURN DATA LIST
         def check_link(data, number):
+            print('\n', '-'*15, ' Case: ', self.no,  ' ', 15*'-')
             expected = ''
             TYPE = []
             NCC = []
             SORT = []
             data_return = [self.no]
-            self.no += 1
             for i in data:
                 if i != 0:
                     if 'type' in i[2]:
@@ -99,12 +97,10 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
             # RULE 2, 3
             if len(NCC) > 0 or len(SORT) > 0:
                 listgame = UiObject(*CasinoLocators.List_Game)
-                # print('Start', datetime.utcnow())
                 if listgame.visible():
                     number_of_game = len(listgame.get_elements())
                 else:
                     number_of_game = 0
-                # print('End',datetime.utcnow())
                 if number_of_game > 1:
                     expected = expected + ' ' + \
                         str(number_of_game) + ' Trò Chơi'
@@ -134,8 +130,6 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                         expected = expected + ' Của Live Casino'
                     else:
                         expected = expected + ' Của ' + NCC[0][1]
-                
-
             else:
                 if len(NCC) == 0 and len(SORT) == 0:
                     expected = 'Live Casino Online'
@@ -145,16 +139,15 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                 # RULE 6 & 7
                 if len(NCC) > 0:
                     if NCC[0][2] == 'ncc=all':
-                        if len(SORT) >0:
+                        if len(SORT) > 0:
                             expected = expected + ' Của Live Casino'
                         else:
                             expected = 'Live Casino Online'
                     else:
-                        if len(SORT) >0:
+                        if len(SORT) > 0:
                             expected = expected + ' Của ' + NCC[0][1]
                         else:
                             expected = expected + ' Của ' + NCC[0][1] + ' Online'
-
             for t in TYPE:
                 data_return.append(t[1])
             if len(TYPE) > 0:
@@ -178,15 +171,14 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
             data_return.append(actual)
             if actual != expected:
                 data_return.append('FAILED')
-                # lobby.screenshot_window(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3]+ '_' + data_return[4]+ '_' + data_return[5])
+                lobby.ScrShot(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3]+ '_' + data_return[4]+ '_' + data_return[5])
             else:
                 data_return.append('PASSED')
-            print('\n', '-'*15, ' Case: ', number,
-                  ': ', data_return[6], ' ', 15*'-')
-            print(data_return[1], ' - ', data_return[2],
-                  ' - ', data_return[3], ' - ', data_return[4], ' - ', data_return[5], ' - ')
-            print('Expected link: \t', data_return[6])
-            print('Actual link: \t', data_return[7])
+            print('- Case: ', self.no,': ', data_return[6], ' ')
+            print(data_return[1], ' - ', data_return[2],' - ', data_return[3], ' - ', data_return[4], ' - ', data_return[5], ' - ')
+            print('- Expected title: \t', data_return[6])
+            print('- Actual title: \t', data_return[7])
+            self.no += 1
             return data_return
 
         # num : vị trí ở DATALINK, value:
@@ -261,8 +253,7 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
 
             end = datetime.now()
             TEST_DATA_HEADER.append(['End', str(end).split('.')[0]])
-            TEST_DATA_HEADER.append(
-                ['Time spend', str(end-start).split('.')[0]])
+            TEST_DATA_HEADER.append(['Time spend', str(end-start).split('.')[0]])
             TEST_DATA_HEADER.append(['Size', str(SIZE)])
             # REPORT data
 
@@ -271,7 +262,7 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
             report.close()
 
         else:
-            lobby.screenshot_window('Test Checking url link: FAILED')
+            lobby.ScrShot('Test Checking url link: FAILED')
             # print('Login or Register button is not appear')
         self.driver.implicitly_wait(30)
 

@@ -24,9 +24,8 @@ class GameLobbyHeadingTitle(unittest.TestCase):
         DATA_LINK = [0, 0, 0]
 
         TEST_DATA_HEADER = []
-        name = 'HEADING TITLE CONTENT - GAME LOBBY'
-        TEST_RESULT = [['#', 'Slug 1', 'Slug 2', 'Slug 3',
-                        'Expected link', 'Actual link', 'Status']]
+        name = 'HEADING H1 CONTENT - GAME LOBBY'
+        TEST_RESULT = [['#', 'Slug 1', 'Slug 2', 'Slug 3', 'Expected link', 'Actual link', 'Status']]
         TEST_DATA_HEADER = []
         start = datetime.now()
         TEST_DATA_HEADER.append(['Start', str(start).split('.')[0]])
@@ -85,12 +84,12 @@ class GameLobbyHeadingTitle(unittest.TestCase):
 
         # COMPARE LINK AND RETURN DATA LIST
         def check_link(data, number):
+            print('\n', '-'*15, ' Case: ', self.no,  ' ', 15*'-')
             expected = ''
             TYPE = []
             NCC = []
             SORT = []
-            data_return = [self.no]
-            self.no += 1
+            data_return = [self.no]            
             for i in data:
                 if i != 0:
                     if 'type' in i[2]:
@@ -124,13 +123,13 @@ class GameLobbyHeadingTitle(unittest.TestCase):
                     if len(TYPE) > 1:
                         for t in TYPE:
                             expected = expected + ' ' + t[1]
-                    else:                        
+                    else:
                         if TYPE[0][2] == 'type=all':
                             if len(NCC) == 0:
                                 if len(SORT) == 0:
                                     expected = 'Cổng Game Online'
                                 else:
-                                    expected = expected + ' Cổng game' 
+                                    expected = expected + ' Cổng game'
                             else:
                                 pass
                         else:
@@ -182,15 +181,14 @@ class GameLobbyHeadingTitle(unittest.TestCase):
             data_return.append(actual)
             if actual != expected:
                 data_return.append('FAILED')
-                # lobby.screenshot_window(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3]+ '_' + data_return[4]+ '_' + data_return[5])
+                # lobby.ScrShot(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3]+ '_' + data_return[4]+ '_' + data_return[5])
             else:
                 data_return.append('PASSED')
-            print('\n', '-'*15, ' Case: ', number,
-                  ': ', data_return[6], ' ', 15*'-')
-            print(data_return[1], ' - ', data_return[2],
-                  ' - ', data_return[3], ' - ')
-            print('Expected link: \t', data_return[4])
-            print('Actual link: \t', data_return[5])
+            print('- Case: ', number, ': ', data_return[6], ' ')
+            print(data_return[1], ' - ', data_return[2], ' - ', data_return[3], ' - ')
+            print('- Expected title: \t', data_return[4])
+            print('- Actual title: \t', data_return[5])
+            self.no += 1
             return data_return
 
         # num : vị trí ở DATALINK, value:
@@ -220,8 +218,7 @@ class GameLobbyHeadingTitle(unittest.TestCase):
             check = check_link(DATA_LINK, self.no)
             TEST_RESULT.append(check)
 
-            TEST_RESULT.append(
-                ['-', 'Case chỉ có Thể loại', '', '', '', '', '', '', ''])
+            TEST_RESULT.append(['-', 'Case chỉ có Thể loại', '', '', '', '', '', '', ''])
             DATA_LINK = [0, 0, 0]
             for T in List_type:
                 click_and_check(T)
@@ -235,27 +232,27 @@ class GameLobbyHeadingTitle(unittest.TestCase):
             DATA_LINK = [0, 0, 0]
             print(self.cur_position)
             for T in List_type:
-                DATA_LINK = [0, 0, 0]                
-                print('0',self.cur_position)
+                DATA_LINK = [0, 0, 0]
+                print('0', self.cur_position)
                 click_and_check(T)
                 if T[1] == 'Game Nhanh' or T[1] == 'InGame' or T[1] == 'Table Games' or T[1] == 'Lô Đề':
                     if T[1] == 'Lô Đề':
                         pass
                     else:
-                        print('abcdesadasd',self.cur_position)
+                        print('abcdesadasd', self.cur_position)
                         for S in List_Sort:
-                            print('1',self.cur_position)
+                            print('1', self.cur_position)
                             click_and_check(S)
                             self.cur_position -= 1
                 else:
                     for S in List_Sort:
-                        print('1',self.cur_position)
+                        print('1', self.cur_position)
                         click_and_check(S)
                         for N in List_NCC:
                             NCC_Selector.click()
                             time.sleep(1)
-                            print('2',self.cur_position)
-                            click_and_check(N)                           
+                            print('2', self.cur_position)
+                            click_and_check(N)
                             self.cur_position -= 1
                         self.cur_position -= 1
                 self.cur_position -= 1
@@ -277,7 +274,7 @@ class GameLobbyHeadingTitle(unittest.TestCase):
             report.close()
 
         else:
-            lobby.screenshot_window('Test Checking url link: FAILED')
+            lobby.ScrShot('Test Checking url link: FAILED')
             # print('Login or Register button is not appear')
         self.driver.implicitly_wait(30)
 
