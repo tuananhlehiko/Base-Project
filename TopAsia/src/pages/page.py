@@ -1,4 +1,3 @@
-from TopAsia.src.pages.locators import ge
 from TopAsia.src.pages.utils import Create_dir
 import os
 import datetime
@@ -18,9 +17,9 @@ class BasePage(object):
         try:
             dir_img = os.getcwd()
             if location == '':
-                path = dir_img + '\\' + ge.ProjectName + '\\Test Results\\img'
+                path = dir_img + '\\TopAsia Test Results\\img'
             else:
-                path = dir_img + '\\' + ge.ProjectName + '\\Test Results\\' + location + '\\img'
+                path = dir_img + '\\TopAsia Test Results\\' + location + '\\img'
             Create_dir(path)
             file = path + '\\' + filename + '.png'
             self.driver.get_screenshot_as_file(file)
