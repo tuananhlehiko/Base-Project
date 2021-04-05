@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 class ge(object):
     # DOMAIN = 'http://v2.fabet.info/'
     DOMAIN = 'http://dev-ta.mooo.com/'
-    ProjectName = 'TopAisa'
+    ProjectName = 'TopAsia'
     
 
 class MainMenuLocators(object):
@@ -12,11 +12,9 @@ class MainMenuLocators(object):
     MENU_LIVE_CASINO = (By.CLASS_NAME,'menu-casino')
     MENU_QUICK_GAME = (By.CLASS_NAME,'menu-quickGames')
     MENU_TABLE_GAME = (By.CLASS_NAME,'menu-tablegame')
-    MENU_CONG_GAME = (By.CLASS_NAME,'menu-cong-game')
-    
+    MENU_CONG_GAME = (By.CLASS_NAME,'menu-cong-game')    
     MENU_DANG_NHAP = (By.CLASS_NAME,'not-login-user-login')
     MENU_DANG_KY = (By.CLASS_NAME,'not-login-user-register')
-
     MENU_USER_INFO_DROP = (By.XPATH,'//div[@class="info-user"]')
 
 
@@ -31,9 +29,11 @@ class CongGameLocators(object):
 
     NCC_selector = (By.CLASS_NAME,'btn-secondary')
     NCC_btn_All = (By.XPATH,'//div/ul/li[1][@role="presentation"]')
-    NCC_btn_Techplay = (By.XPATH,'//div/ul/li[1][@role="presentation"]')
-    NCC_btn_PragmaticPlay = (By.XPATH,'//div/ul/li[2][@role="presentation"]')
-    NCC_btn_CQ9 = (By.XPATH,'//div/ul/li[3][@role="presentation"]')
+    NCC_btn_Techplay = (By.XPATH,'//input[@value="vingame"]/parent::div/parent::label/parent::a/parent::li')
+    NCC_btn_PragmaticPlay = (By.XPATH,'//input[@value="pragmatic"]/parent::div/parent::label/parent::a/parent::li')
+    NCC_btn_CQ9 = (By.XPATH,'//input[@value="cq9"]/parent::div/parent::label/parent::a/parent::li')
+    NCC_btn_Tomhorn = (By.XPATH,'//input[@value="tomhorn"]/parent::div/parent::label/parent::a/parent::li')
+    NCC_btn_PlaynGo = (By.XPATH,'//input[@value="playngo"]/parent::div/parent::label/parent::a/parent::li')
 
     Sort_Nhieu_nguoi_choi = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][1]')
     Sort_Dang_hot = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][2]')
@@ -54,7 +54,7 @@ class CasinoLocators(object):
 
     Game_selector = (By.CLASS_NAME,'btn-secondary')
     Game_Baccarat = (By.XPATH,'//input[@value="baccarat"]/parent::div/parent::label/parent::a/parent::li')
-    Game_Sicbo = (By.XPATH,'//div/ul/li[2][@role="presentation"]')
+    Game_Sicbo = (By.XPATH,'//input[@value="sicbo"]/parent::div/parent::label/parent::a/parent::li')
     Game_Roulette = (By.XPATH,'//input[@value="roulette"]/parent::div/parent::label/parent::a/parent::li')
 
     Sort_Nhieu_nguoi_choi = (By.XPATH,'//label[contains(@class,"base-radio__wrap")][1]')

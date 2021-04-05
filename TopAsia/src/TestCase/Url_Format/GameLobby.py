@@ -52,6 +52,8 @@ class GameLobby(unittest.TestCase):
         NCC_Techplay = UiObject(*CongGameLocators.NCC_btn_Techplay)
         NCC_Pragmatic = UiObject(*CongGameLocators.NCC_btn_PragmaticPlay)
         NCC_CQ9 = UiObject(*CongGameLocators.NCC_btn_CQ9)
+        NCC_Tomhorn = UiObject(*CongGameLocators.NCC_btn_Tomhorn)
+        NCC_PlaynGo = UiObject(*CongGameLocators.NCC_btn_PlaynGo)
 
         Sort_multi = UiObject(*CongGameLocators.Sort_Nhieu_nguoi_choi)
         Sort_hot = UiObject(*CongGameLocators.Sort_Dang_hot)
@@ -73,7 +75,9 @@ class GameLobby(unittest.TestCase):
             # [NCC_btn_All, 'Tất Cả', 'ncc=all'],
             [NCC_Pragmatic, 'Pragmatic Play', 'ncc=pragmatic'],
             [NCC_CQ9, 'CQ9', 'ncc=cq9'],
-            [NCC_Techplay, 'Techplay', 'ncc=techplay']
+            [NCC_Techplay, 'Techplay', 'ncc=vingame'],
+            [NCC_Tomhorn, 'Tomhorn Gaming', 'ncc=tomhorn'],
+            [NCC_PlaynGo, 'Play’n GO', 'ncc=playngo']
         ]
 
         List_Sort = [
