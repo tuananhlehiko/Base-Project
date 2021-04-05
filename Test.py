@@ -26,7 +26,7 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
 
     # TOP - Link url check
     def test_Heading_Title_Content(self):
-        item = UiObject(*MainMenuLocators.MENU_CONG_GAME)
+        item = MainMenuLocators.MENU_DANG_NHAP
         print(item.get_attribute('class'))
 
   
@@ -34,10 +34,11 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
 
     def tearDown(self):
         self.driver.close()
-a= {'iBanking':{'Vietcombank':'Vui lòng nhập số lệnh giao dịch','ACB':'Vui lòng nhập số tài khoản người gửi','DongA':'Vui lòng nhập số tài khoản người gửi','Vietinbank':'Vui lòng nhập thời gian chuyển tiền','BIDV':'Vui lòng nhập số tài khoản người gửi hoặc thời gian chuyển tiền','Sacombank':'Vui lòng nhập thời gian chuyển tiền','Techcombank':'Vui lòng nhập số bút toán hoặc số tài khoản người gửi',},	'ATM':{'Vietcombank':'Vui lòng nhập số tài khoản người gửi','ACB':'Vui lòng nhập số tài khoản người gửi','DongA':'Vui lòng nhập số tài khoản người gửi','Vietinbank':'Vui lòng nhập thời gian chuyển tiền','BIDV':'Vui lòng nhập số tài khoản người gửi','Sacombank':'Vui lòng nhập thời gian chuyển tiền','Techcombank':'Vui lòng nhập số tài khoản người gửi',},	'Cash':{'Vietcombank':'Vui lòng nhập họ và tên người gửi','ACB':'Vui lòng nhập họ và tên người gửi','DongA':'Vui lòng nhập họ và tên người gửi','Vietinbank':'Vui lòng nhập họ và tên người gửi','BIDV':'Vui lòng nhập họ và tên người gửi','Sacombank':'Vui lòng nhập họ và tên người gửi','Techcombank':'Vui lòng nhập họ và tên người gửi',},}
+a= {'iBanking':{'Vietcombank':'Vui lòng nhập số lệnh giao dịch','ACB':'Vui lòng nhập số tài khoản người gửi','DongA':'Vui lòng nhập số tài khoản người gửi','Vietinbank':'Vui lòng nhập thời gian chuyển tiền','BIDV':'Vui lòng nhập số tài khoản người gửi hoặc thời gian chuyển tiền','Sacombank':'Vui lòng nhập thời gian chuyển tiền','Techcombank':'Vui lòng nhập số bút toán hoặc số tài khoản người gửi'},	'ATM':{'Vietcombank':'Vui lòng nhập số tài khoản người gửi','ACB':'Vui lòng nhập số tài khoản người gửi','DongA':'Vui lòng nhập số tài khoản người gửi','Vietinbank':'Vui lòng nhập thời gian chuyển tiền','BIDV':'Vui lòng nhập số tài khoản người gửi','Sacombank':'Vui lòng nhập thời gian chuyển tiền','Techcombank':'Vui lòng nhập số tài khoản người gửi'},	'Cash':{'Vietcombank':'Vui lòng nhập họ và tên người gửi','ACB':'Vui lòng nhập họ và tên người gửi','DongA':'Vui lòng nhập họ và tên người gửi','Vietinbank':'Vui lòng nhập họ và tên người gửi','BIDV':'Vui lòng nhập họ và tên người gửi','Sacombank':'Vui lòng nhập họ và tên người gửi','Techcombank':'Vui lòng nhập họ và tên người gửi'}}
 
-print(a['iBanking']['Vietcombank'])
+# print(a['iBanking']['Vietcombank'])
 
+# print(DepositLocator)
 
-# if __name__ == "__main__":
-#     unittest.main()
+if __name__ == "__main__":
+    unittest.main()
