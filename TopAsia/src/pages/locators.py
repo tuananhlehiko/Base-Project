@@ -173,3 +173,61 @@ class UserInfoLocator(object):
     hide_new_pass = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div[2]/div/span')
     show_re_new_pass = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div[3]/div/span')
     hide_re_new_pass = (By.XPATH,'//div[@class="tab-content"]/div/div/div/div[3]/div/span')
+
+class DepositLocator:
+    # SELECT BONUS AT THE FIRST TIME
+    first_100 = (By.CLASS_NAME,'deposit-welcome__item--package-2')    
+    first_40 = (By.CLASS_NAME,'deposit-welcome__item--package-3')
+    first_125 = (By.CLASS_NAME,'deposit-welcome__item--package-1')
+
+    first_100_btn = (By.XPATH,'//li[contains(@class,"deposit-welcome__item--package-2")]/div')    
+    first_40_btn = (By.XPATH,'//li[contains(@class,"deposit-welcome__item--package-3")]/div')
+    first_125_btn = (By.XPATH,'//li[contains(@class,"deposit-welcome__item--package-1")]/div')
+
+    # SELECT BANK
+    bank_Selector = (By.CLASS_NAME,'base-select__inner')
+    bank_Sacombank = (By.LINK_TEXT,'Sacombank')
+    bank_Techcombank = (By.LINK_TEXT,'Techcombank')
+    bank_Vietcombank = (By.LINK_TEXT,'Vietcombank')
+    bank_VietinBank = (By.LINK_TEXT,'VietinBank')
+    bank_ACB = (By.LINK_TEXT,'ACB')
+    bank_DongA = (By.LINK_TEXT,'DongA')
+
+    # BANK INFO
+    copy_owner_btn = (By.XPATH,'//li[contains(@class,"deposit-bank-account__item")][1]/div')
+    copy_owner_text = (By.XPATH,'//li[contains(@class,"deposit-bank-account__item")][1]/div/p[3]')
+    copy_number_btn = (By.XPATH,'//li[contains(@class,"deposit-bank-account__item")][2]/div')
+    copy_number_text = (By.XPATH,'//li[contains(@class,"deposit-bank-account__item")][2]/div/p[3]')
+    copy_place_btn = (By.XPATH,'//li[contains(@class,"deposit-bank-account__item")][3]/div')
+    copy_place_text = (By.XPATH,'//li[contains(@class,"deposit-bank-account__item")][3]/div/p[3]')
+
+    # TYPE SELECTOR
+    type_ibanking = (By.XPATH,'//input[@value="ibanking"]/parent::label/div')
+    type_atm = (By.XPATH,'//input[@value="atm"]/parent::label/div')
+    type_banking = (By.XPATH,'//input[@value="banking"]/parent::label/div')
+
+    # INPUT FORM
+    in_amount = (By.NAME,'amount')
+    in_amount_error = (By.XPATH,'//input[@name="amount"]/parent::div/parent::div/p[@class="error"]')
+    out_amount = (By.XPATH,'//p[@class="base-input-custom__vnd"]')
+    in_name = (By.NAME,'fromBankName')
+    in_name_error = (By.XPATH,'//input[@name="fromBankName"]/parent::div/parent::div/p[@class="error"]')
+    in_code = (By.NAME,'bankTrancode')
+    in_code_error = (By.XPATH,'//input[@name="bankTrancode"]/parent::div/parent::div/p[@class="error"]')
+
+    # PROMO SELECTOR
+    promo_100 = (By.CLASS_NAME,'promotion-item--package-2')
+    promo_40 = (By.CLASS_NAME,'promotion-item--package-3')
+    promo_125 = (By.CLASS_NAME,'promotion-item--package-1')
+    
+    amount_promo = (By.XPATH,'//div[contains(@class,"deposit-promotion__note")]/ul/li[1]/p[2]')
+    amount_real = (By.XPATH,'//div[contains(@class,"deposit-promotion__note")]/ul/li[2]/p[2]')
+    amount_minbet = (By.XPATH,'//div[contains(@class,"deposit-promotion__note")]/ul/li[3]/p[2]')
+    finished_date = (By.XPATH,'//div[contains(@class,"deposit-promotion__note")]/ul/p/span')
+
+    # BUTTON
+    TAO_PHIEU_NAP = (By.XPATH,'//div[contains(@class,"deposit-bank")]/div/div/button')
+
+    
+
+
