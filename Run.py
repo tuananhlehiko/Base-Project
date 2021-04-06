@@ -15,6 +15,8 @@ from TopAsia.src.TestCase.Login.Signup import *
 # UPDATE USER INFO Testcase
 from TopAsia.src.TestCase.UserInformation.UpdateInformation import *
 from TopAsia.src.TestCase.UserInformation.ChangePassword import *
+# RECHARGE FLOW
+from TopAsia.src.TestCase.Recharge.Bank import *
 
 
 
@@ -26,10 +28,11 @@ loginflow = unittest.TestLoader().loadTestsFromTestCase(LoginFlow)
 signupflow = unittest.TestLoader().loadTestsFromTestCase(SignupFlow)
 updateinfo = unittest.TestLoader().loadTestsFromTestCase(UpdateUserInformation)
 changepass = unittest.TestLoader().loadTestsFromTestCase(ChangePasswordFlow)
+rechargebank = unittest.TestLoader().loadTestsFromTestCase(RechargeBanksFlow)
 # unittest.TextTestRunner().run(main)
 
 # # Create test_suite
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test, casino_url_test, game_url_test])
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test])
-test_suite = unittest.TestSuite([changepass])
+test_suite = unittest.TestSuite([rechargebank])
 unittest.TextTestRunner().run(test_suite)
