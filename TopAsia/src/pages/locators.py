@@ -198,12 +198,12 @@ class RechargeLocators:
 
     # SELECT BANK
     bank_Selector = UiObject(By.CLASS_NAME, 'base-select__inner')
-    bank_Sacombank = UiObject(By.LINK_TEXT, 'Sacombank')
-    bank_Techcombank = UiObject(By.LINK_TEXT, 'Techcombank')
-    bank_Vietcombank = UiObject(By.LINK_TEXT, 'Vietcombank')
-    bank_VietinBank = UiObject(By.LINK_TEXT, 'VietinBank')
-    bank_ACB = UiObject(By.LINK_TEXT, 'ACB')
-    bank_DongA = UiObject(By.LINK_TEXT, 'DongA')
+    bank_Sacombank = UiObject(By.XPATH,'//span[@class="icon-select-down"]/parent::div/ul/li[2]')
+    bank_Techcombank = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[3]')
+    bank_Vietcombank = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[4]')
+    bank_VietinBank = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[5]')
+    bank_ACB = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[6]')
+    bank_DongA = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[7]')
 
     # BANK INFO
     copy_owner_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div')

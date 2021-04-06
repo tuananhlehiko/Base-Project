@@ -188,7 +188,7 @@ class CasinoLobby(unittest.TestCase):
             MENU_CASINO.click()
             self.driver.implicitly_wait(30)
             time.sleep(3)
-            temp_rp = Report_temp(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
+            Template_Report = Report_temp(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
             # CHECK DEFAULT CASE
             df_link = 'http://dev-ta.mooo.com/live-casino'
             
@@ -209,8 +209,8 @@ class CasinoLobby(unittest.TestCase):
                 click_and_check(S)
                 self.cur_position -= 1
                 time.sleep(0.5)
-            temp_rp.export()
-            temp_rp.close()
+            Template_Report.export()
+            Template_Report.close()
 
             # CHECK ALL CASE FOLLOWING: SORT >> SUPPLIER >> GAME TYPE
             # TEST_RESULT.append(['', 'Sắp xếp theo', 'Nhà cung cấp', 'Game 1', 'Game 2', 'Game 3', '', '', ''])
@@ -237,10 +237,10 @@ class CasinoLobby(unittest.TestCase):
                         click_and_check(List_Game[G], False, False)
                         Game_Selector.click()
                         # self.cur_position -= 1
-                        temp_rp = Report_temp(
+                        Template_Report = Report_temp(
                             name.upper(), TEST_RESULT, TEST_DATA_HEADER)
-                        temp_rp.export()
-                        temp_rp.close()
+                        Template_Report.export()
+                        Template_Report.close()
                     self.cur_position -= 1
                 self.cur_position -= 1                                
 

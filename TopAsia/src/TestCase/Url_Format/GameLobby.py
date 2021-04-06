@@ -181,7 +181,7 @@ class GameLobby(unittest.TestCase):
             MENU_CONG_GAME.click()
             self.driver.implicitly_wait(30)
             time.sleep(3)
-            temp_rp = Report_temp(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
+            Template_Report = Report_temp(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
             # CHECK DEFAULT CASE
             df_link = 'http://dev-ta.mooo.com/cong-game'
             c_url = lobby.get_url()
@@ -199,8 +199,8 @@ class GameLobby(unittest.TestCase):
                 click_and_check(T)
                 self.cur_position -= 1
                 time.sleep(0.5)
-            temp_rp.export()
-            temp_rp.close()
+            Template_Report.export()
+            Template_Report.close()
 
             # CHECK ALL CASE FOLLOWING: SORT >> TYPE >> SUPPLIER
             # TEST_RESULT.append(['', 'Sắp xếp theo', 'Thể loại', 'Nhà cung cấp', '', '', ''])
@@ -231,10 +231,10 @@ class GameLobby(unittest.TestCase):
                         self.cur_position -= 1
                 self.cur_position -= 1
 
-                temp_rp = Report_temp(
+                Template_Report = Report_temp(
                     name.upper(), TEST_RESULT, TEST_DATA_HEADER)
-                temp_rp.export()
-                temp_rp.close()
+                Template_Report.export()
+                Template_Report.close()
 
             end = datetime.now()
             TEST_DATA_HEADER.append(['End', str(end).split('.')[0]])

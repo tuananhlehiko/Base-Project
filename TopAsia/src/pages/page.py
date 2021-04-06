@@ -1,7 +1,8 @@
 from TopAsia.src.pages.utils import Create_dir
 import os
-import datetime
 import time
+import re
+import random
 
 
 class BasePage(object):
@@ -204,10 +205,37 @@ class ValidateData:
                 actual = data[4].get_text()
                 sts = 'FAILED'
                 notes = 'Hiển thị lỗi khi nhập đúng'
-                BasePage.ScrShot(str(data[0])+'_Error text is display', name)
+                BasePage.ScrShot(caseNo+'_Error text is display', name)
             else:
                 sts = 'PASSED'
         print('Status: \t', sts)
         print('Expected: \t', data[7])
         print('Actual: \t', actual, '\n')
         return [caseNo, data[5], data_input, data[7], actual, sts, notes]
+
+    # CHECK INPUT CALCULATED
+    def CheckInputCase(data,name):
+        caseNo = str(data[0])
+        actual = ''
+        sts = ''
+        notes = ''
+        data_input = ''
+        expected = ''
+        if data[2] == 'CHECK-1-1':
+            data_input= str(random.randrange(data[6][0],data[6][1]))
+            data[3].set_text(data_input)
+            try:
+                actual = re.sub('=.VNĐ ', '', str(data[4].get_text()))
+            except Exception:
+                actual = ''
+            expected = data_input+'000'
+            if expected == actual:
+                sts = 'PASSED'
+            else:
+                sts = 'FAILED'
+                notes = 'Text: ' + re.sub('=', '', str(data[4].get_text()))
+                BasePage.ScrShot(caseNo+'_ Số tiền hiển thị không chính xác', name)
+            print('Status: \t', sts)
+        print('Expected: \t', data[7])
+        print('Actual: \t', actual, '\n')
+        return [caseNo, data[5], data_input, expected, actual, sts, notes]

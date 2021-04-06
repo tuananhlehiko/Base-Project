@@ -123,7 +123,7 @@ class UpdateUserInformation(unittest.TestCase):
             base.set_url(self.infopage)
             info_confirm.click()
             self.driver.implicitly_wait(30)
-            temp_rp = Report_temp(
+            Template_Report = Report_temp(
                 self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
             # CHECK DEFAULT CASE
             for i in TEST_DATA:
@@ -323,10 +323,10 @@ class UpdateUserInformation(unittest.TestCase):
                 print('Actual: \t', actual, '\n')
                 # print(self.TEST_RESULT)
                 # print(self.TEST_DATA_HEADER)
-                temp_rp = Report_temp(
+                Template_Report = Report_temp(
                     self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
-                temp_rp.export()
-                temp_rp.close()
+                Template_Report.export()
+                Template_Report.close()
                 time.sleep(2)
 
             end = datetime.now()

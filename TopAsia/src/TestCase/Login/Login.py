@@ -79,7 +79,7 @@ class LoginFlow(unittest.TestCase):
             time.sleep(10)
             btn_login.click()
             time.sleep(3)
-            temp_rp = Report_temp(
+            Template_Report = Report_temp(
                 self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
             # CHECK DEFAULT CASE
             for i in TEST_DATA:
@@ -228,10 +228,10 @@ class LoginFlow(unittest.TestCase):
                 print('Status: \t', sts)
                 print('Expected: \t', i[7])
                 print('Actual: \t', actual, '\n')
-                temp_rp = Report_temp(
+                Template_Report = Report_temp(
                     self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
-                temp_rp.export()
-                temp_rp.close()
+                Template_Report.export()
+                Template_Report.close()
                 time.sleep(2)
                 print('input_username.visible(): ', input_username.visible())
                 print('input_password.visible(): ', input_password.visible())

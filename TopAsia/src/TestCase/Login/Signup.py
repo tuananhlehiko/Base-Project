@@ -128,7 +128,7 @@ class SignupFlow(unittest.TestCase):
             btn_register.click()
             time.sleep(3)
             self.driver.implicitly_wait(30)
-            temp_rp = Report_temp(
+            Template_Report = Report_temp(
                 self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
             # CHECK DEFAULT CASE
             for i in TEST_DATA:
@@ -361,10 +361,10 @@ class SignupFlow(unittest.TestCase):
                 print('Status: \t', sts)
                 print('Expected: \t', i[7])
                 print('Actual: \t', actual, '\n')
-                temp_rp = Report_temp(
+                Template_Report = Report_temp(
                     self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
-                temp_rp.export()
-                temp_rp.close()
+                Template_Report.export()
+                Template_Report.close()
                 time.sleep(2)
 
             end = datetime.now()

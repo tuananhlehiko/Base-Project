@@ -112,7 +112,7 @@ class ChangePasswordFlow(unittest.TestCase):
             time.sleep(3)
             chg_confirm.click()
             self.driver.implicitly_wait(30)
-            temp_rp = Report_temp(self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
+            Template_Report = Report_temp(self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
             for i in TEST_DATA:
                 print('\n', '-'*15, ' Case: ', str(i[0]), ': ', i[5], ' ', 15*'-')                
                 if chg_new_pass.visible() == False:
@@ -137,9 +137,9 @@ class ChangePasswordFlow(unittest.TestCase):
                 elif i[1] == 'Helptext':
                     self.TEST_RESULT.append(ValidateData.HelpTextCheck(i, self.name))
                
-                temp_rp = Report_temp(self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
-                temp_rp.export()
-                temp_rp.close()
+                Template_Report = Report_temp(self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
+                Template_Report.export()
+                Template_Report.close()
                 time.sleep(1)
 
             end = datetime.now()
