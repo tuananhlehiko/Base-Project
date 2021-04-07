@@ -1,4 +1,6 @@
+from datetime import datetime
 from TopAsia.src.pages.utils import Create_dir
+from TopAsia.src.pages.Browser import Browser
 import os
 import time
 import re
@@ -23,6 +25,7 @@ class BasePage(object):
                 path = dir_img + '\\TopAsia Test Results\\' + location + '\\img'
             Create_dir(path)
             file = path + '\\' + filename + '.png'
+            print(file)
             self.driver.get_screenshot_as_file(file)
         except Exception as e:
             print('Error: ', e)
@@ -66,7 +69,7 @@ class GameCasinoPage(BasePage):
 
 class ValidateData:
     # CHECKING SHOW/HIDE PASSWORD icon working or NOT
-    def ShowHideButton(data, name):
+    def ShowHideButton(data, name, driver):
         caseNo = str(data[0])
         text_input = 'SHOW PASS'
         sts = ''
@@ -82,7 +85,7 @@ class ValidateData:
         if actual == data[7]:
             sts = 'PASSED'
         else:
-            BasePage.ScrShot(caseNo+'_ The show password display wrong', name)
+            driver.ScrShot(caseNo+'_ The show password display wrong', name)
             sts = 'FAILED'
         notes = 'INPUT: ' + text_input + '\nType: ' + actual
         print('Status: \t', sts)
@@ -91,7 +94,7 @@ class ValidateData:
         return [caseNo, data[5], text_input, data[7], actual, sts, notes]
 
     # CHECKING HELPTEXT
-    def HelpTextCheck(data, name):
+    def HelpTextCheck(data, name, driver):
         caseNo = str(data[0])
         actual = ''
         sts = ''
@@ -101,14 +104,14 @@ class ValidateData:
             sts = 'PASSED'
         else:
             sts = 'FAILED'
-            BasePage.ScrShot(caseNo+'_ The show password display wrong', name)
+            driver.ScrShot(caseNo+'_ The show password display wrong', name)
         print('Status: \t', sts)
         print('Expected: \t', data[7])
         print('Actual: \t', actual, '\n')
         return [caseNo, data[5], '-', data[7], actual, sts, notes]
 
     # CHECKING INVALID CASE
-    def CheckINVALIDCase(data, name):
+    def CheckINVALIDCase(data, name, driver):
         caseNo = str(data[0])
         actual = ''
         sts = ''
@@ -126,12 +129,12 @@ class ValidateData:
                     else:
                         sts = 'FAILED'
                         notes = 'Hiển thị lỗi không chính xác'
-                        BasePage.ScrShot(caseNo+'_Error text is wrong', name)
+                        driver.ScrShot(caseNo+'_Error text is wrong', name)
                 else:
                     sts = 'FAILED'
                     notes = 'Không hiển thị lỗi khi nhập ' + \
                         data[6][c]
-                    BasePage.ScrShot(caseNo+'_Error text is not display', name)
+                    driver.ScrShot(caseNo+'_Error text is not display', name)
         elif '-P' in data[2]:
             if data[5] == 'Mật khẩu hiện tại không đúng':
                 oldpass_ = 'tuananhle2203'
@@ -149,14 +152,14 @@ class ValidateData:
                     else:
                         sts = 'FAILED'
                         notes = 'Hiển thị lỗi không chính xác'
-                        BasePage.ScrShot(caseNo+'_Error popup is wrong', name)
+                        driver.ScrShot(caseNo+'_Error popup is wrong', name)
                     notes = notes + '\nCONTENT: '+actual
                     data[4][2].click()
                 else:
                     actual = '-'
                     sts = 'FAILED'
                     notes = 'Error popup không hiển thị!'
-                    BasePage.ScrShot(caseNo+'_Error popup not display', name)
+                    driver.ScrShot(caseNo+'_Error popup not display', name)
         else:
             data_input = data[6]
             data[3].set_text(data_input)
@@ -168,18 +171,18 @@ class ValidateData:
                 else:
                     sts = 'FAILED'
                     notes = 'Hiển thị lỗi không chính xác'
-                    BasePage.ScrShot(caseNo+'_Error text is wrong', name)
+                    driver.ScrShot(caseNo+'_Error text is wrong', name)
             else:
                 sts = 'FAILED'
                 notes = 'Không hiển thị lỗi'
-                BasePage.ScrShot(caseNo+'_Error text is not display', name)
+                driver.ScrShot(caseNo+'_Error text is not display', name)
         print('Status: \t', sts)
         print('Expected: \t', data[7])
         print('Actual: \t', actual, '\n')
         return [caseNo, data[5], data_input, data[7], actual, sts, notes]
 
     # CHECKING INVALID CASE
-    def CheckVALIDCase(data, name):
+    def CheckVALIDCase(data, name, driver):
         caseNo = str(data[0])
         actual = ''
         sts = ''
@@ -195,7 +198,7 @@ class ValidateData:
                     actual = data[4].get_text()
                     sts = 'FAILED'
                     notes = 'Hiển thị lỗi khi nhập tên'
-                    BasePage.ScrShot(caseNo+' Hiển thị lỗi khi nhập tên', name)
+                    driver.ScrShot(caseNo+' Hiển thị lỗi khi nhập tên', name)
                 else:
                     sts = 'PASSED'
         else:
@@ -205,7 +208,7 @@ class ValidateData:
                 actual = data[4].get_text()
                 sts = 'FAILED'
                 notes = 'Hiển thị lỗi khi nhập đúng'
-                BasePage.ScrShot(caseNo+'_Error text is display', name)
+                driver.ScrShot(caseNo+'_Error text is display', name)
             else:
                 sts = 'PASSED'
         print('Status: \t', sts)
@@ -214,18 +217,19 @@ class ValidateData:
         return [caseNo, data[5], data_input, data[7], actual, sts, notes]
 
     # CHECK INPUT CALCULATED
-    def CheckInputCase(data,name):
+    def CheckInputCase(data, name, driver):
         caseNo = str(data[0])
         actual = ''
-        sts = ''
+        expected = ''
+        sts = 'PASSED'
         notes = ''
         data_input = ''
         expected = ''
         if data[2] == 'CHECK-1-1':
-            data_input= str(random.randrange(data[6][0],data[6][1]))
+            data_input = str(random.randrange(data[6][0], data[6][1]))
             data[3].set_text(data_input)
             try:
-                actual = re.sub('=.VNĐ ', '', str(data[4].get_text()))
+                actual = re.sub('[=.VNĐ ]', '', str(data[4].get_text()))
             except Exception:
                 actual = ''
             expected = data_input+'000'
@@ -233,9 +237,112 @@ class ValidateData:
                 sts = 'PASSED'
             else:
                 sts = 'FAILED'
-                notes = 'Text: ' + re.sub('=', '', str(data[4].get_text()))
-                BasePage.ScrShot(caseNo+'_ Số tiền hiển thị không chính xác', name)
-            print('Status: \t', sts)
+                notes = 'Text: ' + re.sub('[=]', '', str(data[4].get_text()))
+                driver.ScrShot(caseNo+'_ Số tiền hiển thị không chính xác', name)
+        elif 'CHECK-1-N' in data[2]:
+            data_input = random.randrange(data[6][0], data[6][1])
+            data[3][0].set_text(str(data_input))
+            data[3][1].click()
+
+            method_agrument = ['number of roll', '%km']
+            if data[2] == 'CHECK-1-N-100':
+                method_agrument = [20, 100]
+            elif data[2] == 'CHECK-1-N-40':
+                method_agrument = [14, 40]
+            elif data[2] == 'CHECK-1-N-125':
+                method_agrument = [0, 0]
+            promo_amount = int(data_input*method_agrument[1]*1000/100)
+            real_amount = int(data_input*(100+method_agrument[1])*1000/100)
+            min_amount = int(real_amount*method_agrument[0])
+            promo_amount = str(promo_amount)
+            real_amount = str(real_amount)
+            min_amount = str(min_amount)
+            try:
+                actual_promo = re.sub('[=.VNĐD ]', '', str(data[4][0].get_text()))
+            except Exception:
+                actual_promo = ''
+            try:
+                actual_real = re.sub('[=.VNĐD ]', '', str(data[4][1].get_text()))
+            except Exception:
+                actual_real = ''
+            try:
+                actual_min = re.sub('[=.VNĐD ]', '', str(data[4][2].get_text()))
+            except Exception:
+                actual_min = ''
+
+            if promo_amount != actual_promo:
+                sts = 'FAILED'
+                notes = 'Promo FAILED: ' + re.sub('[=]', '', str(data[4][0].get_text()))
+                driver.ScrShot(caseNo+'_ Số tiền khuyến mãi không chính xác', name)
+            if real_amount != actual_real:
+                sts = 'FAILED'
+                notes = 'Promo FAILED: ' + re.sub('[=]', '', str(data[4][0].get_text()))
+                driver.ScrShot(caseNo+'_ Số tiền thực nhận không chính xác', name)
+            if min_amount != actual_min:
+                sts = 'FAILED'
+                notes = 'Promo FAILED: ' + re.sub('[=]', '', str(data[4][0].get_text()))
+                driver.ScrShot(caseNo+'_ Tổng cực tối thiểu không chính xác', name)
+            expected = promo_amount + ',\t'+real_amount+',\t'+min_amount
+            actual = actual_promo + ',\t'+actual_real+',\t'+actual_min
+        print('Status: \t', sts)
+        print('Expected: \t', expected)
+        print('Actual: \t', actual, '\n')
+        return [caseNo, data[5], data_input, expected, actual, sts, notes]
+
+    # COPY ACTION
+    def CheckCOPYbutton(data, name, driver):
+        caseNo = str(data[0])
+        actual = ''
+        sts = 'PASSED'
+        notes = ''
+        data_input = ''
+        for i in data[3]:
+            if i.get_text().upper() == 'ĐÃ COPY':
+                sts = 'FAILED'
+                driver.ScrShot(caseNo+'_DEFAULT '+str(i), name)
+        for i in range(len(data[3])):
+            data[3][i].click()
+            temp_text = [x for x in data[4]]
+            if data[4][i].get_text().upper() != 'ĐÃ COPY':
+                sts = 'FAILED'
+                driver.ScrShot(caseNo+'_CLICKED'+str(i), name)
+            for j in temp_text:
+                actual = j.get_text().upper()
+                if actual != 'COPY':
+                    sts = 'FAILED'
+                    driver.ScrShot(caseNo+'_ NOT CLICKED ITEM'+str(i), name)
+        print('Status: \t', sts)
         print('Expected: \t', data[7])
+        print('Actual: \t', actual, '\n')
+        return [caseNo, data[5], data_input, data[7], actual, sts, notes]
+        pass
+
+    # TIME CHECKING
+    def CheckTimeFinished(data, name, driver):
+        caseNo = str(data[0])
+        actual = ''
+        sts = ''
+        notes = ''
+        data_input = ''
+        text = data[4].get_text()
+        actual = re.sub('[/ .)()]', '', text.split(' ')[len(text.split(' '))-1])
+        today = datetime.fromordinal(datetime.now().toordinal()+30)
+        if today.day > 9:
+            day = str(today.day)
+        else:
+            day = '0'+str(today.day)
+        if today.month > 9:
+            month = str(today.month)
+        else:
+            month = '0'+str(today.month)
+        expected = day+month+str(today.year)
+        if expected == actual:
+            sts = 'PASSED'
+        else:
+            sts = 'FAILED'
+            notes = 'Text: ' + text
+            driver.ScrShot(caseNo+'_ Ngày hoàn thành hiển thị không chính xác', name)
+        print('Status: \t', sts)
+        print('Expected: \t', expected)
         print('Actual: \t', actual, '\n')
         return [caseNo, data[5], data_input, expected, actual, sts, notes]

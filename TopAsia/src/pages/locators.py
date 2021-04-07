@@ -205,6 +205,11 @@ class RechargeLocators:
     bank_ACB = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[6]')
     bank_DongA = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[7]')
 
+    # CARD SELECTOR
+    spp_viettel = UiObject(By.XPATH,'//div[@class="deposit-select-card__list"]/div[1]')
+    spp_vinaphone = UiObject(By.XPATH,'//div[@class="deposit-select-card__list"]/div[2]')
+    spp_mobifone = UiObject(By.XPATH,'//div[@class="deposit-select-card__list"]/div[3]')
+
     # BANK INFO
     copy_owner_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div')
     copy_owner_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div/p[3]')
@@ -282,3 +287,4 @@ class RechargeLocators:
         'ATM': type_atm,
         'Cash': type_banking
     }
+

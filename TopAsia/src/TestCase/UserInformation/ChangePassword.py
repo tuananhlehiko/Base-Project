@@ -132,10 +132,10 @@ class ChangePasswordFlow(unittest.TestCase):
                         self.TEST_RESULT.append(ValidateData.CheckVALIDCase(i,self.name))
 
                 elif i[1] == 'Show/Hide pw':
-                    self.TEST_RESULT.append(ValidateData.ShowHideButton(i, self.name))
+                    self.TEST_RESULT.append(ValidateData.ShowHideButton(i, self.name, base))
 
                 elif i[1] == 'Helptext':
-                    self.TEST_RESULT.append(ValidateData.HelpTextCheck(i, self.name))
+                    self.TEST_RESULT.append(ValidateData.HelpTextCheck(i, self.name, base))
                
                 Template_Report = Report_temp(self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
                 Template_Report.export()

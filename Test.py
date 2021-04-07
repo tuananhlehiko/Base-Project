@@ -3,6 +3,7 @@ import unittest
 from selenium import webdriver
 import time
 from datetime import datetime
+from datetime import date
 import xlsxwriter
 
 from TopAsia.src.pages.Browser import Browser
@@ -74,5 +75,11 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
 
 # print(DepositLocator)
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()
+a = re.sub('[= VNĐ. ]','','= 974.295.000                      VNĐ')
+# print('`',a,'`')
+print(datetime.now().toordinal())
+print(datetime.fromordinal(datetime.now().toordinal()+30))
+a= datetime.fromordinal(datetime.now().toordinal()+30)
+print(a.day,a.month,a.year)
