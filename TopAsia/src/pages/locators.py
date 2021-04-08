@@ -210,6 +210,23 @@ class RechargeLocators:
     spp_vinaphone = UiObject(By.XPATH,'//div[@class="deposit-select-card__list"]/div[2]')
     spp_mobifone = UiObject(By.XPATH,'//div[@class="deposit-select-card__list"]/div[3]')
 
+    card_fee = {
+        'viettel': 32,
+        'vinaphone':32,
+        'mobifone':34
+    }
+
+    card_Selector = UiObject(By.CLASS_NAME,'base-select__inner')
+    card_amount_10k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[10]')
+    card_amount_20k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[9]')
+    card_amount_30k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[8]')
+    card_amount_50k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[7]')
+    card_amount_100k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[6')
+    card_amount_200k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[5]')
+    card_amount_300k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[4]')
+    card_amount_500k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[3]')
+    card_amount_1000k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[2]')
+
     # BANK INFO
     copy_owner_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div')
     copy_owner_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div/p[3]')
