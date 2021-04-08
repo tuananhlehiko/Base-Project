@@ -205,6 +205,13 @@ class RechargeLocators:
     bank_ACB = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[6]')
     bank_DongA = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[7]')
 
+    # SELECT MOMO ACCOUNT
+    momo_Selector = UiObject(By.CLASS_NAME,'base-select__inner')
+    momo_account1 = UiObject(By.XPATH,'//span[@class="icon-select-down"]/parent::div/ul/li[2]')
+    momo_account2 = UiObject(By.XPATH,'//span[@class="icon-select-down"]/parent::div/ul/li[3]')
+    momo_account3 = UiObject(By.XPATH,'//span[@class="icon-select-down"]/parent::div/ul/li[4]')
+    momo_account4 = UiObject(By.XPATH,'//span[@class="icon-select-down"]/parent::div/ul/li[5]')
+
     # CARD SELECTOR
     spp_viettel = UiObject(By.XPATH,'//div[@class="deposit-select-card__list"]/div[1]')
     spp_vinaphone = UiObject(By.XPATH,'//div[@class="deposit-select-card__list"]/div[2]')
