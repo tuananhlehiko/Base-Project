@@ -198,7 +198,7 @@ class RechargeLocators:
 
     # SELECT BANK
     bank_Selector = UiObject(By.CLASS_NAME, 'base-select__inner')
-    bank_Sacombank = UiObject(By.XPATH,'//span[@class="icon-select-down"]/parent::div/ul/li[2]')
+    bank_Sacombank = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[2]')
     bank_Techcombank = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[3]')
     bank_Vietcombank = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[4]')
     bank_VietinBank = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[5]')
@@ -206,41 +206,64 @@ class RechargeLocators:
     bank_DongA = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[7]')
 
     # SELECT MOMO ACCOUNT
-    momo_Selector = UiObject(By.CLASS_NAME,'base-select__inner')
-    momo_account1 = UiObject(By.XPATH,'//span[@class="icon-select-down"]/parent::div/ul/li[2]')
-    momo_account2 = UiObject(By.XPATH,'//span[@class="icon-select-down"]/parent::div/ul/li[3]')
-    momo_account3 = UiObject(By.XPATH,'//span[@class="icon-select-down"]/parent::div/ul/li[4]')
-    momo_account4 = UiObject(By.XPATH,'//span[@class="icon-select-down"]/parent::div/ul/li[5]')
+    momo_Selector = UiObject(By.CLASS_NAME, 'base-select__inner')
+    momo_account1 = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[2]')
+    momo_account2 = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[3]')
+    momo_account3 = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[4]')
+    momo_account4 = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[5]')
 
     # CARD SELECTOR
-    spp_viettel = UiObject(By.XPATH,'//div[@class="deposit-select-card__list"]/div[1]')
-    spp_vinaphone = UiObject(By.XPATH,'//div[@class="deposit-select-card__list"]/div[2]')
-    spp_mobifone = UiObject(By.XPATH,'//div[@class="deposit-select-card__list"]/div[3]')
+    spp_viettel = UiObject(By.XPATH, '//div[@class="deposit-select-card__list"]/div[1]')
+    spp_vinaphone = UiObject(By.XPATH, '//div[@class="deposit-select-card__list"]/div[2]')
+    spp_mobifone = UiObject(By.XPATH, '//div[@class="deposit-select-card__list"]/div[3]')
 
-    card_fee = {
+    card_fee_percent = {
         'viettel': 32,
-        'vinaphone':32,
-        'mobifone':34
+        'vinaphone': 32,
+        'mobifone': 34
     }
 
-    card_Selector = UiObject(By.CLASS_NAME,'base-select__inner')
-    card_amount_10k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[10]')
-    card_amount_20k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[9]')
-    card_amount_30k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[8]')
-    card_amount_50k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[7]')
-    card_amount_100k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[6')
-    card_amount_200k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[5]')
-    card_amount_300k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[4]')
-    card_amount_500k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[3]')
-    card_amount_1000k = UiObject(By.XPATH,'//ul[@class="base-select__options"]/li[2]')
+    amount_card_fee = UiObject(By.XPATH, '//li[1]/p[@class="wrapper-info__value"]')
+    amount_card_real = UiObject(By.XPATH, '//li[2]/p[@class="wrapper-info__value"]')
+
+    in_pin = UiObject(By.NAME, 'code')
+    in_pin_error = UiObject(By.NAME, '')
+    in_series = UiObject(By.NAME, 'serial')
+    in_series_error = UiObject(By.NAME, '')
+
+    card_Selector = UiObject(By.CLASS_NAME, 'base-select__inner')
+    viettel_card_amount_10k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[10]')
+    viettel_card_amount_20k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[9]')
+    viettel_card_amount_30k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[8]')
+    viettel_card_amount_50k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[7]')
+    viettel_card_amount_100k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[6]')
+    viettel_card_amount_200k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[5]')
+    viettel_card_amount_300k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[4]')
+    viettel_card_amount_500k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[3]')
+    viettel_card_amount_1000k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[2]')
+
+    mobi_vina_card_amount_10k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[9]')
+    mobi_vina_card_amount_20k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[8]')
+    mobi_vina_card_amount_30k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[7]')
+    mobi_vina_card_amount_50k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[6]')
+    mobi_vina_card_amount_100k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[5]')
+    mobi_vina_card_amount_200k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[4]')
+    mobi_vina_card_amount_300k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[3]')
+    mobi_vina_card_amount_500k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[2]')
 
     # BANK INFO
-    copy_owner_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div')
+    copy_owner_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div/p[3]')
     copy_owner_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div/p[3]')
-    copy_number_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][2]/div')
+    copy_number_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][2]/div/p[3]')
     copy_number_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][2]/div/p[3]')
-    copy_place_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][3]/div')
+    copy_place_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][3]/div/p[3]')
     copy_place_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][3]/div/p[3]')
+
+    # MOMO INFO
+    momo_phoneNo_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div/p[3]')
+    momo_phoneNo_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div/p[3]')
+    momo_owner_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][2]/div/p[3]')
+    momo_owner_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][2]/div/p[3]')
 
     # TYPE SELECTOR
     type_ibanking = UiObject(By.XPATH, '//input[@value="ibanking"]/parent::label/div')
@@ -267,7 +290,8 @@ class RechargeLocators:
     finished_date = UiObject(By.XPATH, '//div[contains(@class,"deposit-promotion__note")]/ul/p/span')
 
     # BUTTON
-    TAO_PHIEU_NAP = UiObject(By.XPATH, '//div[contains(@class,"deposit-bank")]/div/div/button')
+    bank_TAO_PHIEU_NAP = UiObject(By.XPATH, '//div[contains(@class,"deposit-bank")]/div/div/button')
+    momo_TAO_PHIEU_NAP = UiObject(By.XPATH, '//div[contains(@class,"deposit-momo")]/div/div/button')
 
     # DATA HELPTEXT:
     data_helptext = {
@@ -312,3 +336,39 @@ class RechargeLocators:
         'Cash': type_banking
     }
 
+    data_listCardAmount = {
+        'viettel': {
+            '10k': [viettel_card_amount_10k, 10000],
+            '20k': [viettel_card_amount_20k, 20000],
+            '30k': [viettel_card_amount_30k, 30000],
+            '50k': [viettel_card_amount_50k, 50000],
+            '100k': [viettel_card_amount_100k, 100000],
+            '200k': [viettel_card_amount_200k, 200000],
+            '300k': [viettel_card_amount_300k, 300000],
+            '500k': [viettel_card_amount_500k, 500000],
+            '1000k': [viettel_card_amount_1000k, 1000000]},
+        'vinaphone': {
+            '10k': [mobi_vina_card_amount_10k, 10000],
+            '20k': [mobi_vina_card_amount_20k, 20000],
+            '30k': [mobi_vina_card_amount_30k, 30000],
+            '50k': [mobi_vina_card_amount_50k, 50000],
+            '100k': [mobi_vina_card_amount_100k, 100000],
+            '200k': [mobi_vina_card_amount_200k, 200000],
+            '300k': [mobi_vina_card_amount_300k, 300000],
+            '500k': [mobi_vina_card_amount_500k, 500000]},
+        'mobifone': {
+            '10k': [mobi_vina_card_amount_10k, 10000],
+            '20k': [mobi_vina_card_amount_20k, 20000],
+            '30k': [mobi_vina_card_amount_30k, 30000],
+            '50k': [mobi_vina_card_amount_50k, 50000],
+            '100k': [mobi_vina_card_amount_100k, 100000],
+            '200k': [mobi_vina_card_amount_200k, 200000],
+            '300k': [mobi_vina_card_amount_300k, 300000],
+            '500k': [mobi_vina_card_amount_500k, 500000]}
+    }
+
+    data_listCardSupplier = {
+        'viettel': spp_viettel,
+        'vinaphone': spp_vinaphone,
+        'mobifone': spp_mobifone
+    }

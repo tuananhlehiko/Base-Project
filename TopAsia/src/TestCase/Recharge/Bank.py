@@ -107,7 +107,7 @@ class RechargeBanksFlow(unittest.TestCase):
             rl.in_amount.set_text('999999999')
             rl.in_name.set_text('LE TUAN ANH')
             rl.in_code.set_text('CODE123456789')
-            rl.TAO_PHIEU_NAP.click()
+            rl.bank_TAO_PHIEU_NAP.click()
             self.driver.implicitly_wait(30)
             Template_Report = Report_temp(self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
             for method in rl.data_listBankMethod:
@@ -131,7 +131,7 @@ class RechargeBanksFlow(unittest.TestCase):
                             rl.in_amount.set_text('999999999')
                             rl.in_name.set_text('LE TUAN ANH')
                             rl.in_code.set_text('CODE123456789')
-                            rl.TAO_PHIEU_NAP.click()
+                            rl.bank_TAO_PHIEU_NAP.click()
                             time.sleep(3)
                         if i[1] == 'Data validation':
                             if method == 'Cash' and (i[0] == 11 or i[0] == 12):

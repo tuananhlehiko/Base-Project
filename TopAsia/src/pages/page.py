@@ -225,6 +225,7 @@ class ValidateData:
         notes = ''
         data_input = ''
         expected = ''
+        list_data_return = []
         if data[2] == 'CHECK-1-1':
             data_input = str(random.randrange(data[6][0], data[6][1]))
             data[3].set_text(data_input)
@@ -284,6 +285,46 @@ class ValidateData:
                 driver.ScrShot(caseNo+'_ Tổng cực tối thiểu không chính xác', name)
             expected = promo_amount + ',\t'+real_amount+',\t'+min_amount
             actual = actual_promo + ',\t'+actual_real+',\t'+actual_min
+        elif data[2] == 'CHECK-SELECTOR':
+            list_data_return.append([caseNo, data[5], '', '', '', '', ''])
+            for suplier in data[3][0]:
+                data[3][0][suplier].click()
+                list_data_return.append(['Case: ' + suplier, '', '', '', '', '', ''])
+                for amount in data[3][1][suplier]:
+                    if amount == '1000k' and (suplier =='vinaphone' or suplier == 'mobifone'):
+                        pass
+                    else:
+                        data[3][3].click()
+                        data[3][1][suplier][amount][0].click()
+                        _fee = int(data[3][1][suplier][amount][1]*data[3][2][suplier]/100)
+                        _real = int(data[3][1][suplier][amount][1]-_fee)
+                        _fee = str(_fee)
+                        _real = str(_real)
+                        time.sleep(1)
+                        expected = 'Fee:\t'+_fee + '\tReal:\t' + _real
+                        try:
+                            actual_fee = re.sub('[=.VNĐD ]', '', str(data[4][0].get_text()))
+                        except Exception:
+                            actual_fee = ''
+                        try:
+                            actual_real = re.sub('[=.VNĐD ]', '', str(data[4][1].get_text()))
+                        except Exception:
+                            actual_real = ''
+                        if _fee != actual_fee:
+                            sts = 'FAILED'
+                            notes = 'Fee amount FAILED: ' + re.sub('[=]', '', str(data[4][0].get_text()))
+                            driver.ScrShot(caseNo+'-'+amount+'_ Số tiền phí không chính xác', name)
+                        if _real != actual_real:
+                            sts = 'FAILED'
+                            notes = 'Promo FAILED: ' + re.sub('[=]', '', str(data[4][0].get_text()))
+                            driver.ScrShot(caseNo+'-'+amount+'_ Số tiền thực nhận không chính xác', name)
+                        actual = 'Fee:\t'+actual_fee + '\tReal:\t' + actual_real
+                        print('Status: \t', sts)
+                        print('Expected: \t', expected)
+                        print('Actual: \t', actual, '\n')
+                        list_data_return.append([caseNo+'-'+amount, 'Loại thẻ: '+amount, data_input, expected, actual, sts, notes])
+            return list_data_return
+
         print('Status: \t', sts)
         print('Expected: \t', expected)
         print('Actual: \t', actual, '\n')
@@ -303,19 +344,20 @@ class ValidateData:
         for i in range(len(data[3])):
             data[3][i].click()
             temp_text = [x for x in data[4]]
+            temp_text.pop(i)
             if data[4][i].get_text().upper() != 'ĐÃ COPY':
                 sts = 'FAILED'
                 driver.ScrShot(caseNo+'_CLICKED'+str(i), name)
             for j in temp_text:
                 actual = j.get_text().upper()
+
                 if actual != 'COPY':
                     sts = 'FAILED'
-                    driver.ScrShot(caseNo+'_ NOT CLICKED ITEM'+str(i), name)
+                    driver.ScrShot(caseNo+'_ NOT CLICKED ITEM :\''+actual+'\'', name)
         print('Status: \t', sts)
         print('Expected: \t', data[7])
         print('Actual: \t', actual, '\n')
-        return [caseNo, data[5], data_input, data[7], actual, sts, notes]
-        pass
+        return [caseNo, data[5], data_input, '', actual, sts, notes]
 
     # TIME CHECKING
     def CheckTimeFinished(data, name, driver):
@@ -336,6 +378,29 @@ class ValidateData:
         else:
             month = '0'+str(today.month)
         expected = day+month+str(today.year)
+        if expected == actual:
+            sts = 'PASSED'
+        else:
+            sts = 'FAILED'
+            notes = 'Text: ' + text
+            driver.ScrShot(caseNo+'_ Ngày hoàn thành hiển thị không chính xác', name)
+        print('Status: \t', sts)
+        print('Expected: \t', expected)
+        print('Actual: \t', actual, '\n')
+        return [caseNo, data[5], data_input, expected, actual, sts, notes]
+
+    # CHECK BUTTON AVAILABLE TO CLICK OR NOT
+    def CheckButtonClickAble(data,name, driver):
+        caseNo = str(data[0])
+        actual = ''
+        expected = ''
+        sts = ''
+        notes = ''
+        data_input = ''
+        data[3].set_text('')
+
+        
+        
         if expected == actual:
             sts = 'PASSED'
         else:
