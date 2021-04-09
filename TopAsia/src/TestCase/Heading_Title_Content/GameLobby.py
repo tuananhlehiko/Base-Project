@@ -8,6 +8,7 @@ import xlsxwriter
 from TopAsia.src.pages.Browser import Browser
 import TopAsia.src.pages.page as page
 from TopAsia.src.pages.locators import *
+from TopAsia.src.pages.locators import CongGameLocators as cg
 from TopAsia.src.pages.UIObject import UiObject
 from TopAsia.src.pages.utils import *
 
@@ -35,57 +36,6 @@ class GameLobbyHeadingTitle(unittest.TestCase):
         self.driver.maximize_window()  # Mở full màn hình đang test
         SIZE = lobby.get_size()
 
-        # Variable Define
-        MENU_CONG_GAME = UiObject(*MainMenuLocators.MENU_CONG_GAME)
-        type_all = UiObject(*CongGameLocators.Type_All)
-        type_No_hu = UiObject(*CongGameLocators.Type_No_hu)
-        type_Ban_ca = UiObject(*CongGameLocators.Type_Ban_ca)
-        type_Lo_de = UiObject(*CongGameLocators.Type_Lo_de)
-        type_Ingame = UiObject(*CongGameLocators.Type_Ingame)
-        type_Table_gane = UiObject(*CongGameLocators.Type_Table_game)
-        type_Game_nhanh = UiObject(*CongGameLocators.Type_Game_nhanh)
-
-        NCC_Selector = UiObject(*CongGameLocators.NCC_selector)
-        NCC_btn_All = UiObject(*CongGameLocators.NCC_btn_All)
-        NCC_Techplay = UiObject(*CongGameLocators.NCC_btn_Techplay)
-        NCC_Pragmatic = UiObject(*CongGameLocators.NCC_btn_PragmaticPlay)
-        NCC_CQ9 = UiObject(*CongGameLocators.NCC_btn_CQ9)
-        NCC_Tomhorn = UiObject(*CongGameLocators.NCC_btn_Tomhorn)
-        NCC_PlaynGo = UiObject(*CongGameLocators.NCC_btn_PlaynGo)
-
-        Sort_multi = UiObject(*CongGameLocators.Sort_Nhieu_nguoi_choi)
-        Sort_hot = UiObject(*CongGameLocators.Sort_Dang_hot)
-        Sort_Pho_bien = UiObject(*CongGameLocators.Sort_Pho_bien)
-        Sort_new = UiObject(*CongGameLocators.Sort_Moi_nhat)
-        Sort_a_z = UiObject(*CongGameLocators.Sort_a_z)
-
-        List_type = [
-            [type_all, 'Tất Cả', 'type=all'],
-            [type_No_hu, 'Nổ Hũ', 'type=slots'],
-            [type_Ban_ca, 'Bắn Cá', 'type=fishing'],
-            [type_Game_nhanh, 'Game Nhanh', 'type=instant'],
-            [type_Ingame, 'InGame', 'type=ingame'],
-            [type_Table_gane, 'Table Games', 'type=tables'],
-            [type_Lo_de, 'Lô Đề', 'type=lode']
-        ]
-
-        List_NCC = [
-            # [NCC_btn_All, 'Tất Cả', 'ncc=all'],
-            [NCC_Pragmatic, 'Pragmatic Play', 'ncc=pragmatic'],
-            [NCC_CQ9, 'CQ9', 'ncc=cq9'],
-            [NCC_Techplay, 'Techplay', 'ncc=vingame'],
-            [NCC_Tomhorn, 'Tomhorn Gaming', 'ncc=tomhorn'],
-            [NCC_PlaynGo, 'Play’n GO', 'ncc=playngo']
-        ]
-
-        List_Sort = [
-            [Sort_multi, 'Nhiều Người Chơi', 'sx=most-played'],
-            [Sort_hot, 'Đang Hot', 'sx=hot'],
-            [Sort_Pho_bien, 'Phổ Biến', 'sx=popular'],
-            [Sort_new, 'Mới Nhất', 'sx=new'],
-            [Sort_a_z, 'A-Z', 'sx=name']
-        ]
-
         # COMPARE LINK AND RETURN DATA LIST
         def check_link(data, number):
             print('\n', '-'*15, ' Case: ', self.no,  ' ', 15*'-')
@@ -109,9 +59,8 @@ class GameLobbyHeadingTitle(unittest.TestCase):
 
             # RULE 2, 3
             if len(NCC) > 0 or len(SORT) > 0:
-                listgame = UiObject(*CongGameLocators.List_Game)
-                if listgame.visible():
-                    number_of_game = len(listgame.get_elements())
+                if cg.List_Game_Load.visible():
+                    number_of_game = len(cg.List_Game_Load.get_elements())
                 else:
                     number_of_game = 0
                 if number_of_game > 1:
@@ -181,7 +130,7 @@ class GameLobbyHeadingTitle(unittest.TestCase):
             while len(data_return) < 4:
                 data_return.append('-')
             data_return.append(expected)
-            actual = UiObject(*CongGameLocators.List_Game_Heading).get_text()
+            actual = cg.List_Game_Heading.get_text()
             data_return.append(actual)
             if actual != expected:
                 data_return.append('FAILED')
@@ -212,8 +161,8 @@ class GameLobbyHeadingTitle(unittest.TestCase):
                     self.cur_position = 0
             TEST_RESULT.append(check)
 
-        if MENU_CONG_GAME.visible():
-            MENU_CONG_GAME.click()
+        if MainMenuLocators.MENU_CONG_GAME.visible():
+            MainMenuLocators.MENU_CONG_GAME.click()
             self.driver.implicitly_wait(30)
             time.sleep(3)
             Template_Report = Report_temp(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
@@ -224,7 +173,7 @@ class GameLobbyHeadingTitle(unittest.TestCase):
 
             TEST_RESULT.append(['-', 'Case chỉ có Thể loại', '', '', '', '', '', '', ''])
             DATA_LINK = [0, 0, 0]
-            for T in List_type:
+            for T in cg.List_type:
                 click_and_check(T)
                 self.cur_position -= 1
                 time.sleep(0.5)
@@ -235,7 +184,7 @@ class GameLobbyHeadingTitle(unittest.TestCase):
             # TEST_RESULT.append(['', 'Sắp xếp theo', 'Thể loại', 'Nhà cung cấp', '', '', ''])
             DATA_LINK = [0, 0, 0]
             print(self.cur_position)
-            for T in List_type:
+            for T in cg.List_type:
                 DATA_LINK = [0, 0, 0]
                 print('0', self.cur_position)
                 click_and_check(T)
@@ -244,16 +193,16 @@ class GameLobbyHeadingTitle(unittest.TestCase):
                         pass
                     else:
                         print('abcdesadasd', self.cur_position)
-                        for S in List_Sort:
+                        for S in cg.List_Sort:
                             print('1', self.cur_position)
                             click_and_check(S)
                             self.cur_position -= 1
                 else:
-                    for S in List_Sort:
+                    for S in cg.List_Sort:
                         print('1', self.cur_position)
                         click_and_check(S)
-                        for N in List_NCC:
-                            NCC_Selector.click()
+                        for N in cg.List_NCC:
+                            cg.NCC_selector.click()
                             time.sleep(1)
                             print('2', self.cur_position)
                             click_and_check(N)

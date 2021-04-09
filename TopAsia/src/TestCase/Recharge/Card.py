@@ -26,7 +26,7 @@ class RechargeCardsFlow(unittest.TestCase):
         self.range = [50, 1000000]
         self.TEST_RESULT = [['#', 'Case', 'Data Input', 'Expected Error/Page link', 'Actual Error/Page link', 'Status', 'Notes']]
         self.TEST_DATA_HEADER = []
-        self.name = 'Recharge using Banks'
+        self.name = 'Recharge using Card'
 
         start = datetime.now()
         self.TEST_DATA_HEADER.append(['Start', str(start).split('.')[0]])
@@ -37,16 +37,16 @@ class RechargeCardsFlow(unittest.TestCase):
 
         # DATA TEST
         TEST_DATA = [
-            # [1, 'Data validation', 'CLICKABLE', rl.in_series, rl.in_series_error, 'Không nhập số series', '', ''],
-            # [2, 'Data validation', 'VALID', rl.in_series, rl.in_series_error, 'Nhập số series', '123456789012345', ''],
-            # [3, 'Data validation', 'VALID', rl.in_series, rl.in_series_error, 'Nhập số series chỉ có số', '951357852645741', ''],
-            # [4, 'Data validation', 'VALID', rl.in_series, rl.in_series_error, 'Nhập số series toàn chữ', 'UYISDFKLJWTRMFD', ''],
-            # [5, 'Data validation', 'VALID', rl.in_series, rl.in_series_error, 'Nhập số series cả số và chữ', 'SLKFWP239505320', ''],
-            # [6, 'Data validation', 'CLICKABLE', rl.in_pin, rl.in_pin_error, 'Không nhập mã thẻ (PIN)', '', ''],
-            # [7, 'Data validation', 'VALID', rl.in_pin, rl.in_pin_error, 'Nhập mã thẻ (PIN)', '123456789012345', ''],
-            # [8, 'Data validation', 'VALID', rl.in_pin, rl.in_pin_error, 'Nhập mã thẻ (PIN) chỉ có số', '951357852645741', ''],
-            # [9, 'Data validation', 'VALID', rl.in_pin, rl.in_pin_error, 'Nhập mã thẻ (PIN) toàn chữ', 'UYISDFKLJWTRMFD', ''],
-            # [10, 'Data validation', 'VALID', rl.in_pin, rl.in_pin_error, 'Nhập mã thẻ (PIN) cả số và chữ', 'SLKFWP239505320', ''],
+            [1, 'Data validation', 'CLICKABLE', rl.in_series, rl.in_series_error, 'Không nhập số series', '', ''],
+            [2, 'Data validation', 'VALID', rl.in_series, rl.in_series_error, 'Nhập số series', '123456789012345', ''],
+            [3, 'Data validation', 'VALID', rl.in_series, rl.in_series_error, 'Nhập số series chỉ có số', '951357852645741', ''],
+            [4, 'Data validation', 'VALID', rl.in_series, rl.in_series_error, 'Nhập số series toàn chữ', 'UYISDFKLJWTRMFD', ''],
+            [5, 'Data validation', 'VALID', rl.in_series, rl.in_series_error, 'Nhập số series cả số và chữ', 'SLKFWP239505320', ''],
+            [6, 'Data validation', 'CLICKABLE', rl.in_pin, rl.in_pin_error, 'Không nhập mã thẻ (PIN)', '', ''],
+            [7, 'Data validation', 'VALID', rl.in_pin, rl.in_pin_error, 'Nhập mã thẻ (PIN)', '123456789012345', ''],
+            [8, 'Data validation', 'VALID', rl.in_pin, rl.in_pin_error, 'Nhập mã thẻ (PIN) chỉ có số', '951357852645741', ''],
+            [9, 'Data validation', 'VALID', rl.in_pin, rl.in_pin_error, 'Nhập mã thẻ (PIN) toàn chữ', 'UYISDFKLJWTRMFD', ''],
+            [10, 'Data validation', 'VALID', rl.in_pin, rl.in_pin_error, 'Nhập mã thẻ (PIN) cả số và chữ', 'SLKFWP239505320', ''],
             [11, 'Data validation', 'CHECK-SELECTOR', [rl.data_listCardSupplier, rl.data_listCardAmount, rl.card_fee_percent, rl.card_Selector], [rl.amount_card_fee, rl.amount_card_real], 'Số tiền nhận được hiển thị phải được tính tương ứng với số tiền nhập và gói khuyến mãi', '', ''],
             [12, 'Helptext', 'TEXT', rl.in_pin, None, 'Nhập mã thẻ (PIN)', '', 'Nhập mã thẻ (PIN)'],
             [13, 'Helptext', 'TEXT', rl.in_series, None, 'Nhập số series', '', 'Nhập số series'],

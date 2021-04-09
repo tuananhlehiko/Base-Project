@@ -26,7 +26,7 @@ class RechargeMomoFlow(unittest.TestCase):
         self.range = [50, 20000]
         self.TEST_RESULT = [['#', 'Case', 'Data Input', 'Expected Error/Page link', 'Actual Error/Page link', 'Status', 'Notes']]
         self.TEST_DATA_HEADER = []
-        self.name = 'Recharge using Banks'
+        self.name = 'Recharge using Momo'
 
         start = datetime.now()
         self.TEST_DATA_HEADER.append(['Start', str(start).split('.')[0]])

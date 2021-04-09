@@ -54,6 +54,12 @@ class BasePage(object):
         except Exception as e:
             print('Error: ', e)
 
+    def window_handle(self, link):
+        try:
+            return self.driver.get(link)
+        except Exception as e:
+            print('Error: ', e)
+
 
 class HomePage(BasePage):
     pass
@@ -160,6 +166,34 @@ class ValidateData:
                     sts = 'FAILED'
                     notes = 'Error popup không hiển thị!'
                     driver.ScrShot(caseNo+'_Error popup not display', name)
+            elif data[5] == 'Nhập sai tên đăng nhập' or data[5] == 'Nhập sai mật khẩu':
+                if data[0] == 11:
+                    username = 'khongtontai'
+                    password = '123456'
+                elif data[0] == 12:
+                    username = 'tuananhle2203'
+                    password = 'khongdung'
+                data_input = 'Username: ' + username+', Password: ' + password
+                data[3][0].set_text(username)
+                data[3][1].set_text(password)
+                data[3][1].click()
+                time.sleep(3)
+                if data[4][0].visible():
+                    actual = data[4][1].get_text()
+                    if actual == data[7]:
+                        sts = 'PASSED'
+                    else:
+                        sts = 'FAILED'
+                        notes = 'Hiển thị lỗi không chính xác'
+                        driver.ScrShot(str(data[0])+'_Error popup is wrong', self.name)
+                    notes = notes + '\nCONTENT: '+data[4][1].get_text()
+                    data[4][2].click()
+
+                else:
+                    actual = '-'
+                    sts = 'FAILED'
+                    notes = 'Popup error không hiện'
+                    driver.ScrShot(str(data[0])+'_Error popup not display', self.name)
         else:
             data_input = data[6]
             data[3].set_text(data_input)
@@ -291,7 +325,7 @@ class ValidateData:
                 data[3][0][suplier].click()
                 list_data_return.append(['Case: ' + suplier, '', '', '', '', '', ''])
                 for amount in data[3][1][suplier]:
-                    if amount == '1000k' and (suplier =='vinaphone' or suplier == 'mobifone'):
+                    if amount == '1000k' and (suplier == 'vinaphone' or suplier == 'mobifone'):
                         pass
                     else:
                         data[3][3].click()
@@ -325,6 +359,21 @@ class ValidateData:
                         list_data_return.append([caseNo+'-'+amount, 'Loại thẻ: '+amount, data_input, expected, actual, sts, notes])
             return list_data_return
 
+        elif data[2] == 'CHECK-LINK-PAYWIN':
+            window_before = driver.driver.window_handles[0]
+            data[3][0].set_text('456')
+            data[3][1].click()
+            time.sleep(3)
+            window_after = driver.driver.window_handles[1]
+            driver.driver.switch_to_window(window_after)
+            if data[4].visible():
+                sts = 'PASSED'
+            else:
+                sts = 'FAILED'
+                notes = 'Page not load'
+                driver.ScrShot(caseNo+'_ '+notes, name)
+            driver.driver.close()
+            driver.driver.switch_to_window(window_before)
         print('Status: \t', sts)
         print('Expected: \t', expected)
         print('Actual: \t', actual, '\n')
@@ -390,7 +439,7 @@ class ValidateData:
         return [caseNo, data[5], data_input, expected, actual, sts, notes]
 
     # CHECK BUTTON AVAILABLE TO CLICK OR NOT
-    def CheckButtonClickAble(data,name, driver):
+    def CheckButtonClickAble(data, name, driver):
         caseNo = str(data[0])
         actual = ''
         expected = ''
@@ -399,8 +448,6 @@ class ValidateData:
         data_input = ''
         data[3].set_text('')
 
-        
-        
         if expected == actual:
             sts = 'PASSED'
         else:

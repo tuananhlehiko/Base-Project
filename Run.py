@@ -19,6 +19,7 @@ from TopAsia.src.TestCase.UserInformation.ChangePassword import *
 from TopAsia.src.TestCase.Recharge.Bank import *
 from TopAsia.src.TestCase.Recharge.Momo import *
 from TopAsia.src.TestCase.Recharge.Card import *
+from TopAsia.src.TestCase.Recharge.Paywin import *
 
 
 
@@ -33,10 +34,11 @@ changepass = unittest.TestLoader().loadTestsFromTestCase(ChangePasswordFlow)
 rechargebank = unittest.TestLoader().loadTestsFromTestCase(RechargeBanksFlow)
 rechargemomo = unittest.TestLoader().loadTestsFromTestCase(RechargeMomoFlow)
 rechargecard = unittest.TestLoader().loadTestsFromTestCase(RechargeCardsFlow)
+rechargepaywin = unittest.TestLoader().loadTestsFromTestCase(RechargePaywinFlow)
 # unittest.TextTestRunner().run(main)
 
 # # Create test_suite
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test, casino_url_test, game_url_test])
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test])
-test_suite = unittest.TestSuite([rechargecard])
+test_suite = unittest.TestSuite([game_heading_test])
 unittest.TextTestRunner().run(test_suite)

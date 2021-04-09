@@ -43,8 +43,35 @@ class CongGameLocators(object):
     Sort_Moi_nhat = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][4]')
     Sort_a_z = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][5]')
 
-    List_Game = UiObject(By.XPATH, '//div[contains(@class,"game-list")]/div')
+    List_Game_Load = UiObject(By.XPATH, '//div[contains(@class,"game-list")]/div')
     List_Game_Heading = UiObject(By.XPATH, '//h1[contains(@class,"game-section__title")]')
+
+    List_type = [
+        [Type_All, 'Tất Cả', 'type=all'],
+        [Type_No_hu, 'Nổ Hũ', 'type=slots'],
+        [Type_Ban_ca, 'Bắn Cá', 'type=fishing'],
+        [Type_Game_nhanh, 'Game Nhanh', 'type=instant'],
+        [Type_Ingame, 'InGame', 'type=ingame'],
+        [Type_Table_game, 'Table Games', 'type=tables'],
+        [Type_Lo_de, 'Lô Đề', 'type=lode']
+    ]
+
+    List_NCC = [
+        # [NCC_btn_All, 'Tất Cả', 'ncc=all'],
+        [NCC_btn_PragmaticPlay, 'Pragmatic Play', 'ncc=pragmatic'],
+        [NCC_btn_CQ9, 'CQ9', 'ncc=cq9'],
+        [NCC_btn_Techplay, 'Techplay', 'ncc=vingame'],
+        [NCC_btn_Tomhorn, 'Tomhorn Gaming', 'ncc=tomhorn'],
+        [NCC_btn_PlaynGo, 'Play’n GO', 'ncc=playngo']
+    ]
+
+    List_Sort = [
+        [Sort_Nhieu_nguoi_choi, 'Nhiều Người Chơi', 'sx=most-played'],
+        [Sort_Dang_hot, 'Đang Hot', 'sx=hot'],
+        [Sort_Pho_bien, 'Phổ Biến', 'sx=popular'],
+        [Sort_Moi_nhat, 'Mới Nhất', 'sx=new'],
+        [Sort_a_z, 'A-Z', 'sx=name']
+    ]
 
 
 class CasinoLocators(object):
@@ -66,8 +93,32 @@ class CasinoLocators(object):
     Sort_Moi_nhat = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][4]')
     Sort_a_z = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][5]')
 
-    List_Game = UiObject(By.XPATH, '//div[contains(@class,"lobby-casino-list")]/div')
+    List_Game_Load = UiObject(By.XPATH, '//div[contains(@class,"lobby-casino-list")]/div')
     List_Game_Heading = UiObject(By.CLASS_NAME, 'lobby-casino-section__title')
+
+    # Data
+    List_Game = [
+        [Game_Baccarat, 'Baccarat', 'type=baccarat'],
+        # [Game_Sicbo, 'Sicbo', 'type=sicbo'],
+        [Game_Roulette, 'Roulette', 'type=roulette']
+    ]
+
+    List_NCC = [
+        [NCC_All, 'All', 'ncc=all'],
+        [NCC_Evolution, 'Evolution', 'ncc=evo'],
+        [NCC_Ebet, 'Ebet', 'ncc=ebet'],
+        [NCC_Vivo, 'VivoGaming', 'ncc=vivo'],
+        [NCC_Allbet, 'Allbet', 'ncc=allbet'],
+        [NCC_HGaming, 'HGaming', 'ncc=hogaming']
+    ]
+
+    List_Sort = [
+        [Sort_Nhieu_nguoi_choi, 'Nhiều Người Chơi', 'sx=most-played'],
+        [Sort_Dang_hot, 'Đang Hot', 'sx=hot'],
+        [Sort_Pho_bien, 'Phổ Biến', 'sx=popular'],
+        [Sort_Moi_nhat, 'Mới Nhất', 'sx=new'],
+        # [Sort_a_z, 'A-Z', 'sx=name']
+    ]
 
 
 class LoginLocators(object):
@@ -292,6 +343,10 @@ class RechargeLocators:
     # BUTTON
     bank_TAO_PHIEU_NAP = UiObject(By.XPATH, '//div[contains(@class,"deposit-bank")]/div/div/button')
     momo_TAO_PHIEU_NAP = UiObject(By.XPATH, '//div[contains(@class,"deposit-momo")]/div/div/button')
+    paywin_TAO_PHIEU_NAP = UiObject(By.XPATH, '//div[contains(@class,"deposit-paywin")]/div/div/button')
+    card_TAO_PHIEU_NAP = UiObject(By.XPATH, '//div[contains(@class,"deposit-card")]/div/div/button')
+
+    paywin_page_load = UiObject(By.ID, 'page')
 
     # DATA HELPTEXT:
     data_helptext = {
@@ -320,10 +375,21 @@ class RechargeLocators:
             'Sacombank': 'Vui lòng nhập họ và tên người gửi',
             'Techcombank': 'Vui lòng nhập họ và tên người gửi'}
     }
+
     data_listBanks = {
         'Vietcombank': bank_Vietcombank,
         'ACB': bank_ACB,
         'DongA': bank_DongA,
+        'Vietinbank': bank_VietinBank,
+        # 'BIDV': bank.BIDV,
+        'Sacombank': bank_Sacombank,
+        'Techcombank': bank_Techcombank
+    }
+
+    data_listBanks_paywin = {
+        'Vietcombank': bank_Vietcombank,
+        'ACB': bank_ACB,
+        # 'DongA': bank_DongA,
         'Vietinbank': bank_VietinBank,
         # 'BIDV': bank.BIDV,
         'Sacombank': bank_Sacombank,
