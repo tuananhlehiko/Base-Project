@@ -122,9 +122,10 @@ class ValidateData:
         actual = ''
         sts = ''
         notes = ''
+        listdata_return = []
         if data[2] == 'INVALID-MULTI':
             for c in range(len(data[6])):
-                caseNo = caseNo+'-'+str(c+1)
+                Number = caseNo+'-'+str(c+1)
                 data_input = 'validdata'+data[6][c]
                 data[3].set_text(data_input)
                 time.sleep(1)
@@ -135,12 +136,17 @@ class ValidateData:
                     else:
                         sts = 'FAILED'
                         notes = 'Hiển thị lỗi không chính xác'
-                        driver.ScrShot(caseNo+'_Error text is wrong', name)
+                        driver.ScrShot(Number+'_Error text is wrong', name)
                 else:
                     sts = 'FAILED'
                     notes = 'Không hiển thị lỗi khi nhập ' + \
                         data[6][c]
-                    driver.ScrShot(caseNo+'_Error text is not display', name)
+                    driver.ScrShot(Number+'_Error text is not display', name)
+                print('Status: \t', sts)
+                print('Expected: \t', data[7])
+                print('Actual: \t', actual, '\n')
+                listdata_return.append([Number, data[5], data_input, data_input, actual, sts, notes])
+            return listdata_return
         elif '-P' in data[2]:
             if data[5] == 'Mật khẩu hiện tại không đúng':
                 oldpass_ = 'tuananhle2203'
@@ -167,10 +173,10 @@ class ValidateData:
                     notes = 'Error popup không hiển thị!'
                     driver.ScrShot(caseNo+'_Error popup not display', name)
             elif data[5] == 'Nhập sai tên đăng nhập' or data[5] == 'Nhập sai mật khẩu':
-                if data[0] == 11:
+                if data[0] == 12:
                     username = 'khongtontai'
                     password = '123456'
-                elif data[0] == 12:
+                elif data[0] == 13:
                     username = 'tuananhle2203'
                     password = 'khongdung'
                 data_input = 'Username: ' + username+', Password: ' + password
@@ -185,15 +191,14 @@ class ValidateData:
                     else:
                         sts = 'FAILED'
                         notes = 'Hiển thị lỗi không chính xác'
-                        driver.ScrShot(str(data[0])+'_Error popup is wrong', self.name)
+                        driver.ScrShot(str(data[0])+'_Error popup is wrong', name)
                     notes = notes + '\nCONTENT: '+data[4][1].get_text()
                     data[4][2].click()
-
                 else:
                     actual = '-'
                     sts = 'FAILED'
                     notes = 'Popup error không hiện'
-                    driver.ScrShot(str(data[0])+'_Error popup not display', self.name)
+                    driver.ScrShot(str(data[0])+'_Error popup not display', name)
         else:
             data_input = data[6]
             data[3].set_text(data_input)

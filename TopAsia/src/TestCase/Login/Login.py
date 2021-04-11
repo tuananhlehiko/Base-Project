@@ -69,69 +69,37 @@ class LoginFlow(unittest.TestCase):
                     if 'INVALID' in i[2]:
                         if i[2] == 'INVALID-MULTI':
                             self.TEST_RESULT.append([i[0], i[5], '-', '-', '-', '-', '-'])
-                        elif '-P' in i[2]:
-                            
-
-                            pass
+                            self.TEST_RESULT = self.TEST_RESULT+ValidateData.CheckINVALIDCase(i, self.name, base)
                         else:
-                            i[3].set_text(i[6])
-                            time.sleep(1)
-                            if i[4].visible():
-                                actual = i[4].get_text()
-                                if actual == i[7]:
-                                    sts = 'PASSED'
-                                else:
-                                    sts = 'FAILED'
-                                    notes = 'Hiển thị lỗi không chính xác'
-                                    base.ScrShot(
-                                        str(i[0])+'_Error text is wrong', self.name)
-                            else:
-                                sts = 'FAILED'
-                                notes = 'Không hiển thị lỗi'
-                                base.ScrShot(
-                                    str(i[0])+'_Error text is not display', self.name)
-                            self.TEST_RESULT.append(
-                                [i[0], i[5], i[6], i[7], actual, sts, notes])
+                            self.TEST_RESULT.append(ValidateData.CheckINVALIDCase(i, self.name, base))
                     elif i[2] == 'VALID':
-                        i[3].set_text(i[6])
-                        time.sleep(1)
-                        if i[4].visible():
-                            actual = i[4].get_text()
-                            sts = 'FAILED'
-                            notes = 'Hiển thị lỗi khi nhập đúng'
-                            base.ScrShot(
-                                str(i[0])+'_Error text is display', self.name)
-                        else:
-                            sts = 'PASSED'
-                        self.TEST_RESULT.append([i[0], i[5], i[6], i[7], actual, sts, notes])
-
+                        self.TEST_RESULT.append(ValidateData.CheckVALIDCase(i, self.name, base))
                 elif i[1] == 'Show/Hide pw':
-                    folder = self.name
                     self.TEST_RESULT.append(ValidateData.ShowHideButton(i, self.name, base))
 
                 elif i[1] == 'Navigation':
                     if i[2] == '0':
                         if li.input_username.visible() == False:
-                            MENU_DANG_NHAP.click()
+                            MainMenuLocators.MENU_DANG_NHAP.click()
                             time.sleep(3)
 
                     if i[2] == "1":
                         if li.input_username.visible() == False:
-                            MENU_CONG_GAME.click()
+                            MainMenuLocators.MENU_CONG_GAME.click()
                             time.sleep(3)
-                            MENU_DANG_NHAP.click()
+                            MainMenuLocators.MENU_DANG_NHAP.click()
                             time.sleep(3)
                         else:
                             li.btn_close.click()
-                            MENU_CONG_GAME.click()
+                            MainMenuLocators.MENU_CONG_GAME.click()
                             time.sleep(3)
-                            MENU_DANG_NHAP.click()
+                            MainMenuLocators.MENU_DANG_NHAP.click()
                             time.sleep(3)
                     i[3].set_text(i[6][0])
                     i[4].set_text(i[6][1])
                     time.sleep(3)
                     li.btn_login.click()
-                    if MENU_USER_INFO_DROP.visible():
+                    if MainMenuLocators.MENU_USER_INFO_DROP.visible():
                         actual = base.get_url()
                         if actual == i[7]:
                             sts = 'PASSED'
@@ -140,7 +108,7 @@ class LoginFlow(unittest.TestCase):
                             notes = 'Login successful but link wrong'
                             base.ScrShot(
                                 str(i[0])+'_Login successful but link wrong', self.name)
-                        MENU_USER_INFO_DROP.click()
+                        MainMenuLocators.MENU_USER_INFO_DROP.click()
                         UserInfoLocator.drop_logout.click()
                     else:
                         sts = 'FAILED'
