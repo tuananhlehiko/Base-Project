@@ -59,8 +59,7 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                 else:
                     number_of_game = 0
                 if number_of_game > 1:
-                    expected = expected + ' ' + \
-                        str(number_of_game) + ' Trò Chơi'
+                    expected = expected + ' ' + str(number_of_game) + ' Trò Chơi'
                 else:
                     expected = expected + ' Trò Chơi'
             # RULE 4
@@ -128,11 +127,11 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
             data_return.append(actual)
             if actual != expected:
                 data_return.append('FAILED')
-                lobby.ScrShot(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3]+ '_' + data_return[4]+ '_' + data_return[5])
+                lobby.ScrShot(str(number) + '_' + data_return[1] + '_' + data_return[2] + '_' + data_return[3] + '_' + data_return[4] + '_' + data_return[5])
             else:
                 data_return.append('PASSED')
-            print('- Case: ', self.no,': ', data_return[6], ' ')
-            print(data_return[1], ' - ', data_return[2],' - ', data_return[3], ' - ', data_return[4], ' - ', data_return[5], ' - ')
+            print('- Case: ', self.no, ': ', data_return[6], ' ')
+            print(data_return[1], ' - ', data_return[2], ' - ', data_return[3], ' - ', data_return[4], ' - ', data_return[5], ' - ')
             print('- Expected title: \t', data_return[6])
             print('- Actual title: \t', data_return[7])
             self.no += 1
@@ -177,7 +176,6 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
             Template_Report.close()
 
             # CHECK ALL CASE FOLLOWING: SORT >> SUPPLIER >> GAME TYPE
-            # TEST_RESULT.append(['', 'Nhà cung cấp', 'Sắp xếp theo', 'Game 1', 'Game 2', 'Game 3', '', '', ''])
             DATA_LINK = [0, 0, 0, 0, 0]
             for N in cs.List_NCC:
                 DATA_LINK = [0, 0, 0, 0, 0]
@@ -192,7 +190,6 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                         for SG in List_Game_B:
                             click_and_check(SG)
                             time.sleep(1)
-                        # ---------------------------------------------------------
                         # UNCHECK GAME 3
                         # cs.Game_selector.click()
                         for SG in List_Game_B:
@@ -200,30 +197,23 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
                             time.sleep(1)
                         click_and_check(cs.List_Game[G], False, False)
                         cs.Game_selector.click()
-                        Template_Report = Report_temp(
-                            name.upper(), TEST_RESULT, TEST_DATA_HEADER)
+                        Template_Report = Report_temp(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
                         Template_Report.export()
                         Template_Report.close()
                     self.cur_position -= 1
                 self.cur_position -= 1
-
             end = datetime.now()
             TEST_DATA_HEADER.append(['End', str(end).split('.')[0]])
             TEST_DATA_HEADER.append(['Time spend', str(end-start).split('.')[0]])
             TEST_DATA_HEADER.append(['Size', str(SIZE)])
             # REPORT data
-
             report = Report(name.upper(), TEST_RESULT, TEST_DATA_HEADER)
             report.export()
             report.close()
-
         else:
             lobby.ScrShot('Test Checking url link: FAILED')
         self.driver.implicitly_wait(30)
-
     def tearDown(self):
         self.driver.close()
-
-
 if __name__ == "__main__":
     unittest.main()
