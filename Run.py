@@ -22,6 +22,7 @@ from TopAsia.src.TestCase.Recharge.Momo import *
 from TopAsia.src.TestCase.Recharge.Card import *
 from TopAsia.src.TestCase.Withdraw.Card import *
 from TopAsia.src.TestCase.Recharge.Paywin import *
+from TopAsia.src.TestCase.APILoading.GameLoading import *
 
 
 
@@ -40,11 +41,12 @@ rechargepaywin = unittest.TestLoader().loadTestsFromTestCase(RechargePaywinFlow)
 
 withdrawbank = unittest.TestLoader().loadTestsFromTestCase(WithdrawBanksFlow)
 withdrawcard = unittest.TestLoader().loadTestsFromTestCase(WithdrawCardsFlow)
+listgame = unittest.TestLoader().loadTestsFromTestCase(ListGameLoading)
 
 # unittest.TextTestRunner().run(main)
 
 # # Create test_suite
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test, casino_url_test, game_url_test])
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test])
-test_suite = unittest.TestSuite([withdrawcard])
+test_suite = unittest.TestSuite([listgame])
 unittest.TextTestRunner().run(test_suite)

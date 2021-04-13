@@ -37,9 +37,9 @@ class WithdrawCardsFlow(unittest.TestCase):
 
         # DATA TEST
         TEST_DATA = [
-            [1, 'Helptext', 'TEXT', wl.password, None, 'Nhập mật khẩu', '', 'Nhập mật khẩu'],
-            [2, 'Show/Hide pw', 'SHOW', wl.password, [wl.show_pass, wl.hide_pass], 'Click show/hide password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi', '', 'text'],
-            [3, 'Show/Hide pw', 'HIDE', wl.password, [wl.hide_pass, wl.show_pass], 'Click show/hide password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi', '', 'password'],
+            [1, 'Helptext', 'TEXT', wl.card_password, None, 'Nhập mật khẩu', '', 'Nhập mật khẩu'],
+            [2, 'Show/Hide pw', 'SHOW', wl.card_password, [wl.card_show_pass, wl.card_hide_pass], 'Click show/hide password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi', '', 'text'],
+            [3, 'Show/Hide pw', 'HIDE', wl.card_password, [wl.card_hide_pass, wl.card_show_pass], 'Click show/hide password icon sẽ hiển thị những ký tự đã nhập hoặc ẩn đi', '', 'password'],
             [4, 'Data validation', 'INVALID-P', [wl.No_ofCard, wl.card_password, [wl.DOI_THE_CAO]], [wl.popup_error, wl.popup_error_content, wl.popup_error_btn_confirm], 'Số tiền trong tài khoản không đủ', ['1234', '123456'], 'Số tiền trong tài khoản không đủ'],
             [5, 'Data validation', 'INVALID-P', [wl.No_ofCard, wl.card_password, [wl.DOI_THE_CAO]], [wl.popup_error, wl.popup_error_content, wl.popup_error_btn_confirm], 'Mật khẩu không chính xác', ['0', 'Saimatkhau'], 'Mật khẩu không chính xác'],
         ]
@@ -97,12 +97,15 @@ class WithdrawCardsFlow(unittest.TestCase):
                             self.TEST_RESULT.append([i[0], i[5], '-', '-', '-', '-', '-'])
                             self.TEST_RESULT = self.TEST_RESULT+ValidateData.CheckINVALIDCase(i, self.name, base)
                         elif '-P' in i[2]:
+                            MainNo = i[0]
                             for suplier in wl.data_listCardSupplier:
                                 wl.data_listCardSupplier[suplier].click()
+                                self.TEST_RESULT.append([suplier, '', '', '', '', '', ''])
                                 for amount in wl.data_listCardAmount[suplier]:
                                     wl.card_Selector.click()
-                                    wl.data_listCardAmount[suplier][amount].click()
-                                    i[0] = str(i[0]) + amount
+                                    time.sleep(1)
+                                    wl.data_listCardAmount[suplier][amount][0].click()
+                                    i[0] = str(MainNo) + ' - ' + amount
                                     self.TEST_RESULT.append(ValidateData.CheckINVALIDCase(i, self.name, base))
                         else:
                             self.TEST_RESULT.append(ValidateData.CheckINVALIDCase(i, self.name, base))
@@ -116,6 +119,8 @@ class WithdrawCardsFlow(unittest.TestCase):
                             self.TEST_RESULT.append(ValidateData.CheckVALIDCase(i, self.name, base))
                 elif i[1] == 'Helptext':
                     self.TEST_RESULT.append(ValidateData.HelpTextCheck(i, self.name, base))
+                elif i[1] == 'Show/Hide pw':
+                    self.TEST_RESULT.append(ValidateData.ShowHideButton(i, self.name, base))
 
                 Template_Report = Report_temp(self.name.upper(), self.TEST_RESULT, self.TEST_DATA_HEADER)
                 Template_Report.export()

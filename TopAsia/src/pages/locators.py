@@ -43,7 +43,9 @@ class CongGameLocators(object):
     Sort_Moi_nhat = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][4]')
     Sort_a_z = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][5]')
 
+    btn_Xem_them = UiObject(By.CLASS_NAME, 'game-section__load-more')
     List_Game_Load = UiObject(By.XPATH, '//div[contains(@class,"game-list")]/div')
+    List_Game_Load_Name = UiObject(By.XPATH, '//div[contains(@class,"game-list")]/div/div/a')
     List_Game_Heading = UiObject(By.XPATH, '//h1[contains(@class,"game-section__title")]')
 
     List_type = [
@@ -454,6 +456,9 @@ class WithdrawLocators:
     show_pass = UiObject(By.XPATH, '//input[@name="password"]/parent::div/span[contains(@class,"icon-eye-hide")]')
     hide_pass = UiObject(By.XPATH, '//input[@name="password"]/parent::div/span[contains(@class,"icon-eye-show")]')
 
+    card_show_pass = UiObject(By.XPATH, '//input/parent::div/span[contains(@class,"icon-eye-hide")]')
+    card_hide_pass = UiObject(By.XPATH, '//input/parent::div/span[contains(@class,"icon-eye-show")]')
+
     popup_error = UiObject(By.XPATH, '//div[@class="swal-modal"]')
     popup_error_title = UiObject(By.XPATH, '//div[@class="swal-title"]')
     popup_error_content = UiObject(By.XPATH, '//div[@class="swal-text"]')
@@ -520,9 +525,9 @@ class WithdrawLocators:
             '500k': [mobi_vina_card_amount_500k, 500000]}
     }
 
-    spp_viettel = UiObject(By.XPATH, '//div[@class="deposit-select-card__list"]/div[1]')
-    spp_vinaphone = UiObject(By.XPATH, '//div[@class="deposit-select-card__list"]/div[2]')
-    spp_mobifone = UiObject(By.XPATH, '//div[@class="deposit-select-card__list"]/div[3]')
+    spp_viettel = UiObject(By.XPATH, '//div[@class="withdraw-select-card__list"]/div[1]')
+    spp_vinaphone = UiObject(By.XPATH, '//div[@class="withdraw-select-card__list"]/div[2]')
+    spp_mobifone = UiObject(By.XPATH, '//div[@class="withdraw-select-card__list"]/div[3]')
 
     data_listCardSupplier = {
         'viettel': spp_viettel,

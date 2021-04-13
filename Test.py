@@ -5,6 +5,8 @@ import time
 from datetime import datetime
 from datetime import date
 import xlsxwriter
+import requests
+import json
 
 from TopAsia.src.pages.Browser import Browser
 import time
@@ -19,7 +21,7 @@ from TopAsia.src.pages.page import *
 
 # a = ['!','@','#','$','%','^','&','*','(',')',' ',';',':',"'",'"','`','~','>','.','<','{','}','[',']','\\',',','/','-','=','+']
 
-# date = re.sub('[ :-]','',str(datetime.now()).split('.')[0])   
+# date = re.sub('[ :-]','',str(datetime.now()).split('.')[0])
 
 class CasinoLobbyHeadingTitle(unittest.TestCase):
     def setUp(self):
@@ -60,12 +62,10 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
             rl.rc_bank.click()
             time.sleep(1)
             rl.bank_Selector.click()
-            a = UiObject(By.XPATH,'//span[@class="icon-select-down"]/parent::div/ul/li')
+            a = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li')
             b = a.get_elements()
             for x in b:
-                print('\'',x.text,'\'')
-  
-
+                print('\'', x.text, '\'')
 
     def tearDown(self):
         self.driver.close()
@@ -76,10 +76,22 @@ class CasinoLobbyHeadingTitle(unittest.TestCase):
 # print(DepositLocator)
 
 # if __name__ == "__main__":
-#     unittest.main()
-a = re.sub('[= VNĐ. ]','','= 974.295.000                      VNĐ')
-# print('`',a,'`')
-print(datetime.now().toordinal())
-print(datetime.fromordinal(datetime.now().toordinal()+30))
-a= datetime.fromordinal(datetime.now().toordinal()+30)
-print(a.day,a.month,a.year)
+# #     unittest.main()
+# a = re.sub('[= VNĐ. ]','','= 974.295.000                      VNĐ')
+# # print('`',a,'`')
+# print(datetime.now().toordinal())
+# print(datetime.fromordinal(datetime.now().toordinal()+30))
+# a= datetime.fromordinal(datetime.now().toordinal()+30)
+# print(a.day,a.month,a.year)
+
+
+a = requests.get('http://dev-ta.mooo.com/api/v1/game/search?limit=999')
+print(type(a.text))
+print(type(json.loads(a.text)))
+for i in json.loads(a.text)['data']['items']:
+    print('---'*25)
+    print(str(i['partner']))
+    print(str(i['name']))
+    print(str(i['partner_game_id']))
+    print('/gameUrl?partnerProvider='+str(i['partner'])+'&partnerGameId='+str(i['partner_game_id']))
+    # print(i)
