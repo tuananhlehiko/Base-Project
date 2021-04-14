@@ -248,7 +248,7 @@ class ValidateData:
             data_input = str(random.randrange(data[6][0], data[6][1]))
             data[3].set_text(data_input)
             try:
-                actual = re.sub('[=.VNĐ ]', '', str(data[4].get_text()))
+                actual = re.sub('[=.VNĐD ]', '', str(data[4].get_text()))
             except Exception:
                 actual = ''
             expected = data_input+'000'
