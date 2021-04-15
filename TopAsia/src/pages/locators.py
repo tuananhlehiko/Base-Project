@@ -17,247 +17,297 @@ class MainMenuLocators(object):
     mm_btn_cong_game = (By.XPATH, "//*[@hkatt='mm-btn-cong-game']")
     mm_btn_dang_nhap = (By.XPATH, "//*[@hkatt='mm-btn-dang-nhap']")
     mm_btn_dang_ky = (By.XPATH, "//*[@hkatt='mm-btn-dang-ky']")
-    mm_btn_user_info_dropdown = (By.XPATH, "//*[@hkatt='mm-btn-user-info-dropdown']")
+
+    mm_btn_khuyen_mai = (By.XPATH, '//*[@hkatt="mm-btn-khuyen-mai"]')
+    mm_btn_tin_tuc = (By.XPATH, '//*[@hkatt="mm-btn-tin-tuc"]')
+    mm_btn_game_vua_choi = (By.XPATH, '//*[@hkatt="mm-btn-game-vua-choi"]')
+
+    mm_btn_nap_tien = (By.XPATH, '//*[@hkatt="mm-btn-nap-tien"]')
+    mm_btn_chuyen_vi = (By.XPATH, '//*[@hkatt="mm-btn-chuyen-vi"]')
+    mm_txt_cvi_tong_vi = (By.XPATH, '//*[@hkatt="mm-txt-cvi-tong-vi"]')
+    mm_txt_cvi_vi_chinh = (By.XPATH, '//*[@hkatt="mm-txt-cvi-vi-chinh"]')
+    mm_txt_cvi_vi_phu = (By.XPATH, '//*[@hkatt="mm-txt-cvi-vi-phu"]')
+    mm_txt_cvi_content = (By.XPATH, '//*[@hkatt="mm-txt-cvi-content"]')
+    mm_btn_cvi_nap_tien = (By.XPATH, '//*[@hkatt="mm-btn-cvi-nap-tien"]')
+
+    mm_btn_open_dropdown = (By.XPATH, '//*[@hkatt="mm-btn-open-dropdown"]')
+    mm_btn_drop_userinfo = (By.XPATH, '//*[@hkatt="mm-btn-drop-userinfo"]')
+    mm_btn_drop_recharge = (By.XPATH, '//*[@hkatt="mm-btn-drop-recharge"]')
+    mm_btn_drop_withdraw = (By.XPATH, '//*[@hkatt="mm-btn-drop-withdraw"]')
+    mm_btn_drop_history = (By.XPATH, '//*[@hkatt="mm-btn-drop-history"]')
+    mm_btn_drop_promo = (By.XPATH, '//*[@hkatt="mm-btn-drop-promo"]')
+    mm_btn_drop_news = (By.XPATH, '//*[@hkatt="mm-btn-drop-news"]')
+    mm_btn_drop_logout = (By.XPATH, '//*[@hkatt="mm-btn-drop-logout"]')
 
 
 class CongGameLocators(object):
-    cg_btn_type_all = (By.XPATH,'//*[@hkatt="cg-btn-type-all"]')
-    cg_btn_type_no_hu = (By.XPATH,'//*[@hkatt="cg-btn-type-no-hu"]')
-    cg_btn_type_ban_ca = (By.XPATH,'//*[@hkatt="cg-btn-type-ban-ca"]')
-    cg_btn_type_lo_de = (By.XPATH,'//*[@hkatt="cg-btn-type-lo-de"]')
-    cg_btn_type_ingame = (By.XPATH,'//*[@hkatt="cg-btn-type-ingame"]')
-    cg_btn_type_table_game = (By.XPATH,'//*[@hkatt="cg-btn-type-table-game"]')
-    cg_btn_type_game_nhanh = (By.XPATH,'//*[@hkatt="cg-btn-type-game-nhanh"]')
+    cg_btn_type_all = (By.XPATH, '//*[@hkatt="cg-btn-type-all"]')
+    cg_btn_type_no_hu = (By.XPATH, '//*[@hkatt="cg-btn-type-no-hu"]')
+    cg_btn_type_ban_ca = (By.XPATH, '//*[@hkatt="cg-btn-type-ban-ca"]')
+    cg_btn_type_lo_de = (By.XPATH, '//*[@hkatt="cg-btn-type-lo-de"]')
+    cg_btn_type_ingame = (By.XPATH, '//*[@hkatt="cg-btn-type-ingame"]')
+    cg_btn_type_table_game = (By.XPATH, '//*[@hkatt="cg-btn-type-table-game"]')
+    cg_btn_type_game_nhanh = (By.XPATH, '//*[@hkatt="cg-btn-type-game-nhanh"]')
 
-    cg_btn_ncc_selector = (By.XPATH,'//*[@hkatt="cg-btn-ncc-selector"]')
-    cg_btn_ncc_all = (By.XPATH,'//*[@hkatt="cg-btn-ncc-all"]')
-    cg_btn_ncc_techplay = (By.XPATH,'//*[@hkatt="cg-btn-ncc-techplay"]')
-    cg_btn_ncc_pragmatic_play = (By.XPATH,'//*[@hkatt="cg-btn-ncc-pragmatic-play"]')
-    cg_btn_ncc_cq9 = (By.XPATH,'//*[@hkatt="cg-btn-ncc-cq9"]')
-    cg_btn_ncc_tomhorn = (By.XPATH,'//*[@hkatt="cg-btn-ncc-tomhorn"]')
-    cg_btn_ncc_playngo = (By.XPATH,'//*[@hkatt="cg-btn-ncc-playngo"]')
-    
-    # NOT DONE
-    Sort_Nhieu_nguoi_choi = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][1]')
-    Sort_Dang_hot = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][2]')
-    Sort_Pho_bien = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][3]')
-    Sort_Moi_nhat = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][4]')
-    Sort_a_z = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][5]')
+    cg_btn_ncc_selector = (By.XPATH, '//*[@hkatt="cg-btn-ncc-selector"]')
+    cg_btn_ncc_all = (By.XPATH, '//*[@hkatt="cg-btn-ncc-all"]')
+    cg_btn_ncc_techplay = (By.XPATH, '//*[@hkatt="cg-btn-ncc-techplay"]')
+    cg_btn_ncc_pragmatic_play = (By.XPATH, '//*[@hkatt="cg-btn-ncc-pragmatic-play"]')
+    cg_btn_ncc_cq9 = (By.XPATH, '//*[@hkatt="cg-btn-ncc-cq9"]')
+    cg_btn_ncc_tomhorn = (By.XPATH, '//*[@hkatt="cg-btn-ncc-tomhorn"]')
+    cg_btn_ncc_playngo = (By.XPATH, '//*[@hkatt="cg-btn-ncc-playngo"]')
 
-    btn_Xem_them = UiObject(By.CLASS_NAME, 'game-section__load-more')
-    List_Game_Load = UiObject(By.XPATH, '//div[contains(@class,"game-list")]/div')
-    List_Game_Load_Name = UiObject(By.XPATH, '//div[contains(@class,"game-list")]/div/div/a')
-    List_Game_Heading = UiObject(By.XPATH, '//h1[contains(@class,"game-section__title")]')
+    cg_btn_sort_nhieu_nguoi_choi = (By.XPATH, '//*[@hkatt="cg-btn-sort-nhieu-nguoi-choi"]')
+    cg_btn_sort_dang_hot = (By.XPATH, '//*[@hkatt="cg-btn-sort-dang-hot"]')
+    cg_btn_sort_pho_bien = (By.XPATH, '//*[@hkatt="cg-btn-sort-pho-bien"]')
+    cg_btn_sort_moi_nhat = (By.XPATH, '//*[@hkatt="cg-btn-sort-moi-nhat"]')
+    cg_btn_sort_a_z = (By.XPATH, '//*[@hkatt="cg-btn-sort-a-z"]')
 
-    List_type = [
-        [Type_All, 'Tất Cả', 'type=all'],
-        [Type_No_hu, 'Nổ Hũ', 'type=slots'],
-        [Type_Ban_ca, 'Bắn Cá', 'type=fishing'],
-        [Type_Game_nhanh, 'Game Nhanh', 'type=instant'],
-        [Type_Ingame, 'InGame', 'type=ingame'],
-        [Type_Table_game, 'Table Games', 'type=tables'],
-        [Type_Lo_de, 'Lô Đề', 'type=lode']
+    cg_btn_xem_them = (By.XPATH, '//*[@hkatt="cg-btn-xem-them"]')
+    cg_lst_danh_sach_game = (By.XPATH, '//*[@hkatt="cg-lst-danh-sach-game"]')
+    cg_lst_danh_sach_ten_game = (By.XPATH, '//*[@hkatt="cg-lst-danh-sach-ten-game"]')
+    cg_txt_heading_title = (By.XPATH, '//*[@hkatt="cg-txt-heading-title"]')
+    # Ce NOT DONE
+
+    data_list_type = [
+        [cg_btn_type_all, 'Tất Cả', 'type=all'],
+        [cg_btn_type_no_hu, 'Nổ Hũ', 'type=slots'],
+        [cg_btn_type_ban_ca, 'Bắn Cá', 'type=fishing'],
+        [cg_btn_type_game_nhanh, 'Game Nhanh', 'type=instant'],
+        [cg_btn_type_ingame, 'InGame', 'type=ingame'],
+        [cg_btn_type_table_game, 'Table Games', 'type=tables'],
+        [cg_btn_type_lo_de, 'Lô Đề', 'type=lode']
     ]
 
-    List_NCC = [
+    data_list_ncc = [
         # [NCC_btn_All, 'Tất Cả', 'ncc=all'],
-        [NCC_btn_PragmaticPlay, 'Pragmatic Play', 'ncc=pragmatic'],
-        [NCC_btn_CQ9, 'CQ9', 'ncc=cq9'],
-        [NCC_btn_Techplay, 'Techplay', 'ncc=vingame'],
-        [NCC_btn_Tomhorn, 'Tomhorn Gaming', 'ncc=tomhorn'],
-        [NCC_btn_PlaynGo, 'Play’n GO', 'ncc=playngo']
+        [cg_btn_ncc_pragmatic_play, 'Pragmatic Play', 'ncc=pragmatic'],
+        [cg_btn_ncc_cq9, 'CQ9', 'ncc=cq9'],
+        [cg_btn_ncc_techplay, 'Techplay', 'ncc=vingame'],
+        [cg_btn_ncc_tomhorn, 'Tomhorn Gaming', 'ncc=tomhorn'],
+        [cg_btn_ncc_playngo, 'Play’n GO', 'ncc=playngo']
     ]
 
-    List_Sort = [
-        [Sort_Nhieu_nguoi_choi, 'Nhiều Người Chơi', 'sx=most-played'],
-        [Sort_Dang_hot, 'Đang Hot', 'sx=hot'],
-        [Sort_Pho_bien, 'Phổ Biến', 'sx=popular'],
-        [Sort_Moi_nhat, 'Mới Nhất', 'sx=new'],
-        [Sort_a_z, 'A-Z', 'sx=name']
+    data_list_sort = [
+        [cg_btn_sort_nhieu_nguoi_choi, 'Nhiều Người Chơi', 'sx=most-played'],
+        [cg_btn_sort_dang_hot, 'Đang Hot', 'sx=hot'],
+        [cg_btn_sort_pho_bien, 'Phổ Biến', 'sx=popular'],
+        [cg_btn_sort_moi_nhat, 'Mới Nhất', 'sx=new'],
+        [cg_btn_sort_a_z, 'A-Z', 'sx=name']
     ]
 
 
 class CasinoLocators(object):
-    NCC_All = UiObject(By.CLASS_NAME, 'game-menu-item-icon__tab')
-    NCC_Evolution = UiObject(By.XPATH, '//div[contains(@class,"game-menu-item")][2]')
-    NCC_Ebet = UiObject(By.XPATH, '//div[contains(@class,"game-menu-item")][3]')
-    NCC_Vivo = UiObject(By.XPATH, '//div[contains(@class,"game-menu-item")][4]')
-    NCC_Allbet = UiObject(By.XPATH, '//div[contains(@class,"game-menu-item")][5]')
-    NCC_HGaming = UiObject(By.XPATH, '//div[contains(@class,"game-menu-item")][6]')
+    lc_btn_ncc_all = (By.XPATH, '//*[@hkatt="lc-btn-ncc-all"]')
+    lc_btn_ncc_evolution = (By.XPATH, '//*[@hkatt="lc-btn-ncc-evolution"]')
+    lc_btn_ncc_ebet = (By.XPATH, '//*[@hkatt="lc-btn-ncc-ebet"]')
+    lc_btn_ncc_vivogaming = (By.XPATH, '//*[@hkatt="lc-btn-ncc-vivogaming"]')
+    lc_btn_ncc_allbet = (By.XPATH, '//*[@hkatt="lc-btn-ncc-allbet"]')
+    lc_btn_ncc_hogaming = (By.XPATH, '//*[@hkatt="lc-btn-ncc-hogaming"]')
 
-    Game_selector = UiObject(By.CLASS_NAME, 'btn-secondary')
-    Game_Baccarat = UiObject(By.XPATH, '//input[@value="baccarat"]/parent::div/parent::label/parent::a/parent::li')
-    Game_Sicbo = UiObject(By.XPATH, '//input[@value="sicbo"]/parent::div/parent::label/parent::a/parent::li')
-    Game_Roulette = UiObject(By.XPATH, '//input[@value="roulette"]/parent::div/parent::label/parent::a/parent::li')
+    lc_btn_game_type_selector = (By.XPATH, '//*[@hkatt="lc-btn-game-type-selector"]')
+    lc_btn_game_type_baccarat = (By.XPATH, '//*[@hkatt="lc-btn-game-type-baccarat"]')
+    lc_btn_game_type_sicbo = (By.XPATH, '//*[@hkatt="lc-btn-game-type-sicbo"]')
+    lc_btn_game_type_roulette = (By.XPATH, '//*[@hkatt="lc-btn-game-type-roulette"]')
 
-    Sort_Nhieu_nguoi_choi = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][1]')
-    Sort_Dang_hot = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][2]')
-    Sort_Pho_bien = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][3]')
-    Sort_Moi_nhat = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][4]')
-    Sort_a_z = UiObject(By.XPATH, '//label[contains(@class,"base-radio__wrap")][5]')
+    lc_btn_sort_nhieu_nguoi_choi = (By.XPATH, '//*[@hkatt="lc-btn-sort-nhieu-nguoi-choi"]')
+    lc_btn_sort_dang_hot = (By.XPATH, '//*[@hkatt="lc-btn-sort-dang-hot"]')
+    lc_btn_sort_pho_bien = (By.XPATH, '//*[@hkatt="lc-btn-sort-pho-bien"]')
+    lc_btn_sort_moi_nhat = (By.XPATH, '//*[@hkatt="lc-btn-sort-moi-nhat"]')
+    lc_btn_sort_a_z = (By.XPATH, '//*[@hkatt="lc-btn-sort-a-z"]')
 
-    List_Game_Load = UiObject(By.XPATH, '//div[contains(@class,"lobby-casino-list")]/div')
-    List_Game_Heading = UiObject(By.CLASS_NAME, 'lobby-casino-section__title')
+    lc_btn_xem_them = (By.XPATH, '//*[@hkatt="lc-btn-xem-them"]')
+    lc_lst_danh_sach_game = (By.XPATH, '//*[@hkatt="lc-lst-danh-sach-game"]')
+    lc_lst_danh_sach_ten_game = (By.XPATH, '//*[@hkatt="lc-lst-danh-sach-ten-game"]')
+    lc_txt_heading_title = (By.XPATH, '//*[@hkatt="lc-txt-heading-title"]')
 
     # Data
-    List_Game = [
-        [Game_Baccarat, 'Baccarat', 'type=baccarat'],
-        # [Game_Sicbo, 'Sicbo', 'type=sicbo'],
-        [Game_Roulette, 'Roulette', 'type=roulette']
+    data_list_game_type = [
+        [lc_btn_game_type_baccarat, 'Baccarat', 'type=baccarat'],
+        # [lc_btn_game_type_sicbo, 'Sicbo', 'type=sicbo'],
+        [lc_btn_game_type_roulette, 'Roulette', 'type=roulette']
     ]
 
-    List_NCC = [
-        [NCC_All, 'All', 'ncc=all'],
-        [NCC_Evolution, 'Evolution', 'ncc=evo'],
-        [NCC_Ebet, 'Ebet', 'ncc=ebet'],
-        [NCC_Vivo, 'VivoGaming', 'ncc=vivo'],
-        [NCC_Allbet, 'Allbet', 'ncc=allbet'],
-        [NCC_HGaming, 'HGaming', 'ncc=hogaming']
+    data_list_ncc = [
+        [lc_btn_ncc_all, 'All', 'ncc=all'],
+        [lc_btn_ncc_evolution, 'Evolution', 'ncc=evo'],
+        [lc_btn_ncc_ebet, 'Ebet', 'ncc=ebet'],
+        [lc_btn_ncc_vivogaming, 'VivoGaming', 'ncc=vivo'],
+        [lc_btn_ncc_allbet, 'Allbet', 'ncc=allbet'],
+        [lc_btn_ncc_hogaming, 'HGaming', 'ncc=hogaming']
     ]
 
-    List_Sort = [
-        [Sort_Nhieu_nguoi_choi, 'Nhiều Người Chơi', 'sx=most-played'],
-        [Sort_Dang_hot, 'Đang Hot', 'sx=hot'],
-        [Sort_Pho_bien, 'Phổ Biến', 'sx=popular'],
-        [Sort_Moi_nhat, 'Mới Nhất', 'sx=new'],
-        # [Sort_a_z, 'A-Z', 'sx=name']
+    data_list_sort = [
+        [lc_btn_sort_nhieu_nguoi_choi, 'Nhiều Người Chơi', 'sx=most-played'],
+        [lc_btn_sort_dang_hot, 'Đang Hot', 'sx=hot'],
+        [lc_btn_sort_pho_bien, 'Phổ Biến', 'sx=popular'],
+        [lc_btn_sort_moi_nhat, 'Mới Nhất', 'sx=new'],
+        # [lc_btn_sort_a_z, 'A-Z', 'sx=name']
     ]
 
 
 class LoginLocators(object):
-    input_username = UiObject(By.XPATH, '//form/div[1]/div/input')
-    input_password = UiObject(By.XPATH, '//form/div[2]/div/input')
+    lg_in_username = (By.XPATH, '//*[@hkatt="lg-in-username"]')
+    lg_in_password = (By.XPATH, '//*[@hkatt="lg-in-password"]')
 
-    text_error_username = UiObject(By.XPATH, '//form/div[1]/p[@class="error"]')
-    text_error_password = UiObject(By.XPATH, '//form/div[2]/p[@class="error"]')
+    lg_txt_password_error = (By.XPATH, '//*[@hkatt="lg-txt-password-error"]')
+    lg_txt_usernam_error = (By.XPATH, '//*[@hkatt="lg-txt-usernam-error"]')
 
-    btn_show_password = UiObject(By.CLASS_NAME, 'icon-eye-hide')
-    btn_hide_password = UiObject(By.CLASS_NAME, 'icon-eye-show')
-    btn_login = UiObject(By.CLASS_NAME, 'login-form__submit')
-    btn_close = UiObject(By.CLASS_NAME, 'close-user-modal')
+    lg_ico_show_password = (By.XPATH, '//*[@hkatt="lg-ico-show-password"]')
+    lg_ico_hide_password = (By.XPATH, '//*[@hkatt="lg-ico-hide-password"]')
+    lg_btn_login = (By.XPATH, '//*[@hkatt="lg-btn-login"]')
 
-    popup_error = UiObject(By.XPATH, '//div[@class="swal-modal"]')
-    popup_error_title = UiObject(By.XPATH, '//div[@class="swal-title"]')
-    popup_error_content = UiObject(By.XPATH, '//div[@class="swal-text"]')
-    popup_error_btn_confirm = UiObject(By.CLASS_NAME, 'swal-button--confirm')
+
+class PopupLocators(object):
+    pop_btn_close = (By.XPATH, '//*[@hkatt="pop-btn-close"]')
+    pop_el_is_display = (By.XPATH, '//*[@hkatt="pop-el-is-display"]')
+    pop_txt_title = (By.XPATH, '//*[@hkatt="pop-txt-title"]')
+    pop_txt_content = (By.XPATH, '//*[@hkatt="pop-txt-content"]')
+    pop_btn_confirm = (By.XPATH, '//*[@hkatt="pop-btn-confirm"]')
 
 
 class SignupLocators(object):
-    username = UiObject(By.XPATH, '//form/div[1]/div/input')
-    password = UiObject(By.XPATH, '//form/div[2]/div/input')
-    re_password = UiObject(By.NAME, 'confirmPassword')
-    phoneno = UiObject(By.NAME, 'phoneNumber')
-    invite_code = UiObject(By.XPATH, '//form/div[5]/div/input')
+    su_in_username = (By.XPATH, '//*[@hkatt="su-in-username"]')
+    su_in_password = (By.XPATH, '//*[@hkatt="su-in-password"]')
+    su_in_repassword = (By.XPATH, '//*[@hkatt="su-in-repassword"]')
+    su_in_phone_no = (By.XPATH, '//*[@hkatt="su-in-phone-no"]')
+    su_in_invite_code = (By.XPATH, '//*[@hkatt="su-in-invite-code"]')
 
-    username_error = UiObject(By.XPATH, '//form/div[1]/p[@class="error"]')
-    password_error = UiObject(By.XPATH, '//form/div[2]/p[@class="error"]')
-    re_password_error = UiObject(By.XPATH, '//form/div[3]/p[@class="error"]')
-    phoneno_error = UiObject(By.XPATH, '//form/div[4]/p[@class="error"]')
+    su_txt_username_error = (By.XPATH, '//*[@hkatt="su-txt-username-error"]')
+    su_txt_password_error = (By.XPATH, '//*[@hkatt="su-txt-password-error"]')
+    su_txt_repassword_error = (By.XPATH, '//*[@hkatt="su-txt-repassword-error"]')
+    su_txt_phone_no_error = (By.XPATH, '//*[@hkatt="su-txt-phone-no-error"]')
 
-    show_pass = UiObject(By.XPATH, '//input[@placeholder="Mật khẩu"]/parent::div/span[contains(@class,"icon-eye-hide")]')
-    hide_pass = UiObject(By.XPATH, '//input[@placeholder="Mật khẩu"]/parent::div/span[contains(@class,"icon-eye-show")]')
-    show_repass = UiObject(By.XPATH, '//input[@placeholder="Nhập lại mật khẩu"]/parent::div/span[contains(@class,"icon-eye-hide")]')
-    hide_repass = UiObject(By.XPATH, '//input[@placeholder="Nhập lại mật khẩu"]/parent::div/span[contains(@class,"icon-eye-show")]')
+    su_ico_show_password = (By.XPATH, '//*[@hkatt="su-ico-show-password"]')
+    su_ico_hide_password = (By.XPATH, '//*[@hkatt="su-ico-hide-password"]')
+    su_ico_show_repassword = (By.XPATH, '//*[@hkatt="su-ico-show-repassword"]')
+    su_ico_hide_repassword = (By.XPATH, '//*[@hkatt="su-ico-hide-repassword"]')
 
-    btn_register = UiObject(By.CLASS_NAME, 'register-form__submit')
-    btn_close = UiObject(By.CLASS_NAME, 'close-user-modal')
-    btn_agree = UiObject(By.CLASS_NAME, 'checkmark')
+    su_btn_agree_tou = (By.XPATH, '//*[@hkatt="su-btn-agree-tou"]')
+    su_btn_register = (By.XPATH, '//*[@hkatt="su-btn-register"]')
+    su_btn_close = (By.XPATH, '//*[@hkatt="su-btn-close"]')
 
-    popup_error = UiObject(By.XPATH, '//div[@class="swal-modal"]')
-    popup_error_title = UiObject(By.XPATH, '//div[@class="swal-title"]')
-    popup_error_content = UiObject(By.XPATH, '//div[@class="swal-text"]')
-    popup_error_btn_confirm = UiObject(By.CLASS_NAME, 'swal-button--confirm')
+
+class LeftPanelLocator(object):
+    lp_txt_left_panel_username = (By.XPATH, '//*[@hkatt="lp-txt-left-panel-username"]')
+    lp_txt_left_panel_so_tien = (By.XPATH, '//*[@hkatt="lp-txt-left-panel-so-tien"]')
+    lp_txt_left_panel_vi_chinh = (By.XPATH, '//*[@hkatt="lp-txt-left-panel-vi-chinh"]')
+    lp_txt_left_panel_vi_phu = (By.XPATH, '//*[@hkatt="lp-txt-left-panel-vi-phu"]')
+
+    lp_btn_left_panel_user_info = (By.XPATH, '//*[@hkatt="lp-btn-left-panel-user-info"]')
+    lp_btn_left_panel_recharge = (By.XPATH, '//*[@hkatt="lp-btn-left-panel-recharge"]')
+    lp_btn_left_panel_withdraw = (By.XPATH, '//*[@hkatt="lp-btn-left-panel-withdraw"]')
+    lp_btn_left_panel_history = (By.XPATH, '//*[@hkatt="lp-btn-left-panel-history"]')
+    lp_btn_left_panel_promo = (By.XPATH, '//*[@hkatt="lp-btn-left-panel-promo"]')
+    lp_btn_left_panel_logout = (By.XPATH, '//*[@hkatt="lp-btn-left-panel-logout"]')
 
 
 class UserInfoLocator(object):
-    # DROP DOWN MENU
-    drop_info = UiObject(By.XPATH, '//ul/div/li[@role="presentation"][1]')
-    drop_nap_tien = UiObject(By.XPATH, '//ul/div/li[@role="presentation"][2]')
-    drop_rut_tien = UiObject(By.XPATH, '//ul/div/li[@role="presentation"][3]')
-    drop_lich_su = UiObject(By.XPATH, '//ul/div/li[@role="presentation"][4]')
-    drop_khuyen_mai = UiObject(By.XPATH, '//ul/div/li[@role="presentation"][5]')
-    drop_tin_tuc = UiObject(By.XPATH, '//ul/div/li[@role="presentation"][6]')
-    drop_logout = UiObject(By.XPATH, '//ul/div[@class="logout"]')
-    drop_username = UiObject(By.XPATH, '//div[@class="user-name"]/span')
+    ui_btn_tab_user_info = (By.XPATH, '//*[@hkatt="ui-btn-tab-user-info"]')
+    ui_btn_tab_change_pass = (By.XPATH, '//*[@hkatt="ui-btn-tab-change-pass"]')
+    ui_btn_tab_bank_info = (By.XPATH, '//*[@hkatt="ui-btn-tab-bank-info"]')
 
-    # LEFT MENU
-    btn_userinfo = UiObject(By.XPATH, '//span[@class="icon-information"]/parent::a/parent::li')
-    btn_nap = UiObject(By.XPATH, '//span[@class="icon-deposit"]/parent::a/parent::li')
-    btn_rut = UiObject(By.XPATH, '//span[@class="icon-withdraw"]/parent::a/parent::li')
-    btn_history = UiObject(By.XPATH, '//span[@class="icon-history"]/parent::a/parent::li')
-    btn_promotion = UiObject(By.XPATH, '//span[@class="icon-promotion"]/parent::a/parent::li')
-    btn_logout = UiObject(By.CLASS_NAME, 'menu-info__logout')
-    txt_username = UiObject(By.CLASS_NAME, 'menu-info__name')
+    ui_in_account_name = (By.XPATH, '//*[@hkatt="ui-in-account-name"]')
+    ui_in_account_email = (By.XPATH, '//*[@hkatt="ui-in-account-email"]')
+    ui_in_phone_no = (By.XPATH, '//*[@hkatt="ui-in-phone-no"]')
+    ui_txt_account_name_error = (By.XPATH, '//*[@hkatt="ui-txt-account-name-error"]')
+    ui_txt_account_email_error = (By.XPATH, '//*[@hkatt="ui-txt-account-email-error"]')
+    ui_txt_phone_no_error = (By.XPATH, '//*[@hkatt="ui-txt-phone-no-error"]')
+    ui_btn_email_confirm = (By.XPATH, '//*[@hkatt="ui-btn-email-confirm"]')
+    ui_btn_phone_no_confirm = (By.XPATH, '//*[@hkatt="ui-btn-phone-no-confirm"]')
+    ui_btn_info_confirm = (By.XPATH, '//*[@hkatt="ui-btn-info-confirm"]')
 
-    # TAB
-    tab_info = UiObject(By.XPATH, '//ul/li[@class="nav-item"][1]')
-    tab_changepass = UiObject(By.XPATH, '//ul/li[@class="nav-item"][2]')
-    tab_bankaccount = UiObject(By.XPATH, '//ul/li[@class="nav-item"][3]')
+    ui_in_current_password = (By.XPATH, '//*[@hkatt="ui-in-current-password"]')
+    ui_in_new_password = (By.XPATH, '//*[@hkatt="ui-in-new-password"]')
+    ui_in_re_new_password = (By.XPATH, '//*[@hkatt="ui-in-re-new-password"]')
+    ui_ico_show_current_pass = (By.XPATH, '//*[@hkatt="ui-ico-show-current-pass"]')
+    ui_ico_hide_current_pass = (By.XPATH, '//*[@hkatt="ui-ico-hide-current-pass"]')
+    ui_ico_show_new_pass = (By.XPATH, '//*[@hkatt="ui-ico-show-new-pass"]')
+    ui_ico_hide_new_pass = (By.XPATH, '//*[@hkatt="ui-ico-hide-new-pass"]')
+    ui_ico_show_re_new_pass = (By.XPATH, '//*[@hkatt="ui-ico-show-re-new-pass"]')
+    ui_ico_hide_re_new_pass = (By.XPATH, '//*[@hkatt="ui-ico-hide-re-new-pass"]')
+    ui_btn_change_pass_confirm = (By.XPATH, '//*[@hkatt="ui-btn-change-pass-confirm"]')
 
-    # CẬP NHẬT THÔNG TIN CÁ NHÂN
-    info_name = UiObject(By.XPATH, '//div/div[1]/div/input')
-    info_name_error = UiObject(By.XPATH, '//div/div[1]/p[@class="error"]')
-    info_email = UiObject(By.XPATH, '//div/div[2]/div/input')
-    info_email_error = UiObject(By.XPATH, '//div/div[2]/p[@class="error"]')
-    info_email_authen = UiObject(By.XPATH, '//div/div[2]/div/p[@class="info-personal__authen"')
-    info_phone = UiObject(By.XPATH, '//div/div[3]/div/input')
-    info_phone_authen = UiObject(By.XPATH, '//div/div[3]/div/p[@class="info-personal__authen"')
-    info_confirm = UiObject(By.XPATH, '//div[@class="tab-content"]/div/div/div/div/button')
+    ui_btn_them_ngan_hang = (By.XPATH, '//*[@hkatt="ui-btn-them-ngan-hang"]')
 
     # CONFIRM POPUP
-    popup_cf = UiObject(By.ID, 'authen-email___BV_modal_content_')
-    popup_cf_title = UiObject(By.CLASS_NAME, 'modal__content__title')
-    popup_cf_content = UiObject(By.CLASS_NAME, 'content-form__desc')
-    popup_cf_btn_confirm = UiObject(By.XPATH, '//div[@class="modal__content__inner"]/div/div/button')
-    popup_cf_close = UiObject(By.CLASS_NAME, 'icon-close')
-    popup_cf_resend = UiObject(By.XPATH, '//p[@class="content-form__note"]/span')
-
-    # ERROR POPUP
-    popup_error = UiObject(By.XPATH, '//div[@class="swal-modal"]')
-    popup_error_title = UiObject(By.XPATH, '//div[@class="swal-title"]')
-    popup_error_content = UiObject(By.XPATH, '//div[@class="swal-text"]')
-    popup_error_btn_confirm = UiObject(By.CLASS_NAME, 'swal-button--confirm')
-
-    # THAY ĐỔI MẬT KHẨU
-    chg_cur_pass = UiObject(By.XPATH, '//div/div[1]/div/input')
-    chg_cur_pass_error = UiObject(By.XPATH, '//div/div[1]/p[@class="error"]')
-    chg_new_pass = UiObject(By.XPATH, '//div/div[2]/div/input')
-    chg_new_pass_error = UiObject(By.XPATH, '//div/div[2]/p[@class="error"]')
-    chg_re_new_pass = UiObject(By.XPATH, '//div/div[3]/div/input')
-    chg_re_new_pass_error = UiObject(By.XPATH, '//div/div[3]/p[@class="error"]')
-    chg_confirm = UiObject(By.XPATH, '//div[@class="tab-content"]/div/div/div/div/button')
-    show_cur_pass = UiObject(By.XPATH, '//div[@class="tab-content"]/div/div/div/div[1]/div/span')
-    hide_cur_pass = UiObject(By.XPATH, '//div[@class="tab-content"]/div/div/div/div[1]/div/span')
-    show_new_pass = UiObject(By.XPATH, '//div[@class="tab-content"]/div/div/div/div[2]/div/span')
-    hide_new_pass = UiObject(By.XPATH, '//div[@class="tab-content"]/div/div/div/div[2]/div/span')
-    show_re_new_pass = UiObject(By.XPATH, '//div[@class="tab-content"]/div/div/div/div[3]/div/span')
-    hide_re_new_pass = UiObject(By.XPATH, '//div[@class="tab-content"]/div/div/div/div[3]/div/span')
+    ui_el_confirm_popup = (By.XPATH, '//*[@hkatt="ui-el-confirm-popup"]')
+    ui_btn_confirm_confirm = (By.XPATH, '//*[@hkatt="ui-btn-confirm-confirm"]')
+    ui_btn_confirm_close = (By.XPATH, '//*[@hkatt="ui-btn-confirm-close"]')
+    ui_btn_confirm_resend = (By.XPATH, '//*[@hkatt="ui-btn-confirm-resend"]')
+    ui_txt_title = (By.XPATH, '//*[@hkatt="ui-txt-title"]')
+    ui_txt_content = (By.XPATH, '//*[@hkatt="ui-txt-content"]')
 
 
-class RechargeLocators:
-    # TYPE OF RECHARGE
-    rc_bank = UiObject(By.XPATH, '//span[@class="icon-bank"]/parent::div')
-    rc_card = UiObject(By.XPATH, '//span[@class="icon-card"]/parent::div')
-    rc_momo = UiObject(By.XPATH, '//span[@class="icon-momo"]/parent::div')
-    rc_paywin = UiObject(By.XPATH, '//span[@class="icon-paywin"]/parent::div')
-
+class RechargeLocators(object):
     # SELECT BONUS AT THE FIRST TIME
-    first_100 = UiObject(By.CLASS_NAME, 'deposit-welcome__item--package-2')
-    first_40 = UiObject(By.CLASS_NAME, 'deposit-welcome__item--package-3')
-    first_125 = UiObject(By.CLASS_NAME, 'deposit-welcome__item--package-1')
+    rc_btn_first_recharge_100 = (By.XPATH, '//*[@hkatt="rc-btn-first-recharge-100"]')
+    rc_btn_first_recharge_40 = (By.XPATH, '//*[@hkatt="rc-btn-first-recharge-40"]')
+    rc_btn_first_recharge_1dot6 = (By.XPATH, '//*[@hkatt="rc-btn-first-recharge-1dot6"]')
 
-    first_100_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-welcome__item--package-2")]/div')
-    first_40_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-welcome__item--package-3")]/div')
-    first_125_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-welcome__item--package-1")]/div')
+    rc_btn_tab_bank = (By.XPATH, '//*[@hkatt="rc-btn-tab-bank"]')
+    rc_btn_tab_card = (By.XPATH, '//*[@hkatt="rc-btn-tab-card"]')
+    rc_btn_tab_momo = (By.XPATH, '//*[@hkatt="rc-btn-tab-momo"]')
+    rc_btn_tab_paywin = (By.XPATH, '//*[@hkatt="rc-btn-tab-paywin"]')
 
-    # SELECT BANK
-    bank_Selector = UiObject(By.CLASS_NAME, 'base-select__inner')
-    bank_Sacombank = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[2]')
-    bank_Techcombank = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[3]')
-    bank_Vietcombank = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[4]')
-    bank_VietinBank = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[5]')
-    bank_ACB = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[6]')
-    bank_DongA = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[7]')
+    rc_btn_bank_selector = (By.XPATH, '//*[@hkatt="rc-btn-bank-selector"]')
+    rc_btn_bank_sacombank = (By.XPATH, '//*[@hkatt="rc-btn-bank-sacombank"]')
+    rc_btn_bank_techcombank = (By.XPATH, '//*[@hkatt="rc-btn-bank-techcombank"]')
+    rc_btn_bank_vietcombank = (By.XPATH, '//*[@hkatt="rc-btn-bank-vietcombank"]')
+    rc_btn_bank_vietinbank = (By.XPATH, '//*[@hkatt="rc-btn-bank-vietinbank"]')
+    rc_btn_bank_acb = (By.XPATH, '//*[@hkatt="rc-btn-bank-acb"]')
+    rc_btn_bank_donga = (By.XPATH, '//*[@hkatt="rc-btn-bank-donga"]')
+
+    rc_btn_bank_type_ibanking = (By.XPATH, '//*[@hkatt="rc-btn-bank-type-ibanking"]')
+    rc_btn_bank_type_atm = (By.XPATH, '//*[@hkatt="rc-btn-bank-type-atm"]')
+    rc_btn_bank_type_banking = (By.XPATH, '//*[@hkatt="rc-btn-bank-type-banking"]')
+
+    rc_in_bank_amount = (By.XPATH, '//*[@hkatt="rc-in-bank-amount"]')
+    rc_in_bank_sender_name = (By.XPATH, '//*[@hkatt="rc-in-bank-sender-name"]')
+    rc_in_bank_code = (By.XPATH, '//*[@hkatt="rc-in-bank-code"]')
+    rc_txt_bank_amount_error = (By.XPATH, '//*[@hkatt="rc-txt-bank-amount-error"]')
+    rc_txt_bank_sender_name_error = (By.XPATH, '//*[@hkatt="rc-txt-bank-sender-name-error"]')
+    rc_txt_bank_code_error = (By.XPATH, '//*[@hkatt="rc-txt-bank-code-error"]')
+
+    rc_btn_bank_promo_100 = (By.XPATH, '//*[@hkatt="rc-btn-bank-promo-100"]')
+    rc_btn_bank_promo_40 = (By.XPATH, '//*[@hkatt="rc-btn-bank-promo-40"]')
+    rc_btn_bank_promo_1dot6 = (By.XPATH, '//*[@hkatt="rc-btn-bank-promo-1dot6"]')
+
+    rc_txt_bank_real_amount = (By.XPATH, '//*[@hkatt="rc-txt-bank-real-amount"]')
+    rc_txt_bank_amount_promo = (By.XPATH, '//*[@hkatt="rc-txt-bank-amount-promo"]')
+    rc_txt_bank_amount_real = (By.XPATH, '//*[@hkatt="rc-txt-bank-amount-real"]')
+    rc_txt_bank_amount_min_of_bet = (By.XPATH, '//*[@hkatt="rc-txt-bank-amount-min-of-bet"]')
+    rc_txt_bank_time_to_finish = (By.XPATH, '//*[@hkatt="rc-txt-bank-time-to-finish"]')
+
+    rc_btn_bank_recharge_confirm = (By.XPATH, '//*[@hkatt="rc-btn-bank-recharge-confirm"]')
+    rc_txt_bank_suggest_text = (By.XPATH, '//*[@hkatt="rc-txt-bank-suggest-text"]')
+
+    # CARD SELECTOR
+    rc_btn_ncc_viettel = (By.XPATH, '//*[@hkatt="rc-btn-ncc-viettel"]')
+    rc_btn_ncc_vinaphone = (By.XPATH, '//*[@hkatt="rc-btn-ncc-vinaphone"]')
+    rc_btn_ncc_mobifone = (By.XPATH, '//*[@hkatt="rc-btn-ncc-mobifone"]')
+
+    data_percentage_card_fee = {
+        'viettel': 32,
+        'vinaphone': 32,
+        'mobifone': 34
+    }
+
+    rc_btn_card_selector = (By.XPATH,'//*[@hkatt="rc-btn-card-selector"]')
+    rc_btn_card_10k = (By.XPATH,'//*[@hkatt="rc-btn-card-10k"]')
+    rc_btn_card_20k = (By.XPATH,'//*[@hkatt="rc-btn-card-20k"]')
+    rc_btn_card_30k = (By.XPATH,'//*[@hkatt="rc-btn-card-30k"]')
+    rc_btn_card_50k = (By.XPATH,'//*[@hkatt="rc-btn-card-50k"]')
+    rc_btn_card_100k = (By.XPATH,'//*[@hkatt="rc-btn-card-100k"]')
+    rc_btn_card_200k = (By.XPATH,'//*[@hkatt="rc-btn-card-200k"]')
+    rc_btn_card_300k = (By.XPATH,'//*[@hkatt="rc-btn-card-300k"]')
+    rc_btn_card_500k = (By.XPATH,'//*[@hkatt="rc-btn-card-500k"]')
+    rc_btn_card_1000k = (By.XPATH,'//*[@hkatt="rc-btn-card-1000k"]')
+    
+    rc_in_card_pin = (By.XPATH,'//*[@hkatt="rc-in-card-pin"]')
+    rc_in_card_series = (By.XPATH,'//*[@hkatt="rc-in-card-series"]')
+    rc_txt_card_pin_error = (By.XPATH,'//*[@hkatt="rc-txt-card-pin-error"]')
+    rc_txt_card_series_error = (By.XPATH,'//*[@hkatt="rc-txt-card-series-error"]')
 
     # SELECT MOMO ACCOUNT
     momo_Selector = UiObject(By.CLASS_NAME, 'base-select__inner')
@@ -267,15 +317,6 @@ class RechargeLocators:
     momo_account4 = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[5]')
 
     # CARD SELECTOR
-    spp_viettel = UiObject(By.XPATH, '//div[@class="deposit-select-card__list"]/div[1]')
-    spp_vinaphone = UiObject(By.XPATH, '//div[@class="deposit-select-card__list"]/div[2]')
-    spp_mobifone = UiObject(By.XPATH, '//div[@class="deposit-select-card__list"]/div[3]')
-
-    card_fee_percent = {
-        'viettel': 32,
-        'vinaphone': 32,
-        'mobifone': 34
-    }
 
     amount_card_fee = UiObject(By.XPATH, '//li[1]/p[@class="wrapper-info__value"]')
     amount_card_real = UiObject(By.XPATH, '//li[2]/p[@class="wrapper-info__value"]')
