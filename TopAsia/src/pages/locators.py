@@ -240,23 +240,32 @@ class UserInfoLocator(object):
 
 
 class RechargeLocators(object):
-    # SELECT BONUS AT THE FIRST TIME
+    # REUSE LOCATOR
+    rc_btn_recharge_confirm = (By.XPATH,'//*[@hkatt="rc-btn-recharge-confirm"]')
+    rc_btn_huong_dan_nap_tien = (By.XPATH,'//*[@hkatt="rc-btn-huong-dan-nap-tien"]')
+
+    rc_btn_promo_100 = (By.XPATH,'//*[@hkatt="rc-btn-promo-100"]')
+    rc_btn_promo_40 = (By.XPATH,'//*[@hkatt="rc-btn-promo-40"]')
+    rc_btn_promo_1dot6 = (By.XPATH,'//*[@hkatt="rc-btn-promo-1dot6"]')
+
     rc_btn_first_recharge_100 = (By.XPATH, '//*[@hkatt="rc-btn-first-recharge-100"]')
     rc_btn_first_recharge_40 = (By.XPATH, '//*[@hkatt="rc-btn-first-recharge-40"]')
     rc_btn_first_recharge_1dot6 = (By.XPATH, '//*[@hkatt="rc-btn-first-recharge-1dot6"]')
 
+    # USING BANK LOCATOR
     rc_btn_tab_bank = (By.XPATH, '//*[@hkatt="rc-btn-tab-bank"]')
     rc_btn_tab_card = (By.XPATH, '//*[@hkatt="rc-btn-tab-card"]')
     rc_btn_tab_momo = (By.XPATH, '//*[@hkatt="rc-btn-tab-momo"]')
     rc_btn_tab_paywin = (By.XPATH, '//*[@hkatt="rc-btn-tab-paywin"]')
 
-    rc_btn_bank_selector = (By.XPATH, '//*[@hkatt="rc-btn-bank-selector"]')
-    rc_btn_bank_sacombank = (By.XPATH, '//*[@hkatt="rc-btn-bank-sacombank"]')
-    rc_btn_bank_techcombank = (By.XPATH, '//*[@hkatt="rc-btn-bank-techcombank"]')
-    rc_btn_bank_vietcombank = (By.XPATH, '//*[@hkatt="rc-btn-bank-vietcombank"]')
-    rc_btn_bank_vietinbank = (By.XPATH, '//*[@hkatt="rc-btn-bank-vietinbank"]')
-    rc_btn_bank_acb = (By.XPATH, '//*[@hkatt="rc-btn-bank-acb"]')
-    rc_btn_bank_donga = (By.XPATH, '//*[@hkatt="rc-btn-bank-donga"]')
+    rc_btn_bank_selector = (By.XPATH,'//*[@hkatt="rc-btn-bank-selector"]')
+    rc_btn_sacombank = (By.XPATH,'//*[@hkatt="rc-btn-sacombank"]')
+    rc_btn_techcombank = (By.XPATH,'//*[@hkatt="rc-btn-techcombank"]')
+    rc_btn_vietcombank = (By.XPATH,'//*[@hkatt="rc-btn-vietcombank"]')
+    rc_btn_vietinbank = (By.XPATH,'//*[@hkatt="rc-btn-vietinbank"]')
+    rc_btn_acb = (By.XPATH,'//*[@hkatt="rc-btn-acb"]')
+    rc_btn_bidv = (By.XPATH,'//*[@hkatt="rc-btn-bidv"]')
+    rc_btn_donga = (By.XPATH,'//*[@hkatt="rc-btn-donga"]')
 
     rc_btn_bank_type_ibanking = (By.XPATH, '//*[@hkatt="rc-btn-bank-type-ibanking"]')
     rc_btn_bank_type_atm = (By.XPATH, '//*[@hkatt="rc-btn-bank-type-atm"]')
@@ -273,7 +282,8 @@ class RechargeLocators(object):
     rc_btn_bank_promo_40 = (By.XPATH, '//*[@hkatt="rc-btn-bank-promo-40"]')
     rc_btn_bank_promo_1dot6 = (By.XPATH, '//*[@hkatt="rc-btn-bank-promo-1dot6"]')
 
-    rc_txt_bank_real_amount = (By.XPATH, '//*[@hkatt="rc-txt-bank-real-amount"]')
+    rc_txt_bank_output_amount = (By.XPATH, '//*[@hkatt="rc-txt-bank-output-amount"]')
+
     rc_txt_bank_amount_promo = (By.XPATH, '//*[@hkatt="rc-txt-bank-amount-promo"]')
     rc_txt_bank_amount_real = (By.XPATH, '//*[@hkatt="rc-txt-bank-amount-real"]')
     rc_txt_bank_amount_min_of_bet = (By.XPATH, '//*[@hkatt="rc-txt-bank-amount-min-of-bet"]')
@@ -282,7 +292,14 @@ class RechargeLocators(object):
     rc_btn_bank_recharge_confirm = (By.XPATH, '//*[@hkatt="rc-btn-bank-recharge-confirm"]')
     rc_txt_bank_suggest_text = (By.XPATH, '//*[@hkatt="rc-txt-bank-suggest-text"]')
 
-    # CARD SELECTOR
+    rc_btn_bank_copy_owner = (By.XPATH, '//*[@hkatt="rc-btn-bank-copy-owner"]')
+    rc_btn_bank_copy_account_no = (By.XPATH, '//*[@hkatt="rc-btn-bank-copy-account-no"]')
+    rc_btn_bank_copy_brand = (By.XPATH, '//*[@hkatt="rc-btn-bank-copy-brand"]')
+    rc_txt_bank_copy_owner = (By.XPATH, '//*[@hkatt="rc-txt-bank-copy-owner"]')
+    rc_txt_bank_copy_account_no = (By.XPATH, '//*[@hkatt="rc-txt-bank-copy-account-no"]')
+    rc_txt_bank_copy_brand = (By.XPATH, '//*[@hkatt="rc-txt-bank-copy-brand"]')
+
+    # RECHARGE USING CARD SELECTOR
     rc_btn_ncc_viettel = (By.XPATH, '//*[@hkatt="rc-btn-ncc-viettel"]')
     rc_btn_ncc_vinaphone = (By.XPATH, '//*[@hkatt="rc-btn-ncc-vinaphone"]')
     rc_btn_ncc_mobifone = (By.XPATH, '//*[@hkatt="rc-btn-ncc-mobifone"]')
@@ -293,104 +310,55 @@ class RechargeLocators(object):
         'mobifone': 34
     }
 
-    rc_btn_card_selector = (By.XPATH,'//*[@hkatt="rc-btn-card-selector"]')
-    rc_btn_card_10k = (By.XPATH,'//*[@hkatt="rc-btn-card-10k"]')
-    rc_btn_card_20k = (By.XPATH,'//*[@hkatt="rc-btn-card-20k"]')
-    rc_btn_card_30k = (By.XPATH,'//*[@hkatt="rc-btn-card-30k"]')
-    rc_btn_card_50k = (By.XPATH,'//*[@hkatt="rc-btn-card-50k"]')
-    rc_btn_card_100k = (By.XPATH,'//*[@hkatt="rc-btn-card-100k"]')
-    rc_btn_card_200k = (By.XPATH,'//*[@hkatt="rc-btn-card-200k"]')
-    rc_btn_card_300k = (By.XPATH,'//*[@hkatt="rc-btn-card-300k"]')
-    rc_btn_card_500k = (By.XPATH,'//*[@hkatt="rc-btn-card-500k"]')
-    rc_btn_card_1000k = (By.XPATH,'//*[@hkatt="rc-btn-card-1000k"]')
-    
-    rc_in_card_pin = (By.XPATH,'//*[@hkatt="rc-in-card-pin"]')
-    rc_in_card_series = (By.XPATH,'//*[@hkatt="rc-in-card-series"]')
-    rc_txt_card_pin_error = (By.XPATH,'//*[@hkatt="rc-txt-card-pin-error"]')
-    rc_txt_card_series_error = (By.XPATH,'//*[@hkatt="rc-txt-card-series-error"]')
+    rc_btn_card_selector = (By.XPATH, '//*[@hkatt="rc-btn-card-selector"]')
+    rc_btn_card_10k = (By.XPATH, '//*[@hkatt="rc-btn-card-10k"]')
+    rc_btn_card_20k = (By.XPATH, '//*[@hkatt="rc-btn-card-20k"]')
+    rc_btn_card_30k = (By.XPATH, '//*[@hkatt="rc-btn-card-30k"]')
+    rc_btn_card_50k = (By.XPATH, '//*[@hkatt="rc-btn-card-50k"]')
+    rc_btn_card_100k = (By.XPATH, '//*[@hkatt="rc-btn-card-100k"]')
+    rc_btn_card_200k = (By.XPATH, '//*[@hkatt="rc-btn-card-200k"]')
+    rc_btn_card_300k = (By.XPATH, '//*[@hkatt="rc-btn-card-300k"]')
+    rc_btn_card_500k = (By.XPATH, '//*[@hkatt="rc-btn-card-500k"]')
+    rc_btn_card_1000k = (By.XPATH, '//*[@hkatt="rc-btn-card-1000k"]')
 
-    # SELECT MOMO ACCOUNT
-    momo_Selector = UiObject(By.CLASS_NAME, 'base-select__inner')
-    momo_account1 = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[2]')
-    momo_account2 = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[3]')
-    momo_account3 = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[4]')
-    momo_account4 = UiObject(By.XPATH, '//span[@class="icon-select-down"]/parent::div/ul/li[5]')
+    rc_in_card_pin = (By.XPATH, '//*[@hkatt="rc-in-card-pin"]')
+    rc_in_card_series = (By.XPATH, '//*[@hkatt="rc-in-card-series"]')
+    rc_txt_card_pin_error = (By.XPATH, '//*[@hkatt="rc-txt-card-pin-error"]')
+    rc_txt_card_series_error = (By.XPATH, '//*[@hkatt="rc-txt-card-series-error"]')
 
-    # CARD SELECTOR
 
-    amount_card_fee = UiObject(By.XPATH, '//li[1]/p[@class="wrapper-info__value"]')
-    amount_card_real = UiObject(By.XPATH, '//li[2]/p[@class="wrapper-info__value"]')
 
-    in_pin = UiObject(By.NAME, 'code')
-    in_pin_error = UiObject(By.NAME, '')
-    in_series = UiObject(By.NAME, 'serial')
-    in_series_error = UiObject(By.NAME, '')
+    rc_txt_card_fee = (By.XPATH, '//*[@hkatt="rc-txt-card-fee"]')
+    rc_txt_card_real_received = (By.XPATH, '//*[@hkatt="rc-txt-card-real-received"]')
 
-    card_Selector = UiObject(By.CLASS_NAME, 'base-select__inner')
-    viettel_card_amount_10k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[10]')
-    viettel_card_amount_20k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[9]')
-    viettel_card_amount_30k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[8]')
-    viettel_card_amount_50k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[7]')
-    viettel_card_amount_100k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[6]')
-    viettel_card_amount_200k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[5]')
-    viettel_card_amount_300k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[4]')
-    viettel_card_amount_500k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[3]')
-    viettel_card_amount_1000k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[2]')
+    # RECHARGE USING MOMO LOCATOR
+    rc_btn_momo_selector = (By.XPATH, '//*[@hkatt="rc-btn-momo-selector"]')
+    rc_btn_momo_account = (By.XPATH, '//*[@hkatt="rc-btn-momo-account"]')
 
-    mobi_vina_card_amount_10k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[9]')
-    mobi_vina_card_amount_20k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[8]')
-    mobi_vina_card_amount_30k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[7]')
-    mobi_vina_card_amount_50k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[6]')
-    mobi_vina_card_amount_100k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[5]')
-    mobi_vina_card_amount_200k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[4]')
-    mobi_vina_card_amount_300k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[3]')
-    mobi_vina_card_amount_500k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[2]')
+    rc_in_momo_amount = (By.XPATH, '//*[@hkatt="rc-in-momo-amount"]')
+    rc_in_momo_sender_name = (By.XPATH, '//*[@hkatt="rc-in-momo-sender-name"]')
+    rc_in_momo_code = (By.XPATH, '//*[@hkatt="rc-in-momo-code"]')
 
-    # BANK INFO
-    copy_owner_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div/p[3]')
-    copy_owner_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div/p[3]')
-    copy_number_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][2]/div/p[3]')
-    copy_number_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][2]/div/p[3]')
-    copy_place_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][3]/div/p[3]')
-    copy_place_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][3]/div/p[3]')
+    rc_txt_momo_amount_error = (By.XPATH, '//*[@hkatt="rc-txt-momo-amount-error"]')
+    rc_txt_momo_sender_name_error = (By.XPATH, '//*[@hkatt="rc-txt-momo-sender-name-error"]')
+    rc_txt_momo_code_error = (By.XPATH, '//*[@hkatt="rc-txt-momo-code-error"]')
 
-    # MOMO INFO
-    momo_phoneNo_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div/p[3]')
-    momo_phoneNo_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][1]/div/p[3]')
-    momo_owner_btn = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][2]/div/p[3]')
-    momo_owner_text = UiObject(By.XPATH, '//li[contains(@class,"deposit-bank-account__item")][2]/div/p[3]')
+    rc_btn_momo_copy_phone_no = (By.XPATH, '//*[@hkatt="rc-btn-momo-copy-phone-no"]')
+    rc_btn_momo_copy_owner = (By.XPATH, '//*[@hkatt="rc-btn-momo-copy-owner"]')
+    rc_txt_momo_copy_phone_no = (By.XPATH, '//*[@hkatt="rc-txt-momo-copy-phone-no"]')
+    rc_txt_momo_copy_owner = (By.XPATH, '//*[@hkatt="rc-txt-momo-copy-owner"]')
 
-    # TYPE SELECTOR
-    type_ibanking = UiObject(By.XPATH, '//input[@value="ibanking"]/parent::label/div')
-    type_atm = UiObject(By.XPATH, '//input[@value="atm"]/parent::label/div')
-    type_banking = UiObject(By.XPATH, '//input[@value="banking"]/parent::label/div')
+    # RECHARGE USING PAYWIN
+    rc_el_paywin_page_is_load = (By.XPATH,'//*[@hkatt="rc-el-paywin-page-is-load"]')
 
-    # INPUT FORM
-    in_amount = UiObject(By.NAME, 'amount')
-    in_amount_error = UiObject(By.XPATH, '//input[@name="amount"]/parent::div/parent::div/p[@class="error"]')
-    out_amount = UiObject(By.XPATH, '//p[@class="base-input-custom__vnd"]')
-    in_name = UiObject(By.NAME, 'fromBankName')
-    in_name_error = UiObject(By.XPATH, '//input[@name="fromBankName"]/parent::div/parent::div/p[@class="error"]')
-    in_code = UiObject(By.NAME, 'bankTrancode')
-    in_code_error = UiObject(By.XPATH, '//input[@name="bankTrancode"]/parent::div/parent::div/p[@class="error"]')
+    rc_in_paywin_amount = (By.XPATH,'//*[@hkatt="rc-in-paywin-amount"]')
+    rc_txt_paywin_amount_error = (By.XPATH,'//*[@hkatt="rc-txt-paywin-amount-error"]')
+    rc_txt_paywin_output_amount = (By.XPATH,'//*[@hkatt="rc-txt-paywin-output-amount"]')
 
-    # PROMO SELECTOR
-    promo_100 = UiObject(By.CLASS_NAME, 'promotion-item--package-2')
-    promo_40 = UiObject(By.CLASS_NAME, 'promotion-item--package-3')
-    promo_125 = UiObject(By.CLASS_NAME, 'promotion-item--package-1')
-
-    amount_promo = UiObject(By.XPATH, '//div[contains(@class,"deposit-promotion__note")]/ul/li[1]/p[2]')
-    amount_real = UiObject(By.XPATH, '//div[contains(@class,"deposit-promotion__note")]/ul/li[2]/p[2]')
-    amount_minbet = UiObject(By.XPATH, '//div[contains(@class,"deposit-promotion__note")]/ul/li[3]/p[2]')
-    finished_date = UiObject(By.XPATH, '//div[contains(@class,"deposit-promotion__note")]/ul/p/span')
-
-    # BUTTON
-    bank_TAO_PHIEU_NAP = UiObject(By.XPATH, '//div[contains(@class,"deposit-bank")]/div/div/button')
-    momo_TAO_PHIEU_NAP = UiObject(By.XPATH, '//div[contains(@class,"deposit-momo")]/div/div/button')
-    paywin_TAO_PHIEU_NAP = UiObject(By.XPATH, '//div[contains(@class,"deposit-paywin")]/div/div/button')
-    card_TAO_PHIEU_NAP = UiObject(By.XPATH, '//div[contains(@class,"deposit-card")]/div/div/button')
-
-    paywin_page_load = UiObject(By.ID, 'page')
+    rc_txt_paywin_amount_promo = (By.XPATH,'//*[@hkatt="rc-txt-paywin-amount-promo"]')
+    rc_txt_paywin_amount_real = (By.XPATH,'//*[@hkatt="rc-txt-paywin-amount-real"]')
+    rc_txt_paywin_amount_min_of_bet = (By.XPATH,'//*[@hkatt="rc-txt-paywin-amount-min-of-bet"]')
+    rc_txt_paywin_time_to_finish = (By.XPATH,'//*[@hkatt="rc-txt-paywin-time-to-finish"]')
 
     # DATA HELPTEXT:
     data_helptext = {
@@ -420,101 +388,100 @@ class RechargeLocators(object):
             'Techcombank': 'Vui lòng nhập họ và tên người gửi'}
     }
 
-    data_listBanks = {
-        'Vietcombank': bank_Vietcombank,
-        'ACB': bank_ACB,
-        'DongA': bank_DongA,
-        'Vietinbank': bank_VietinBank,
-        # 'BIDV': bank.BIDV,
-        'Sacombank': bank_Sacombank,
-        'Techcombank': bank_Techcombank
+    data_list_banks_bank = {
+        'Vietcombank': rc_btn_vietcombank,
+        'ACB': rc_btn_acb,
+        'DongA': rc_btn_donga,
+        'Vietinbank': rc_btn_vietinbank,
+        # 'BIDV': rc_btn_bidv,
+        'Sacombank': rc_btn_sacombank,
+        'Techcombank': rc_btn_techcombank
     }
 
-    data_listBanks_paywin = {
-        'Vietcombank': bank_Vietcombank,
-        'ACB': bank_ACB,
-        # 'DongA': bank_DongA,
-        'Vietinbank': bank_VietinBank,
-        # 'BIDV': bank.BIDV,
-        'Sacombank': bank_Sacombank,
-        'Techcombank': bank_Techcombank
+    data_list_banks_paywin = {
+        'Vietcombank': rc_btn_vietcombank,
+        'ACB': rc_btn_acb,
+        # 'DongA': rc_btn_donga,
+        'Vietinbank': rc_btn_vietinbank,
+        # 'BIDV': rc_btn_bidv,
+        'Sacombank': rc_btn_sacombank,
+        'Techcombank': rc_btn_techcombank
     }
 
-    data_listBankMethod = {
-        'iBanking': type_ibanking,
-        'ATM': type_atm,
-        'Cash': type_banking
+    data_list_bank_method = {
+        'iBanking': rc_btn_bank_type_ibanking,
+        'ATM': rc_btn_bank_type_atm,
+        'Cash': rc_btn_bank_type_banking
     }
 
-    data_listCardAmount = {
+    data_list_card_amount = {
         'viettel': {
-            '10k': [viettel_card_amount_10k, 10000],
-            '20k': [viettel_card_amount_20k, 20000],
-            '30k': [viettel_card_amount_30k, 30000],
-            '50k': [viettel_card_amount_50k, 50000],
-            '100k': [viettel_card_amount_100k, 100000],
-            '200k': [viettel_card_amount_200k, 200000],
-            '300k': [viettel_card_amount_300k, 300000],
-            '500k': [viettel_card_amount_500k, 500000],
-            '1000k': [viettel_card_amount_1000k, 1000000]},
+            '10k': [rc_btn_card_10k, 10000],
+            '20k': [rc_btn_card_20k, 20000],
+            '30k': [rc_btn_card_30k, 30000],
+            '50k': [rc_btn_card_50k, 50000],
+            '100k': [rc_btn_card_100k, 100000],
+            '200k': [rc_btn_card_200k, 200000],
+            '300k': [rc_btn_card_300k, 300000],
+            '500k': [rc_btn_card_500k, 500000],
+            '1000k': [rc_btn_card_1000k, 1000000]},
         'vinaphone': {
-            '10k': [mobi_vina_card_amount_10k, 10000],
-            '20k': [mobi_vina_card_amount_20k, 20000],
-            '30k': [mobi_vina_card_amount_30k, 30000],
-            '50k': [mobi_vina_card_amount_50k, 50000],
-            '100k': [mobi_vina_card_amount_100k, 100000],
-            '200k': [mobi_vina_card_amount_200k, 200000],
-            '300k': [mobi_vina_card_amount_300k, 300000],
-            '500k': [mobi_vina_card_amount_500k, 500000]},
+            '10k': [rc_btn_card_10k, 10000],
+            '20k': [rc_btn_card_20k, 20000],
+            '30k': [rc_btn_card_30k, 30000],
+            '50k': [rc_btn_card_50k, 50000],
+            '100k': [rc_btn_card_100k, 100000],
+            '200k': [rc_btn_card_200k, 200000],
+            '300k': [rc_btn_card_300k, 300000],
+            '500k': [rc_btn_card_500k, 500000]},
         'mobifone': {
-            '10k': [mobi_vina_card_amount_10k, 10000],
-            '20k': [mobi_vina_card_amount_20k, 20000],
-            '30k': [mobi_vina_card_amount_30k, 30000],
-            '50k': [mobi_vina_card_amount_50k, 50000],
-            '100k': [mobi_vina_card_amount_100k, 100000],
-            '200k': [mobi_vina_card_amount_200k, 200000],
-            '300k': [mobi_vina_card_amount_300k, 300000],
-            '500k': [mobi_vina_card_amount_500k, 500000]}
+            '10k': [rc_btn_card_10k, 10000],
+            '20k': [rc_btn_card_20k, 20000],
+            '30k': [rc_btn_card_30k, 30000],
+            '50k': [rc_btn_card_50k, 50000],
+            '100k': [rc_btn_card_100k, 100000],
+            '200k': [rc_btn_card_200k, 200000],
+            '300k': [rc_btn_card_300k, 300000],
+            '500k': [rc_btn_card_500k, 500000]}
     }
 
-    data_listCardSupplier = {
-        'viettel': spp_viettel,
-        'vinaphone': spp_vinaphone,
-        'mobifone': spp_mobifone
+    data_list_card_supplier = {
+        'viettel': rc_btn_ncc_viettel,
+        'vinaphone': rc_btn_ncc_vinaphone,
+        'mobifone': rc_btn_ncc_mobifone
     }
 
 
 class WithdrawLocators:
-    tab_bank = UiObject(By.XPATH, '//span[contains(@class,"icon-bank")]/parent::div')
-    tab_card = UiObject(By.XPATH, '//span[contains(@class,"icon-card")]/parent::div')
+    wd_btn_card_selector = (By.XPATH,'//*[@hkatt="wd-btn-card-selector"]')
+    wd_btn_card_10k = (By.XPATH,'//*[@hkatt="wd-btn-card-10k"]')
+    wd_btn_card_20k = (By.XPATH,'//*[@hkatt="wd-btn-card-20k"]')
+    wd_btn_card_30k = (By.XPATH,'//*[@hkatt="wd-btn-card-30k"]')
+    wd_btn_card_50k = (By.XPATH,'//*[@hkatt="wd-btn-card-50k"]')
+    wd_btn_card_100k = (By.XPATH,'//*[@hkatt="wd-btn-card-100k"]')
+    wd_btn_card_200k = (By.XPATH,'//*[@hkatt="wd-btn-card-200k"]')
+    wd_btn_card_300k = (By.XPATH,'//*[@hkatt="wd-btn-card-300k"]')
+    wd_btn_card_500k = (By.XPATH,'//*[@hkatt="wd-btn-card-500k"]')
+    wd_btn_card_1000k = (By.XPATH,'//*[@hkatt="wd-btn-card-1000k"]')
 
-    in_amount = UiObject(By.NAME, 'amount')
-    in_amount_error = UiObject(By.XPATH, '//input[@name="amount"]/parent::div/parent::div/p[contains(@class,"error")]')
-    password = UiObject(By.NAME, 'password')
-    card_password = UiObject(By.XPATH, '//div[@class="base-input-custom base-input-custom--password"]/div/input')
-    password_error = UiObject(By.XPATH, '//input[@name="password"]/parent::div/parent::div/p[contains(@class,"error")]')
-    No_ofCard = UiObject(By.XPATH, '//input[@type="tel"]')
+    wd_btn_withdraw_confirm = (By.XPATH,'//*[@hkatt="wd-btn-withdraw-confirm"]')
+    wd_btn_tab_bank = (By.XPATH,'//*[@hkatt="wd-btn-tab-bank"]')
+    wd_btn_tab_card = (By.XPATH,'//*[@hkatt="wd-btn-tab-card"]')
 
-    show_pass = UiObject(By.XPATH, '//input[@name="password"]/parent::div/span[contains(@class,"icon-eye-hide")]')
-    hide_pass = UiObject(By.XPATH, '//input[@name="password"]/parent::div/span[contains(@class,"icon-eye-show")]')
+    wd_btn_bank_select_account = (By.XPATH,'//*[@hkatt="wd-btn-bank-select-account"]')
+    wd_lst_bank_account_list = (By.XPATH,'//*[@hkatt="wd-lst-bank-account-list"]')
+    wd_in_bank_amount = (By.XPATH,'//*[@hkatt="wd-in-bank-amount"]')
+    wd_in_bank_password = (By.XPATH,'//*[@hkatt="wd-in-bank-password"]')
+    wd_txt_bank_output_amount = (By.XPATH,'//*[@hkatt="wd-txt-bank-output-amount"]')
+    wd_ico_bank_show_password = (By.XPATH,'//*[@hkatt="wd-ico-bank-show-password"]')
+    wd_ico_bank_hide_password = (By.XPATH,'//*[@hkatt="wd-ico-bank-hide-password"]')
 
-    card_show_pass = UiObject(By.XPATH, '//input/parent::div/span[contains(@class,"icon-eye-hide")]')
-    card_hide_pass = UiObject(By.XPATH, '//input/parent::div/span[contains(@class,"icon-eye-show")]')
-
-    popup_error = UiObject(By.XPATH, '//div[@class="swal-modal"]')
-    popup_error_title = UiObject(By.XPATH, '//div[@class="swal-title"]')
-    popup_error_content = UiObject(By.XPATH, '//div[@class="swal-text"]')
-    popup_error_btn_confirm = UiObject(By.CLASS_NAME, 'swal-button--confirm')
-
-    acc_selector = UiObject(By.CLASS_NAME, 'icon-user')
-    acc_1 = UiObject(By.XPATH, '//li[contains(@role,"presentation")][1]/a/label/div')
-    acc_2 = UiObject(By.XPATH, '//li[contains(@role,"presentation")][2]/a/label/div')
-    acc_3 = UiObject(By.XPATH, '//li[contains(@role,"presentation")][3]/a/label/div')
-    acc_4 = UiObject(By.XPATH, '//li[contains(@role,"presentation")][4]/a/label/div')
-    acc_5 = UiObject(By.XPATH, '//li[contains(@role,"presentation")][5]/a/label/div')
-
-    TAO_PHIEU_RUT = UiObject(By.XPATH, '//span[@class="icon-user"]/parent::button/parent::div/parent::div/parent::div/div[@class="text-center"]/button')
-    DOI_THE_CAO = UiObject(By.XPATH, '//button/parent::div/parent::div/div[@class="text-center"]/button')
+    wd_btn_viettel = (By.XPATH,'//*[@hkatt="wd-btn-viettel"]')
+    wd_btn_vinaphone = (By.XPATH,'//*[@hkatt="wd-btn-vinaphone"]')
+    wd_btn_mobifone = (By.XPATH,'//*[@hkatt="wd-btn-mobifone"]')
+    wd_in_card_password = (By.XPATH,'//*[@hkatt="wd-in-card-password"]')
+    wd_ico_card_show_password = (By.XPATH,'//*[@hkatt="wd-ico-card-show-password"]')
+    wd_ico_card_hide_password = (By.XPATH,'//*[@hkatt="wd-ico-card-hide-password"]')
 
     card_Selector = UiObject(By.CLASS_NAME, 'base-select__inner')
     viettel_card_amount_10k = UiObject(By.XPATH, '//ul[@class="base-select__options"]/li[10]')
