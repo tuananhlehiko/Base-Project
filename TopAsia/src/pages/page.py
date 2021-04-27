@@ -84,9 +84,12 @@ class ValidateData:
         data[3].set_text(text_input)
         if data[4][0].visible():
             data[4][0].click()
+            print('trueee')
         else:
+            print('false')
             data[4][1].click()
             data[4][0].click()
+
         time.sleep(2)
         actual = data[3].get_attribute('type')
         if actual == data[7]:
@@ -131,6 +134,7 @@ class ValidateData:
                 data_input = 'validdata'+data[6][c]
                 data[3].set_text(data_input)
                 time.sleep(1)
+                print('\n', '-'*5, ' Case: ', data_input, ': ', data[5], ' ', 5*'-')
                 if data[4].visible():
                     actual = data[4].get_text()
                     if actual == data[7]:
@@ -150,9 +154,12 @@ class ValidateData:
                 listdata_return.append([Number, data[5], data_input, data_input, actual, sts, notes])
             return listdata_return
         elif '-P' in data[2]:
-            for set in range(len(data[3])-2):
+            print(len(data[3])-2)
+            for set in range(len(data[3])-1):
+                print(set, data[6][set])
                 data[3][set].set_text(data[6][set])
                 data_input = data_input + data[6][set]
+                time.sleep(2)
             for item in data[3][len(data[3])-1]:
                 item.click()
                 time.sleep(1)
@@ -171,7 +178,6 @@ class ValidateData:
                 sts = 'FAILED'
                 notes = 'Popup error không hiện'
                 driver.ScrShot(str(data[0])+'_Error popup not display', name)
-
         else:
             data_input = data[6]
             data[3].set_text(data_input)

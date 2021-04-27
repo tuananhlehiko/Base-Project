@@ -48,5 +48,5 @@ listgame = unittest.TestLoader().loadTestsFromTestCase(ListGameLoading)
 # # Create test_suite
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test, casino_url_test, game_url_test])
 # test_suite = unittest.TestSuite([casino_heading_test, game_heading_test])
-test_suite = unittest.TestSuite([listgame])
+test_suite = unittest.TestSuite([loginflow])
 unittest.TextTestRunner().run(test_suite)
